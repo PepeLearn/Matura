@@ -1,0 +1,70 @@
+
+.form-ozadje {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 5%;
+    border-radius: 5%;
+}
+
+.ozadje {
+    background-color: rgb(20, 23, 31);
+    height: 100vh;
+    width: 100vw;
+}
+
+form {
+    font-size: 16px;
+    margin: 5%;
+
+}
+
+h1 {
+    border-bottom: solid black 2px;
+    margin-bottom: 10%;
+    padding-bottom: 5%;
+}
+
+h2 {
+    color: white;
+    font-size: 32px;
+    text-align: center;
+    padding-top: 5%;
+}
+
+input {
+    text-align: left;
+}
+
+
+.poravnava_user{
+    margin-left: 10%;
+    position: relative;
+    left: -10%;
+    width: 100%;
+}
+.a {
+    margin-top: 10%;
+    width:  100%;
+    height: 40px;
+    border-radius: 5vh;
+    background-color: grey;
+    border: solid white 1px;
+    text-align: center;
+}
+
+.a:hover {
+    background-color: rgb(20, 23, 31);
+    color: white;
+}
+
+.link {
+    color: black;
+    font-size: 24px;
+}
+
+.link:hover {
+    color: grey;
+}
