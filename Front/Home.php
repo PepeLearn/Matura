@@ -37,9 +37,34 @@
   </section>
   <main>
     <section id="main_section">
-
+      <img id="image_id" src="../Slike/Ozadje/sub_main_img.jpg" alt="">
+      <div id="square"></div>
+      <div id="main_text_header">ABOUS US</div>
+      <div id="main_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam maiores quidem delectus asperiores Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam in voluptas mollitia nemo similique! Ullam illum distinctio veritatis ex perferendis amet incidunt tempora dolorem praesentium esse eos, ut quia voluptate. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente ab odit suscipit qui corporis beatae nobis mollitia totam distinctio, quibusdam maiores molestiae voluptates, optio et dolores dicta sequi, enim iste! laudantium qui commodi laborum similique sint? Nihil, quod nesciunt reiciendis aspernatur magnam facilis nulla praesentium. Doloremque, obcaecati! Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam doloremque vel laborum veritatis aliquid, quisquam totam neque fugit quibusdam et? Error reprehenderit delectus autem qui nemo nobis ducimus, quibusdam esse.</div>
     </section>
     <section id="sub_section"> 
+      <div id="sub_section_left">
+      <h1 id="contact_header">CONTACT</h1>
+          <div id="contact_info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa possimus reiciendis molestias incidunt, ipsa amet commodi inventore dolorum suscipit nihil quas, cum tenetur nostrum porro, architecto minima nobis tempora. Tempore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum numquam aliquid recusandae commodi quos optio voluptatum quo perspiciatis saepe iste quis aspernatur ut cumque molestiae et distinctio, illum ab dolor. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio cupiditate animi cum numquam, beatae nihil, architecto, dolore libero reprehenderit suscipit explicabo magnam sint ipsam fuga maiores quas illum commodi rerum!</div>
+      </div>
+      <div id="sub_section_right">
+      <div class="ozadje">
+        <div class="form-ozadje">
+            <div class="header_sub">FORM</div>
+            <form method="POST">
+                <label class="label_position" for="n">Name</label></br>
+                <input class="input_looks" type="text" name="username" id="n"></br></br>
+                <label class="label_position" for="s">Surname</label></br>
+                <input class="input_looks" type="text" name="surname" id="s"></br></br>
+                <label class="label_position" for="u">Username</label></br>
+                <input class="input_looks" type="text" name="username" id="u"></br></br>
+                <label  class="label_position" for="e">E-mail</label></br>
+                <input class="input_looks" type="email" name="e-mail" id="e"></br></br>
+                <input class="done" type="submit" value="submit";></br></br>
+            </form>
+        </div>
+    </div>
+      </div>
     </section>
   </main>
   <footer>
