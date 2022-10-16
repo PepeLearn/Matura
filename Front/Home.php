@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="\CSS\Home.css">
+  <link rel="stylesheet" href="..\CSS\Home.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@
   <section id="head_page">
     <div id="transparent-black-header-border-up"></div>
     <div id="right-side-of-header">
-      <img id="head-img" src="/Slike/Ozadje/main.jpg" alt="Ozadje-naslovnice">
+      <img id="head-img" src="../Slike/Ozadje/main.jpg" alt="Ozadje-naslovnice">
     </div>
     <div id="left-side-of-header">
       <div id="transparent-black-header-border-around">
@@ -37,6 +37,7 @@
   </section>
   <main>
     <section id="main_section">
+
     </section>
     <section id="sub_section"> 
     </section>

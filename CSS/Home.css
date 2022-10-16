@@ -107,6 +107,9 @@ h1 {
 
 #main_section {
     height: 100vh;
+    margin-top: 40%;
+    border: red solid 5px;
+
 }
 
 #sub_section {
