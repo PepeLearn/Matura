@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+	DocumentRoot "C:\xampp\htdocs\backend\server.php"
+	ServerName database.com
+	<Directory "C:\xampp\htdocs\matura\backend\server.php">
+	</Directory>
+</VirtualHost>
+
+<VirtualHost *:80>
+	DocumentRoot "C:\xampp\htdocs\backend\authenticator.php"
+	ServerName authenticate.com
+	<Directory "C:\xampp\htdocs\matura\backend\authenticator.php">
+	</Directory>
+</VirtualHost>
