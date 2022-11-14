@@ -1,6 +1,7 @@
 
 
 <?php
+include "../auth/jwt.php";
 include "connect.php";    
 $user=$_POST["user"];
 $password=$_POST["password"];
