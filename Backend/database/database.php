@@ -3,14 +3,15 @@
 <?php
 include "../auth/jwt.php";
 include "connect.php";    
-$username=$_POST["username"];
-$password=$_POST["password"];
-$sql = "SELECT username,password FROM user WHERE password ='$password'AND user='$username'";
-  if ($conn->query($sql))
+$username=$_GET["username"];
+$password=$_GET["password"];
+$sql = "SELECT * FROM users WHERE password ='$password'AND username='$username'";
+$result = $conn->query($sql);
+  if ($result->num_rows > 0)
   {
     $payload = array ( // doda username in password k payloadu
       'password' => $password,
-      'username:' => $username
+      'username' => $username
     );
     $generate = new JWT(); 
     $token = $generate->generate($payload); // generira token z payloadom
