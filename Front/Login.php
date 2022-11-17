@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+
+<head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,46 +13,53 @@
   <title>Login</title>
 </head>
 <script>
-function httpGetAsync(theUrl, callback)  //vir : https://stackoverflow.com/questions/247483/http-get-request-in-javascript
-{
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() { 
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            callback(xmlHttp.responseText);
-    }
-    xmlHttp.open("GET", theUrl, true); // true for asynchronous 
-   /// xmlHttp.send();  ni dokoncano 6.12 11/15/2022
-}
-//function (token)
-//{
-//}
-function validateForm() { // preveri ce so vsa polja izplonjena
-  let usernname = document.forms["login"]["username"].value; 
-  let usernname = document.forms["login"]["password"].value;
-  if (username == "") {
-    alert("Username must be filled in!");
-    return false;
-  } else if (password == ""){ 
-    alert("Password is required");
-    return false;
+  function saveToSession(token) //vir : https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage
+  {
+    sessionStorage.setItem("Authorisation ", "Bearer : " + token); // shrani token v session
   }
-  httpGetAsync("localhost/database/database.php" )
-}
+
+
+
+  function httpGetAsync(theUrl, SaveToSession, username, password) //vir : https://stackoverflow.com/questions/247483/http-get-request-in-javascript
+  {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+      if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+        SaveToSession(xmlHttp.responseText); //  
+    }
+    xmlHttp.open("GET", theUrl, false); // true for asynchronous 
+    xmlHttp.send(username, password);
+  }
+
+  function validateForm() { // preveri ce so vsa polja izplonjena
+    let username = document.forms["login"]["username"].value;
+    let password = document.forms["login"]["password"].value;
+    if (username == "") {
+      alert("Username must be filled in!");
+      return false;
+    } else if (password == "") {
+      alert("Password is required");
+      return false;
+    }
+    httpGetAsync("http://127.0.0.1/matura/Backend/database/database.php", "bruh", username, password) // poslje username, geslo na database.php datoteko, ce je oboje vneseno.
+  }
 </script>
+
 <body>
-    <div class="ozadje">
-        <div class="form-ozadje">
-            <h1>Login</h1>
-            <form method="POST" onsubmit="return validateForm()" name="login">
-                <label for="u">Username</label>
-                <input class="poravnava_user" type="text" name="username" id="u"></br></br>
-                <label" for="g">Password</label>
-                <input class="poravnava_user" type="password" name="password" id="g">
-                <input class="a" type="submit" value="login";></br></br>
-                <p>Dont have an account yet?</p></br>
-                <a class="text-decoration-none link" href="Signup.php">Sign up</a>
-            </form>
-        </div>
+  <div class="ozadje">
+    <div class="form-ozadje">
+      <h1>Login</h1>
+      <form method="POST" onsubmit="return validateForm()" name="login">
+        <label for="u">Username</label>
+        <input class="poravnava_user" type="text" name="username" id="u"></br></br>
+        <label" for="g">Password</label>
+          <input class="poravnava_user" type="password" name="password" id="g">
+          <input class="a" type="submit" value="login" ;></br></br>
+          <p>Dont have an account yet?</p></br>
+          <a class="text-decoration-none link" href="Signup.php">Sign up</a>
+      </form>
     </div>
+  </div>
 </body>
+
 </html>
