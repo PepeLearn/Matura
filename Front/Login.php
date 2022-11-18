@@ -31,22 +31,22 @@
       if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
         saveToSession(xmlHttp.responseText); // shrani response v session
     }
-    xmlHttp.open("GET", theUrl + "?username=" + username + "&password=" + password, false); // true for asynchronous 
-    xmlHttp.send(username, password);
-    console.log(username)
-    console.log(password)
+    xmlHttp.open("GET", theUrl + "?username=" + username + "&password=" + password, true); // true for asynchronous 
+    xmlHttp.send(); // poslje GET request
+    console.log(username) //test
+    console.log(password) //test
     xmlHttp.onload = () => {
       console.log(xmlHttp.responseURL); // vir : https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/responseURL
     }
   }
 
-  function validateForm() { // preveri ce so vsa polja izplonjena
+  function validateForm() { // preveri ce so vsa polja izplonjena v form (temporary, treba zamnejati v prihodnosti)
     let username = document.forms["login"]["username"].value;
     let password = document.forms["login"]["password"].value;
-    if (username == "") {
-      alert("Username must be filled in!");
+    if (username == "") {  // preveri ce je username vnesen
+      alert("Username must be filled in!"); 
       return false;
-    } else if (password == "") {
+    } else if (password == "") { // preveri ce je password vnesen
       alert("Password is required");
       return false;
     }
