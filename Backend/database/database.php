@@ -1,5 +1,3 @@
-
-
 <?php
 include "../auth/jwt.php";
 include "connect.php";    
@@ -15,7 +13,7 @@ $result = $conn->query($sql);
     );
     $generate = new JWT(); 
     $token = $generate->generate($payload); // generira token z payloadom
-
+    echo ( "Authorization Bearer: $token"  );
   } 
   else // ce sql ne vrne vnosa, vrne kodo 401 (unauthorised) v http header
   {
