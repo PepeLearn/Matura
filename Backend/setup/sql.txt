@@ -1,4 +1,19 @@
 CREATE DATABASE users;
 use users;
 CREATE TABLE users ( id int PRIMARY KEY NOT NULL AUTO_INCREMENT, username VARCHAR(25) NOT NULL, password VARCHAR(255) NOT NULL, admin boolean DEFAULT 0);
-INSERT users ( username, password,admin) VALUES ("admin", "admin", true);
+INSERT users (username, password,admin) VALUES ("admin", "admin", true);
+INSERT users (username,password) VALUES ("nejc","1234");
+CREATE TABLE products (
+    id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    ProductName VARCHAR(255) NOT NULL,
+    ProductPrice double NOT NULL,
+    ProductCategory VARCHAR(255) NOT NULL);
+CREATE TABLE tags (
+    id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    TagName varchar(255) NOT NULL); 
+CREATE TABLE tagToProduct (
+    ProductID int,
+    TagID int,
+    FOREIGN KEY (ProductID) REFERENCES products(id),
+    FOREIGN KEY (TagID) REFERENCES  tags(id)
+);
