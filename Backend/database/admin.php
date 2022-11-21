@@ -4,10 +4,10 @@ class admin
 {
     public function insertProduct($payload, $conn) // vnese produkt v tabelo
     {
-        $productName = $payload['productName'];
-        $productPrice = $payload['productPrice'];
-        $productCategory = $payload['productCategory'];
-        $sql = "INSERT INTO products (name,price,category) VALUES ('$productName',$productPrice,'$productCategory')";
+        $ProductName = $payload['productName'];
+        $ProductPrice = $payload['productPrice'];
+        $ProductCategory = $payload['productCategory'];
+        $sql = "INSERT INTO products (ProductName,ProductPrice,ProductCategory) VALUES ('$ProductName',$ProductPrice,'$ProductCategory')";
         if ($conn->query($sql))
             return true;
     }
@@ -48,6 +48,20 @@ class admin
             return true;
         }
         return false;
-
+    }
+        public function updateProduct($payload, $conn) // posodobi product
+    {
+        if (!isset($payload['ProductID']) || !isset($payload['ProductPrice']) || !isset($payload['ProductName']) || !isset($payload['ProductCategory'])){ // preveri ce je  $payload valid
+            return false;
+        }
+        $ProductID = $payload['ProductID'];
+        $ProductName = $payload['ProductName'];
+        $ProductCategory = $payload['ProductCategory'];
+        $ProductPrice = $payload['ProductPrice'];
+        $sql = "UPDATE products SET ProductName = '$ProductName', ProductPrice = '$ProductPrice', ProductCategory = '$ProductCategory' WHERE id = '$ProductID'"; 
+        if ($conn->query($sql)){
+            return true;
+        }
+        return false;
     }
 }
