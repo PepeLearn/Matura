@@ -31,7 +31,7 @@
       if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
         saveToSession(xmlHttp.responseText); // shrani response v session
     }
-    xmlHttp.open("GET", theUrl + "?username=" + username + "&password=" + password, true); // true for asynchronous 
+    xmlHttp.open("GET", theUrl + "?username=" + username + "&password=" + password + "&login=true", true); // true for asynchronous 
     xmlHttp.send(); // poslje GET request
     console.log(username) //test
     console.log(password) //test
