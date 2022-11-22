@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <title>Home</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
 </head>
 <body>
   <header>
@@ -19,28 +20,32 @@
       <a class="link" href="Account.php">Contact</a>
       <a class="link" href="Account.php">About us</a>
     </nav>
-  </header>
-  <section id="head_page">
-    <div id="transparent-black-header-border-up"></div>
-    <div id="right-side-of-header">
-      <img id="head-img" src="../Slike/Ozadje/main.jpg" alt="Ozadje-naslovnice">
-    </div>
-    <div id="left-side-of-header">
-      <div id="transparent-black-header-border-around">
-          <div id="transparent-black-header-border">
-            <h1>Trgovina Tara</h1>
-            <a href="Store.php" class="button">Shop now!</a>
-            <p id="header-text">For the modern woman who wants to feel confident and comfortable. Express your unique style with our stylish clothes. Dressing well doesn't have to be hard – find what you love at our store. You're worth it: shop our collection and feel great about your look.</p>
-          </div>
+  </header> 
+    <section>
+    <div class="main_header">
+    <div id="blackbar"></div>
+        <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <img class="slider_img" src="../Slike/Ozadje/main.jpg" alt="main_image">
+          <img class="slider_img" src="../Slike/Ozadje/main.jpg" alt="main_image">
+          <img class="slider_img" src="../Slike/Ozadje/sub_main_img.jpg" alt="sub_main_image">
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+      
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      
+        <!-- If we need scrollbar -->
+        <div class="swiper-scrollbar"></div>
       </div>
-    </div>
   </section>
   <main>
     <section id="main_section">
-      <img id="image_id" src="../Slike/Ozadje/sub_main_img.jpg" alt="">
-      <div id="square"></div>
-      <div id="main_text_header">ABOUS US</div>
-      <div id="main_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam maiores quidem delectus asperiores Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam in voluptas mollitia nemo similique! Ullam illum distinctio veritatis ex perferendis amet incidunt tempora dolorem praesentium esse eos, ut quia voluptate. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente ab odit suscipit qui corporis beatae nobis mollitia totam distinctio, quibusdam maiores molestiae voluptates, optio et dolores dicta sequi, enim iste! laudantium qui commodi laborum similique sint? Nihil, quod nesciunt reiciendis aspernatur magnam facilis nulla praesentium. Doloremque, obcaecati! Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam doloremque vel laborum veritatis aliquid, quisquam totam neque fugit quibusdam et? Error reprehenderit delectus autem qui nemo nobis ducimus, quibusdam esse.</div>
+      
     </section>
     <section id="sub_section"> 
       <div id="sub_section_left">
@@ -70,6 +75,19 @@
   <footer>
 
   </footer>
+  <script>
+    const swiper = new Swiper('.swiper', {
+        loop: true      ,
+        pagination: {
+          el: '.swiper-pagination',
+        }     ,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        }     ,
+      });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script></body>
 </html>
