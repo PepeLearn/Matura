@@ -44,10 +44,10 @@ class admin
         }
         $ProductID = $payload['ProductID'];
         $sql = "DELETE from products WHERE id=$ProductID";
-        if ($conn->query($sql)){
-            return true;
+        if ($conn->query($sql)){ // zazene sql
+            return true; // ce je slo skozi vrne true
         }
-        return false;
+        return false; // drugace vrne false
     }
         public function updateProduct($payload, $conn) // posodobi product
     {
@@ -59,9 +59,9 @@ class admin
         $ProductCategory = $payload['ProductCategory'];
         $ProductPrice = $payload['ProductPrice'];
         $sql = "UPDATE products SET ProductName = '$ProductName', ProductPrice = '$ProductPrice', ProductCategory = '$ProductCategory' WHERE id = '$ProductID'"; 
-        if ($conn->query($sql)){
-            return true;
+        if ($conn->query($sql)){ // zazene sql
+            return true; // ce je slo skozi vrne true
         }
-        return false;
+        return false; // drugace vrne false
     }
 }
