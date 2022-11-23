@@ -50,7 +50,7 @@ class JWT  //Vir: https://dev.to/thedevdrawer/json-web-tokens-without-firebase-j
         if ((json_decode($payload)->exp) - time() < 0) { /// preveri ce je cas izteka veljaven
             return false;
         }
-        if (isset(json_decode($payload)->iss))  { // preveri ce obstaja izdajatelj (issuer)
+        if (isset(json_decode($payload)->iss)) { // preveri ce obstaja izdajatelj (issuer)
             if (json_decode($payload)->iss != json_decode($headers)->iss) { // preveri ce je izdajatelj veljaven
                 return false;
             }
