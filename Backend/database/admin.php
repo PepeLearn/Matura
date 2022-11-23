@@ -39,27 +39,27 @@ class admin
 
     public function deleteProduct($payload, $conn) // odstrani product
     {
-        if (!isset($payload['ProductID'])){
+        if (!isset($payload['ProductID'])) {
             return false;
         }
         $ProductID = $payload['ProductID'];
         $sql = "DELETE from products WHERE id=$ProductID";
-        if ($conn->query($sql)){ // zazene sql
+        if ($conn->query($sql)) { // zazene sql
             return true; // ce je slo skozi vrne true
         }
         return false; // drugace vrne false
     }
-        public function updateProduct($payload, $conn) // posodobi product
+    public function updateProduct($payload, $conn) // posodobi product
     {
-        if (!isset($payload['ProductID']) || !isset($payload['ProductPrice']) || !isset($payload['ProductName']) || !isset($payload['ProductCategory'])){ // preveri ce je  $payload valid
+        if (!isset($payload['ProductID']) || !isset($payload['ProductPrice']) || !isset($payload['ProductName']) || !isset($payload['ProductCategory'])) { // preveri ce je  $payload valid
             return false;
         }
         $ProductID = $payload['ProductID'];
         $ProductName = $payload['ProductName'];
         $ProductCategory = $payload['ProductCategory'];
         $ProductPrice = $payload['ProductPrice'];
-        $sql = "UPDATE products SET ProductName = '$ProductName', ProductPrice = '$ProductPrice', ProductCategory = '$ProductCategory' WHERE id = '$ProductID'"; 
-        if ($conn->query($sql)){ // zazene sql
+        $sql = "UPDATE products SET ProductName = '$ProductName', ProductPrice = '$ProductPrice', ProductCategory = '$ProductCategory' WHERE id = '$ProductID'";
+        if ($conn->query($sql)) { // zazene sql
             return true; // ce je slo skozi vrne true
         }
         return false; // drugace vrne false

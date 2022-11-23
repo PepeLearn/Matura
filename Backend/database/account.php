@@ -31,8 +31,7 @@ class login
         $password = $payload['password'];
         $username = $payload['username'];
         $sql = "INSERT INTO users (username,password) VALUES('$username', '$password');"; // vstavi nov user v database
-        if ($conn->query($sql))
-        {
+        if ($conn->query($sql)) {
             return true;
         }
     }
