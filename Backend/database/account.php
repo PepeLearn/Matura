@@ -23,4 +23,17 @@ class login
             return false;
         }
     }
+    public function signup($conn, $payload)
+    {
+        if (!isset($payload['password']) || !isset($payload['username'])) {
+            return false;
+        }
+        $password = $payload['password'];
+        $username = $payload['username'];
+        $sql = "INSERT INTO users (username,password) VALUES('$username', '$password');"; // vstavi nov user v database
+        if ($conn->query($sql))
+        {
+            return true;
+        }
+    }
 }
