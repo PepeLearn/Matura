@@ -28,4 +28,11 @@ if (isset($_GET["signup"])) {
 
 if (isset($_GET["productCatalog"])) {
   $productCatalog = new catalog;
+  if ($productCatalog->getCatalog($conn)) {
+      cors(); // da dela pa ne mece napak
+      http_response_code(200);  // status OK
+  } else {
+    http_response_code(404); // vrne not found ce nekaj ne stima
+  }
+  
 }

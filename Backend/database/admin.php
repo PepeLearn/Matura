@@ -1,5 +1,4 @@
 <?php
-include "connect.php";
 class admin
 {
     public function insertProduct($payload, $conn) // vnese produkt v tabelo
