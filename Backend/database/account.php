@@ -1,13 +1,13 @@
 <?php
 class login
 {
-    public function login($conn, $payload)
+    public function login($conn, $request)
     {
-        if (!isset($payload['password']) || !isset($payload['username'])) {
+        if (!isset($request->password) || !isset($request->username)) {
             return false;
         }
-        $password = $payload['password'];
-        $username = $payload['username'];
+        $password = $request->password;
+        $username = $request->username;
         $sql = "SELECT * FROM users WHERE password ='$password'AND username='$username'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
@@ -23,13 +23,13 @@ class login
             return false;
         }
     }
-    public function signup($conn, $payload)
+    public function signup($conn, $request)
     {
-        if (!isset($payload['password']) || !isset($payload['username'])) {
+        if (!isset($request['password']) || !isset($request['username'])) {
             return false;
         }
-        $password = $payload['password'];
-        $username = $payload['username'];
+        $password = $request['password'];
+        $username = $request['username'];
         $sql = "INSERT INTO users (username,password) VALUES('$username', '$password');"; // vstavi nov user v database
         if ($conn->query($sql)) {
             return true;
