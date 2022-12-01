@@ -15,23 +15,26 @@
 <body>
   <header>
     <nav>
-      <a class="link" href="Store.php">Store</a>
-      <a class="link" href="Account.php">Account</a>
-      <a class="link" href="Account.php">Contact</a>
-      <a class="link" href="Account.php">About us</a>
+      <img id="logo" src="../Slike/Logo/logo.png" alt="logo">
+      <a class="nav_link" href="Home.html">Home</a>
+      <a class="nav_link" href="Account.html">About us</a>
+      <a class="nav_link" href="Store.html">Store</a>
+      <a class="nav_link" href="Account.html">Contact</a>
+      <a class="nav_link" href="Account.html">Account</a>
+      <button id="language">En/Slo</button>
     </nav>
   </header> 
-    <section>
-    
-  </section>
   <main>
     <section id="main_section"> <!-- glavna sekcija z sliderom -->
+      <div id="main_header">
+        Trgovina Tara
+        <p id="main_sub_header">Dejan Vaukman s.p.</p>
+      </div>
       <!-- celi slider -->
       <div class="swiper">
         <!-- pod slider -->
         <div class="swiper-wrapper">
           <!-- slidi ki so v slideru -->
-          <div class="swiper-slide"><img src="../Slike/Ozadje/1.jpg" alt=""></div>
           <div class="swiper-slide"><img src="../Slike/Ozadje/2.jpg" alt=""></div>
           <div class="swiper-slide"><img src="../Slike/Ozadje/3.jpg" alt=""></div>
           <div class="swiper-slide"><img src="../Slike/Ozadje/4.jpg" alt=""></div>
@@ -45,31 +48,15 @@
         <div class="swiper-button-next"></div>
       </div>
     </section>
-    <section>
-
-    </section>
-    <section id="sub_section"> <!-- sub section FORM-->
-      <div id="sub_section_left">
-      <h1 id="contact_header">CONTACT</h1>
-          <div id="contact_info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa possimus reiciendis molestias incidunt, ipsa amet commodi inventore dolorum suscipit nihil quas, cum tenetur nostrum porro, architecto minima nobis tempora. Tempore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum numquam aliquid recusandae commodi quos optio voluptatum quo perspiciatis saepe iste quis aspernatur ut cumque molestiae et distinctio, illum ab dolor. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio cupiditate animi cum numquam, beatae nihil, architecto, dolore libero reprehenderit suscipit explicabo magnam sint ipsam fuga maiores quas illum commodi rerum!</div>
-      </div>
-      <div id="sub_section_right">
-      <div class="ozadje">
-        <div class="form-ozadje">
-            <div class="header_sub">FORM</div>
-            <form method="POST">
-                <label class="label_position" for="n">Name</label></br>
-                <input class="input_looks" type="text" name="username" id="n"></br></br>
-                <label class="label_position" for="s">Surname</label></br>
-                <input class="input_looks" type="text" name="surname" id="s"></br></br>
-                <label class="label_position" for="u">Username</label></br>
-                <input class="input_looks" type="text" name="username" id="u"></br></br>
-                <label  class="label_position" for="e">E-mail</label></br>
-                <input class="input_looks" type="email" name="e-mail" id="e"></br></br>
-                <input class="done" type="submit" value="submit";></br></br>
-            </form>
-        </div>
-    </div>
+    <section id="sub_section1">
+      <div id="sub_section_container"> 
+        <div id="sub_section_1id">About us</div>
+        <div id="sub_section_1desc">Lorem ipsum dolor sit, amet consectetur adipisicing elit.<br>
+        Voluptate cum iure necessitatibus ullam minima voluptatem,<br>
+        eos obcaecati harum non possimus, distinctio nam
+        doloribus neque. Consequuntur, soluta libero!<br>
+         Eum, repellat rem?</div>
+         <div id="sub_section1_line"></div>
       </div>
     </section>
   </main>
