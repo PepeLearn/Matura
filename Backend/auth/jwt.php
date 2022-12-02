@@ -8,13 +8,13 @@ class JWT  //Vir: https://dev.to/thedevdrawer/json-web-tokens-without-firebase-j
 
     private $secret;
 
-    public function __constructor()
+    public function __construct()
     {
         $this->headers = [
-            'alg' => 'HS256', //metoda kodiranja
-            'typ' => 'JWT', // tip JWT
-            'iss' => 'jwt.php', // izdajatelj
-            'aud' => 'localhost' // obcinstvo
+            "alg" => "HS256", //metoda kodiranja
+            "typ" => "JWT", // tip JWT
+            "iss" => "jwt.php", // izdajatelj
+            "aud" => "localhost" // obcinstvo
 
         ];
 
