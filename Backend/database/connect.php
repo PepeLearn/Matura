@@ -10,7 +10,7 @@ $conn = new mysqli($servername, $username, $password, $database);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-function cors($url) {
+function cors($url) { // fixa cors http error 
     
   // Allow from any origin
   if (isset($_SERVER['HTTP_ORIGIN'])) {

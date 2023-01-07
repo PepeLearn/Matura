@@ -12,7 +12,7 @@ $request_body = file_get_contents('php://input');
 if (isset($_GET["login"])) // WIP
 {
   $payload = json_decode($request_body);
-  cors('http://localhost'); // dovoli povezavo samo s tega linka, drugace ne stima
+  cors('http://localhost'); // dovoli povezavo samo s tega URL, drugace ne stima
   $login = new login;
   $token = $login->login($conn, $payload); // ustvari token
   if ($token) {
@@ -23,12 +23,17 @@ if (isset($_GET["login"])) // WIP
   }
 }
 if (isset($_GET["signup"])) {
-  cors('http://localhost'); // dovoli povezavo samo s tega linka, drugace ne stima
-  $login->signup($conn, $payload); // WIP
+  $payload = json_decode($request_body);
+  cors('http://localhost'); // dovoli povezavo samo s tega URL, drugace ne stima
+  $signup = new login;
+  if ($signup->signup($conn, $payload))
+    http_response_code(201); // status Created
+  else
+   http_response_code(400); // 400 bad request (manjka geslo, username ali vsebuje nedovoljene znake)
 }
 
 if (isset($_GET["productCatalog"])) {
-  cors('http://localhost'); // dovoli povezavo samo s tega linka, drugace ne stima
+  cors('http://localhost'); // dovoli povezavo samo s tega URL, drugace ne stima
   $productCatalog = new catalog;
   if ($productCatalog->getCatalog($conn)) {
      // da dela pa ne mece napak
