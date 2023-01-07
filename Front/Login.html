@@ -39,6 +39,7 @@
       .then((data) => {
         console.log('Success:', data);
       })
+      .then ((sessionStorage.setItem(response)))
       .catch((error) => {
         console.error('Error:', error);
       });
@@ -55,6 +56,10 @@
       alert("Password is required");
       return false;
     }
+    var data = {
+      "password" : password,
+      "username" : username
+    };
     httpPost("http://127.0.0.1/matura/Backend/database/database.php?login=true;", data) // poslje username, geslo na database.php datoteko, ce je oboje vneseno.
   }
 </script>

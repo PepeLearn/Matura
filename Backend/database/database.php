@@ -16,7 +16,7 @@ if (isset($_GET["login"])) // WIP
   $login = new login;
   $token = $login->login($conn, $payload); // ustvari token
   if ($token) {
-    echo ("Authorization: Bearer $token"); // vrne token
+    echo ("{\"Authorization\" : \"$token\"}"); // vrne token
     http_response_code(200); // status OK
   } else {
     http_response_code(403); // status forbidden
