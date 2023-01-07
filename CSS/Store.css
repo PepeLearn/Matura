@@ -1,35 +1,226 @@
 body {
-    background-color: rgb(20, 23, 31);
     margin: 0;
 }
 
-header {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 600;
-    background-color: white;
-}
-
-.link {
-    color: black;
-    text-decoration: none;
-    position: relative;
-    margin: 2%;
-}
-
-.link:hover {
-    color: grey;
-}
-
 nav {
-    font-size: 28px;
-    position: relative;
-    text-decoration: none;
-    text-align: center;
-    padding: 2vh;
+    text-align: right;
+    font-size: 1.5vh;
+    padding: 0.1vw;
 }
 
-#blackbar {
-    background-color: #1f1f1f;
-    height: 10vh;
-    width: 100%;
+.nav_link {
+    text-decoration: none;
+    color: black;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+}
+
+.nav_link:hover {
+    color: rgb(131, 131, 131);
+}
+
+#header_section {
+    background-color: rgb(245, 245, 245);
+    text-align: center;
+}
+
+.header_section_options {
+    display: inline-block;
+    border: none;
+    padding: 2vh;
+    font-size: 2.1vh;
+}
+
+.header_section_options:hover {
+    border-bottom: 0.4vh black solid;
+    padding-bottom: 1.6vh;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.searchbar {
+    background-color: rgb(245, 245, 245);
+    border-radius: 50vh;
+    padding: 0.6vh;
+    width: 15%;
+    border: solid black 0.2vh;
+}
+
+.material-symbols-outlined {
+    background-color: rgb(245, 245, 245);
+    position: relative;
+    top: 0.5vh;
+}
+
+#watermark {
+    text-align: center;
+    margin: 3vh;
+    font-size: 1.5vh;
+    color: #000000;
+    text-decoration: none;
+}
+
+#watermark_link {
+   color: #000000;
+   text-decoration: underline; 
+}
+
+/* ------------------------ Main ------------------------ */
+
+main {
+    height: 100vh;
+    border:  red 1vh solid;
+}
+
+/* ------------------------ Footer ------------------------ */
+
+footer {
+    margin-top: 10vh;
+    background-color: #000000;
+    padding-bottom: 10vh;
+}
+
+#foooter_up {
+    height: 25vh;
+    background-color: #000000;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 52%;
+}
+
+.table_header {
+    padding-top: 4vh;
+    color: white;
+    font-size: 3.2vh;
+    width: 20%;
+    text-align: justify;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+}
+
+.table_info {
+    width: 20%;
+    padding-top: 2vh;
+    color: rgb(143, 143, 143);
+    text-align: justify;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+}
+
+.table_link {
+    text-decoration: none;
+    color: rgb(143, 143, 143);
+}
+
+.table_link:hover {
+    text-decoration: none;
+    color: white;
+}
+
+#foooter_down {
+    height: 65vh;
+    background-color: #131212;
+}
+
+#footer_down_left {
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+
+#footer_down_left_header {
+    margin-top: 5vh;
+    color: white;
+    font-size: 3.5vh;
+    margin-left: 20%;
+    font-weight: bolder;
+}
+
+#footer_down_left2 {
+    float: left;
+    height: 20vh;
+    width: 50%;
+}
+
+.footer_down_left2_tags {
+    text-align: justify;
+    margin-left: 40%;
+    margin-top: 2vh;
+    color: white;
+    font-size: 2vh;
+}
+
+#footer_down_rigt2 {
+    float: right;
+    height: 20vh;
+    width: 50%;
+}
+
+.footer_down_rigt2_tags {
+    font-size: 2vh;
+    text-align: justify;
+    color: white;
+    margin-left: 40%;
+    margin-top: 2vh;
+}
+
+#footer_down_left_follow {
+    color: white;
+    font-size: 3.5vh;
+    margin-left: 20%;
+    font-weight: bolder;
+}
+
+#socials_container {
+    margin-left: 15%;
+}
+
+.spcoals {
+    height: 6vh;
+    width: 6vh;
+    margin-left: 5%;
+    margin-top: 2vh;
+    text-align: center;
+}
+
+#footer_down_right {
+    float: right;
+    width: 50%;
+    height: 100%;
+}
+
+#bold {
+    font-weight: bolder;
+}
+
+#list_container {
+    margin-top: 5%;
+    height: 80%;
+    width: 80%;
+    color: white;
+    font-size: 3.2vh;
+    margin-left: 2%;
+}
+
+#footer_down_right_left {
+    color: white;
+    margin-top: 5%;
+    font-size: 2vh;
+    height: 100%;
+    width: 50%;
+    float: left;
+}
+
+#footer_down_right_right {
+    color: white;
+    margin-top: 7%;
+    font-size: 2vh;
+    float: right;
+    height: 100%;
+    width: 50%;
 }
