@@ -25,12 +25,16 @@ class login
     }
     public function signup($conn, $request)
     {
-        if (!isset($request['password']) || !isset($request['username'])) {
+        if (!isset($request->password) || !isset($request->username)) {
             return false;
         }
-        $password = $request['password'];
-        $username = $request['username'];
-        $sql = "INSERT INTO users (username,password) VALUES('$username', '$password');"; // vstavi nov user v database
+        $password = $request->password;
+        $username = $request->username;
+        if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $password)) //
+            return false;                                            //  preveri ce vsebuje nedovljene znake za sql injection
+        if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $username)) //
+            return false;
+        $sql = "INSERT INTO users (username,password) VALUES('$username', '$password');"; 
         if ($conn->query($sql)) {
             return true;
         }
