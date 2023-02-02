@@ -1,0 +1,33 @@
+<!-- testing page for account info -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+</head>
+
+<body>
+    <script>
+        bruh =  sessionStorage.getItem("token");
+        let token = {
+         "token": bruh
+        }
+        fetch("https:127.0.0.1/matura/backend/database/database.php?account=true", {
+            method: 'POST', body: JSON.stringify(token),
+        })
+            .then((data) => data.json())
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    </script>
+</body>
+
+</html>

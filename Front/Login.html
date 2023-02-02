@@ -35,11 +35,10 @@
       },
       body: JSON.stringify(data),
     })
-      .then((response) => response.json())
+      .then((data) => data.json())
       .then((data) => {
-        console.log('Success:', data);
+        sessionStorage.setItem("token", data.Authorization); // da jwt token v session storage ali lahko tudi cookie (document.cookie=("token=" + data.authoriazation + ";"))
       })
-      .then ((sessionStorage.setItem(response)))
       .catch((error) => {
         console.error('Error:', error);
       });
@@ -60,7 +59,7 @@
       "password" : password,
       "username" : username
     };
-    httpPost("http://127.0.0.1/matura/Backend/database/database.php?login=true;", data) // poslje username, geslo na database.php datoteko, ce je oboje vneseno.
+    httpPost("https://127.0.0.1/matura/Backend/database/database.php?login=true", data) // poslje username, geslo na database.php datoteko, ce je oboje vneseno.
   }
 </script>
 
