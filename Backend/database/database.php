@@ -29,14 +29,14 @@ if (isset($_GET["signup"])) {
   if ($signup->signup($conn, $payload))
     http_response_code(201); // status Created
   else
-   http_response_code(400); // 400 bad request (manjka geslo, username ali vsebuje nedovoljene znake)
+    http_response_code(400); // 400 bad request (manjka geslo, username ali vsebuje nedovoljene znake)
 }
 
 if (isset($_GET["productCatalog"])) {
   cors('http://localhost'); // dovoli povezavo samo s tega URL, drugace ne stima
   $productCatalog = new catalog;
   if ($productCatalog->getCatalog($conn)) {
-     // da dela pa ne mece napak
+    // da dela pa ne mece napak
     http_response_code(200);  // status OK
   } else {
     http_response_code(404); // vrne not found ce nekaj ne stima
