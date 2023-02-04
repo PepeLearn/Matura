@@ -52,5 +52,14 @@ if (isset($_GET["account"])){
   else
     http_response_code(403); // 403 forbidden (token ni veljavem)
 }
+if (isset($_GET["changeProfileImage"])){
+  cors('http://localhost');
+  $account = new account;
+  $payload = json_decode($request_body);
+  if ($account->setImage($payload,$conn))
+  {
 
+  }
+
+}
 

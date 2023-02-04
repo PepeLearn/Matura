@@ -10,61 +10,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account</title>
 </head>
-
-<body>
-
-</body>
-<form action="">=
-    <input type="button" value="get profile data" onclick="getData()">
-    <input type="button" value="logout" onclick="logout()">
-</form>
-<form action="">
-    <input type="file" value="upload profile image" id="file"> <!-- https://www.w3schools.com/howto/howto_html_file_upload_button.asp -->
-    <input type="button" value="Upload" id="upload">
-    
-
-
-
-</form>
-</html>
 <script>
-    const file = document.getElementById('file');
-    const upload = document.getElementById('upload');
+    const FormData = new FormData();
     upload.addEventListener('click', () => {
-            console.log('clicked the upload button!');
-            const fileReader = new FileReader();
-            fileReader.readAsArrayBuffer(file.files[0]);
-            fileReader.onload = (event) => {
-                console.log('Complete File read successfully!')
-            }
+        console.log('clicked the upload button!');
+        const fileReader = new FileReader();
+        fileReader.readAsArrayBuffer(file.files[0]);
+        fileReader.onload = (event) => {
+            console.log('Complete File read successfully!')
+            sendImage();
+        }
     })
 
-function getData()
-{
-    bruh =  sessionStorage.getItem("token");
-    let token = {
-     "token": bruh
-    }
-    fetch("https:127.0.0.1/matura/backend/database/database.php?account=true", {
-        method: 'POST', body: JSON.stringify(token),
-    })
-        .then((data) => data.json())
-        .then((data) => {
-            console.log(data);
+    function getData() {
+        bruh = sessionStorage.getItem("token");
+        let token = {
+            "token": bruh
+        }
+        fetch("https:127.0.0.1/matura/backend/database/database.php?account=true", {
+            method: 'POST', body: JSON.stringify(token),
         })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+            .then((data) => data.json())
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+    function sendImage() {
+
+        FormData.append('file', event.target.files);
+        fetch("https:127.0.0.1/matura/backend/database/database.php?changeProfileImage=true", {
+            method: 'POST', body: FormData,
+        })
+            .then((data) => data.json())
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+
     }
     //vir : https://blog.logrocket.com/how-to-build-file-upload-service-vanilla-javascript/
-function uploadImage(){
-    
-    const fileReader = new FileReader();
-    fileReader.readAsArrayBuffer(file.files[0]);
-    fileReader.onload = (event) => {
-            console.log('Complete File read successfully!')
-        }
-
-
-}
 </script>
+
+<body>
+    <form action="">=
+        <input type="button" value="get profile data" onclick="getData()">
+        <input type="button" value="logout" onclick="logout()">
+    </form>
+    <form action="">
+        <input type="file" value="upload profile image" id="file">
+        <!-- https://www.w3schools.com/howto/howto_html_file_upload_button.asp -->
+        <input type="button" value="Upload" id="upload">
+
+</body>
+
+</form>
+
+</html>
