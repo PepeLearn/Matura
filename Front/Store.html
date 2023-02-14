@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,141 +8,390 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="..\CSS\Store.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="..\Front\CSS\Store.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
   <title>Shop</title>
 </head>
-<script>
-  //https://developer.mozilla.org/en-US/docs/Web/API/Response/json
-  //https://davidwalsh.name/fetch
-  //https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-    var request = new Request("http://127.0.0.1/matura/Backend/database/database.php?productCatalog=true");
-    fetch(request)
-     .then((data) => console.log(data)) // vrne podatke v console log 
 
-
-
-
-</script>
 <body>
   <header>
     <nav>
-      <a class="nav_link" href="">Home</a>
+      <a class="nav_link" href="Home.html">Home</a>
       <span>|</span>
-      <a class="nav_link" href="">Sign up</a>
+      <a class="nav_link" href="Signup.html">Sign up</a>
       <span>|</span>
-      <a class="nav_link" href="">Log in</a>
+      <a class="nav_link" href="Login.html">Log in</a>
+      <span>|</span>
+      <a class="nav_link" href="Account.html">Profile</a>
       <span>|</span>
       <a class="nav_link" href="">Help</a>
     </nav>
-    <div id="header_section">
-      <div class="header_section_options">New & Featured</div>
-      <div class="header_section_options">Men</div>
-      <div class="header_section_options">Women</div>
-      <div class="header_section_options">Kids</div>
-      <input class="header_section_options searchbar" type="text" placeholder="Search..">
-      <button class="header_section_options">
-        <span class="material-symbols-outlined">
-          favorite
-          </span>
-      </button>
-      <button class="header_section_options">
-        <span class="material-symbols-outlined">
-          shopping_bag
-          </span>
-      </button>
+    <!-- page orientation start -->
+    <div class="page_orientation">
+      <div class="container">
+        <img id="logo" src="../Front/Slike/Logo/logo.png" alt="logo">
+        <ul class="menu-main">
+          <li><a href="#">New & Featured</a>
+            <div class="menu-sub">
+              <div class="menu-sub-container">
+                <h3 class="size">Featured</h3>
+                <ul>
+                  <li><a href="">Shop all new arrivals</a></li>
+                  <li><a href="">New clothes</a></li>
+                  <li><a href="">New Shoes</a></li>
+                  <li><a href="">Best sellers</a></li>
+                </ul>
+              </div>
+              <div class="menu-sub-container">
+                <h3 class="size">Shop Icons</h3>
+                <ul>
+                  <li><a href="">Icon 1</a></li>
+                  <li><a href="">Icon 2</a></li>
+                  <li><a href="">Icon 3</a></li>
+                  <li><a href="">Icon 4</a></li>
+                </ul>
+              </div>
+              <div class="menu-sub-container">
+                <h3 class="size">Best reads</h3>
+                <ul>
+                  <li><a href="">Material</a></li>
+                  <li><a href="">Others</a></li>
+                  <li><a href="">Search</a></li>
+                  <li><a href="">Colbaorations</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li><a href="#">Men</a>
+            <div class="menu-sub">
+              <div class="menu-sub-container">
+                <h3 class="size">Featured</h3>
+                <ul>
+                  <li><a href="">Shop all new arrivals</a></li>
+                  <li><a href="">New clothes</a></li>
+                  <li><a href="">New Shoes</a></li>
+                  <li><a href="">Best sellers</a></li>
+                </ul>
+              </div>
+              <div class="menu-sub-container">
+                <h3 class="size">Shop Icons</h3>
+                <ul>
+                  <li><a href="">Icon 1</a></li>
+                  <li><a href="">Icon 2</a></li>
+                  <li><a href="">Icon 3</a></li>
+                  <li><a href="">Icon 4</a></li>
+                </ul>
+              </div>
+              <div class="menu-sub-container">
+                <h3 class="size">Best reads</h3>
+                <ul>
+                  <li><a href="">Material</a></li>
+                  <li><a href="">Others</a></li>
+                  <li><a href="">Search</a></li>
+                  <li><a href="">Colbaorations</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li><a href="#">Women</a>
+            <div class="menu-sub">
+              <div class="menu-sub-container">
+                <h3 class="size">Featured</h3>
+                <ul>
+                  <li><a href="">Shop all new arrivals</a></li>
+                  <li><a href="">New clothes</a></li>
+                  <li><a href="">New Shoes</a></li>
+                  <li><a href="">Best sellers</a></li>
+                </ul>
+              </div>
+              <div class="menu-sub-container">
+                <h3 class="size">Shop Icons</h3>
+                <ul>
+                  <li><a href="">Icon 1</a></li>
+                  <li><a href="">Icon 2</a></li>
+                  <li><a href="">Icon 3</a></li>
+                  <li><a href="">Icon 4</a></li>
+                </ul>
+              </div>
+              <div class="menu-sub-container">
+                <h3 class="size">Best reads</h3>
+                <ul>
+                  <li><a href="">Material</a></li>
+                  <li><a href="">Others</a></li>
+                  <li><a href="">Search</a></li>
+                  <li><a href="">Colbaorations</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li><a href="#">Kids</a>
+            <div class="menu-sub">
+              <div class="menu-sub-container">
+                <h3 class="size">Featured</h3>
+                <ul>
+                  <li><a href="">Shop all new arrivals</a></li>
+                  <li><a href="">New clothes</a></li>
+                  <li><a href="">New Shoes</a></li>
+                  <li><a href="">Best sellers</a></li>
+                </ul>
+              </div>
+              <div class="menu-sub-container">
+                <h3 class="size">Shop Icons</h3>
+                <ul>
+                  <li><a href="">Icon 1</a></li>
+                  <li><a href="">Icon 2</a></li>
+                  <li><a href="">Icon 3</a></li>
+                  <li><a href="">Icon 4</a></li>
+                </ul>
+              </div>
+              <div class="menu-sub-container">
+                <h3 class="size">Best reads</h3>
+                <ul>
+                  <li><a href="">Material</a></li>
+                  <li><a href="">Others</a></li>
+                  <li><a href="">Search</a></li>
+                  <li><a href="">Colbaorations</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <input class="search" type="text" placeholder="Search..">
+        </ul>
+      </div>
     </div>
+    <!-- page orientation end -->
     <div id="watermark">
       <div>
         Join us and get 30 day free shipping and returns.
-        <a id="watermark_link" href="signup.html">Join us!</a>
+        <a id="watermark_link" href="Signup.html">Join us!</a>
       </div>
       <div>
         Up to 50% Off - end of the season
       </div>
     </div>
-  </header> 
-<main>
-
-</main>
-<footer>
-  <div id="foooter_up">
-    <table>
-      <tr>
-        <th class="table_header">For Sales</th>
-        <th class="table_header">For Jobs</th>
-        <th class="table_header">For Press</th>
-        <th class="table_header">Become A Partner</th>
-      </tr>
-      <tr>
-        <th class="table_info">070 556 553</th>
-        <th class="table_info">
-          <a class="table_link" href="#sub_section5-FORM">Job Application</a>
-        </th>
-        <th class="table_info">press@hotmail.com</th>
-        <th class="table_info">
-          <a class="table_link" href="#sub_section5-FORM">Apply Here</a>
-        </th>
-      </tr>
-      <tr>
-        <th class="table_info">sayhi@hotmail.com</th>
-      </tr>
-    </table>
-  </div>
-  <div id="foooter_down">
-    <div id="footer_down_left">
-      <div id="footer_down_left_header">Offices</div>
+  </header>
+  <main>
+    <div>
+      <img id="banner" src="../Front/Slike/Ozadje/store_background.jpg" alt="">
+    </div>
+    <div id="catalog">
       <div>
-        <div id="footer_down_left2">
-          <P class="footer_down_left2_tags">Maribor</P>
-          <p class="footer_down_left2_tags">Naslov, ulica nečesa 9</p>
-          <p class="footer_down_left2_tags">2000 Pošta</p>
+        <p id="catalog_title">Catalog</p>
+        <p id="title_underline"></p>
+      </div>
+      <div id="catalog_container">
+        <div id="filter">
+          <div class="class_filter">Gender</div>
+          <div class="item_filter">
+            <div class="filter_item_specific">
+              <input type="checkbox" id="men" name="Men">
+              <label for="men">Men</label>
+            </div>
+            <div class="filter_item_specific">
+              <input type="checkbox" id="women" name="Women">
+              <label for="women">Women</label>
+            </div>
+          </div>
+          <div class="class_filter">Kids</div>
+          <div class="item_filter">
+            <div class="filter_item_specific">
+              <input type="checkbox" id="b" name="boys">
+              <label for="b">Boys</label>
+            </div>
+            <div class="filter_item_specific">
+              <input type="checkbox" id="g" name="girls">
+              <label for="g">Girls</label>
+            </div>
+          </div>
+          <div class="class_filter">Shirts</div>
+          <div class="item_filter">
+            <div class="filter_item_specific">
+              <input type="checkbox" id="tshirt" name="t-shirt">
+              <label for="tshirt">T-Shirts</label>
+            </div>
+            <div class="filter_item_specific">
+              <input type="checkbox" id="hoodies" name="hoodie">
+              <label for="hoodies">Hoodies</label>
+            </div>
+            <div class="filter_item_specific">
+              <input type="checkbox" id="jackets" name="jacket">
+              <label for="jackets">Jackets</label>
+            </div>
+          </div>
+          <div class="class_filter">Pants</div>
+          <div class="item_filter">
+            <div class="filter_item_specific">
+              <input type="checkbox" id="sweatpants" name="sweatpants">
+              <label for="tshirt">Sweatpants</label>
+            </div>
+            <div class="filter_item_specific">
+              <input type="checkbox" id="jeans" name="jeans">
+              <label for="jeans">Jeans</label>
+            </div>
+            <div class="filter_item_specific">
+              <input type="checkbox" id="trousers" name="trousers">
+              <label for="trousers">trousers</label>
+            </div>
+          </div>
+          <div class="class_filter">Underwear</div>
+          <div class="item_filter">
+            <div class="filter_item_specific">
+              <input type="checkbox" id="underwear" name="underwear">
+              <label for="underwear">Underwear</label>
+            </div>
+          </div>
         </div>
-        <div id="footer_down_rigt2">
-          <p class="footer_down_rigt2_tags">Ljubljana</p>
-          <p class="footer_down_rigt2_tags">Naslov, ulica nečesa 12</p>
-          <p class="footer_down_rigt2_tags">1000 Pošta</p>
+        <div id="collection">
+          <a href="Item.html" class="product_serial">
+            <div id="product_div_img">
+              <img id="product_img" src="../Front/Slike/Items/item1.png" alt="">
+            </div>
+            <div id="products_desc">Product name</div>
+            <div id="products_price">Product price</div>
+          </a>
+          <a href="Item.html" class="product_serial">
+            <div id="product_div_img">
+              <img id="product_img" src="../Front/Slike/Items/item1.png" alt="">
+            </div>
+            <div id="products_desc">Product name</div>
+            <div id="products_price">Product price</div>
+          </a>
+          <a href="Item.html" class="product_serial">
+            <div id="product_div_img">
+              <img id="product_img" src="../Front/Slike/Items/item1.png" alt="">
+            </div>
+            <div id="products_desc">Product name</div>
+            <div id="products_price">Product price</div>
+          </a>
+          <a href="Item.html" class="product_serial">
+            <div id="product_div_img">
+              <img id="product_img" src="../Front/Slike/Items/item1.png" alt="">
+            </div>
+            <div id="products_desc">Product name</div>
+            <div id="products_price">Product price</div>
+          </a>
+          <a href="Item.html" class="product_serial">
+            <div id="product_div_img">
+              <img id="product_img" src="../Front/Slike/Items/item1.png" alt="">
+            </div>
+            <div id="products_desc">Product name</div>
+            <div id="products_price">Product price</div>
+          </a>
+          <a href="Item.html" class="product_serial">
+            <div id="product_div_img">
+              <img id="product_img" src="../Front/Slike/Items/item1.png" alt="">
+            </div>
+            <div id="products_desc">Product name</div>
+            <div id="products_price">Product price</div>
+          </a>
+          <a href="Item.html" class="product_serial">
+            <div id="product_div_img">
+              <img id="product_img" src="../Front/Slike/Items/item1.png" alt="">
+            </div>
+            <div id="products_desc">Product name</div>
+            <div id="products_price">Product price</div>
+          </a>
+          <a href="Item.html" class="product_serial">
+            <div id="product_div_img">
+              <img id="product_img" src="../Front/Slike/Items/item1.png" alt="">
+            </div>
+            <div id="products_desc">Product name</div>
+            <div id="products_price">Product price</div>
+          </a>
+          <a href="Item.html" class="product_serial">
+            <div id="product_div_img">
+              <img id="product_img" src="../Front/Slike/Items/item1.png" alt="">
+            </div>
+            <div id="products_desc">Product name</div>
+            <div id="products_price">Product price</div>
+          </a>
+      </div>
+  </main>
+  <footer>
+    <div id="foooter_up">
+      <table>
+        <tr>
+          <th class="table_header">For Sales</th>
+          <th class="table_header">For Jobs</th>
+          <th class="table_header">For Press</th>
+          <th class="table_header">Become A Partner</th>
+        </tr>
+        <tr>
+          <th class="table_info">070 556 553</th>
+          <th class="table_info">
+            <a class="table_link" href="#sub_section5-FORM">Job Application</a>
+          </th>
+          <th class="table_info">press@hotmail.com</th>
+          <th class="table_info">
+            <a class="table_link" href="#sub_section5-FORM">Apply Here</a>
+          </th>
+        </tr>
+        <tr>
+          <th class="table_info">sayhi@hotmail.com</th>
+        </tr>
+      </table>
+    </div>
+    <div id="foooter_down">
+      <div id="footer_down_left">
+        <div id="footer_down_left_header">Offices</div>
+        <div>
+          <div id="footer_down_left2">
+            <P class="footer_down_left2_tags">Maribor</P>
+            <p class="footer_down_left2_tags">Naslov, ulica nečesa 9</p>
+            <p class="footer_down_left2_tags">2000 Pošta</p>
+          </div>
+          <div id="footer_down_rigt2">
+            <p class="footer_down_rigt2_tags">Ljubljana</p>
+            <p class="footer_down_rigt2_tags">Naslov, ulica nečesa 12</p>
+            <p class="footer_down_rigt2_tags">1000 Pošta</p>
+          </div>
+        </div>
+        <div>
+          <p id="footer_down_left_follow">Follow Us</p>
+          <div id="socials_container">
+            <img class="spcoals" src="../Front/Slike/Logo/socials/1.png" alt="">
+            <img class="spcoals" src="../Front/Slike/Logo/socials/2.png" alt="">
+            <img class="spcoals" src="../Front/Slike/Logo/socials/3.png" alt="">
+            <img class="spcoals" src="../Front/Slike/Logo/socials/4.png" alt="">
+          </div>
         </div>
       </div>
-      <div>
-        <p id="footer_down_left_follow" >Follow Us</p>
-        <div id="socials_container">
-          <img class="spcoals" src="../Slike/Logo/socials/1.png" alt="">
-          <img class="spcoals" src="../Slike/Logo/socials/2.png" alt="">
-          <img class="spcoals" src="../Slike/Logo/socials/3.png" alt="">
-          <img class="spcoals" src="../Slike/Logo/socials/4.png" alt="">
-        </div>          
+      <div id="footer_down_right">
+        <div id="list_container">
+          <p id="bold">Services</p>
+          <div id="footer_down_right_left">
+            <ol>Website information</ol>
+            <ol>Social contact</ol>
+            <ol>Contact us directly</ol>
+            <ol>Shop now</ol>
+            <ol>Profile page</ol>
+            <ol>Purchase/order history </ol>
+            <ol>Ratings and custommer opinions</ol>
+            <ol>Customer support page</ol>
+          </div>
+          <div id="footer_down_right_right">
+            <ol>Web design and information</ol>
+            <ol>Web contact</ol>
+            <ol>Different services we offer</ol>
+            <ol>Prime Subscribtion</ol>
+            <ol>Commission on products</ol>
+            <ol>Us and our retailers</ol>
+            <ol>Shipping and more </ol>
+          </div>
+        </div>
       </div>
     </div>
-    <div id="footer_down_right">
-      <div id="list_container">
-        <p id="bold">Services</p>
-        <div id="footer_down_right_left">
-          <ol>Website information</ol>
-          <ol>Social contact</ol>
-          <ol>Contact us directly</ol>
-          <ol>Shop now</ol>
-          <ol>Profile page</ol>
-          <ol>Purchase/order history </ol>
-          <ol>Ratings and custommer opinions</ol>
-          <ol>Customer support page</ol>
-        </div>
-        <div id="footer_down_right_right">
-          <ol>Web design and information</ol>
-          <ol>Web contact</ol>
-          <ol>Different services we offer</ol>
-          <ol>Prime Subscribtion</ol>
-          <ol>Commission on products</ol>
-          <ol>Us and our retailers</ol>
-          <ol>Shipping and more </ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+    crossorigin="anonymous"></script>
 </body>
+
 </html>
