@@ -37,6 +37,7 @@ nav {
     text-align: center;
 }
 
+
 #logo {
     height: 5vh;
     position: absolute;
@@ -52,7 +53,7 @@ nav {
 
 .page_orientation li {
     display: inline-block;
-    padding-bottom: 1.4vh;
+    padding-bottom: 1.7vh;
     cursor: pointer;
     margin-left: 1.5vw;
     margin-right: 1.5vw;
@@ -129,7 +130,6 @@ nav {
 }
 
 /* ------------------------ orientation ------------------------ */
-
 .search {
     margin-left: 1vw;
     border-radius: 5vh;
@@ -140,12 +140,14 @@ nav {
     padding-right: 1vw;
 }
 
+
 #watermark {
     text-align: center;
     padding: 1vh;
     background-color: rgb(218, 218, 218);
     margin-top: 1vh;
     margin-bottom: 5vh;
+
     font-size: 1.5vh;
     color: #000000;
     text-decoration: none;
@@ -273,6 +275,7 @@ main {
     margin-top: 1%;
     text-align: center;
     font-size: 16px;
+
 }
 
 /* ------------------------ Footer ------------------------ */
@@ -280,6 +283,7 @@ main {
 footer {
     width: 100%;
     margin-top: 5vh;
+
     background-color: #000000;
     padding-bottom: 10vh;
 }
