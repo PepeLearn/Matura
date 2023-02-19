@@ -18,12 +18,11 @@
 
   // document.getElementById("submit").addEventListener('click', validateForm(), false); // doda event listener na html element "submit" (form button) in preveri, ce nekdo klikne na element.
 
-  function saveToSession(response) //vir : https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage
-  {
-
-    sessionStorage.setItem("Authorisation Bearer : ", token); // shrani token v session
-    window.location.replace = "http://127.0.0.1/matura/Front/home.php"; // redirecta na home potem ko se je shranlo v session
-  }
+ // function saveToSession(response) //vir : https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage
+  //{
+   // sessionStorage.setItem("Authorisation Bearer : ", token); // shrani token v session
+   // window.location.replace = "http://127.0.0.1/matura/Front/home.php"; // redirecta na home potem ko se je shranlo v session
+  //}
 
   function httpPost(theUrl, data) //vir : https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
   {

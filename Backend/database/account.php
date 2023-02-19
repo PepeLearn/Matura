@@ -37,14 +37,13 @@ class account
         }
         $password = $request->password;
         $username = $request->username;
-        $sql = "SELECT * FROM users WHERE password =:pswrd AND username=:usr"; // nesmes uporabit ':usr' ker nebo deloval (https://www.php.net/manual/en/pdo.prepare.php drugi komentar)
+        $sql = "SELECT * FROM users WHERE username=:usr"; //preveri ce ze obstaja uporabnik
         $statement = $conn->prepare($sql);
         $statement->execute([
-            ":pswrd" => $password,
             ":usr" => $username
         ]);
         $result = $statement->fetchAll();
-        if (!$result) {   //https://stackoverflow.com/questions/48538738/how-to-check-fetched-result-set-is-empty-or-not  ce sql ne vrne vnosa, vrne false
+        if (!$result) {
             return false;
         }
         if (preg_match('/[\'^£$%&*()}{#~?<>,|=_+¬-]/', $password) || preg_match('/[\'^£$%&*()}{#~?<>,|=_+¬-]/', $username)) // preveri za nedovoljene znake
@@ -117,14 +116,24 @@ class account
         ]);
         $info = $statement->fetch();
         $id = $info["id"];
-       if($this->saveImage($id)){
-        return true;
-       }
-       return false;
-        
+        unset($request->token);
+        if ($this->saveImage($id, false)) {
+            return true;
+        }
+        return false;
     }
-    function saveImage($profileID) // vir chatGPT ( php receive files in chunks from post request)
+    private function saveImage(int $profileID, bool $default = true) // shrani poljubno slika ali doda "default image" profilu
     {
+        if ($default) // nastavi default image profilu
+        {
+            $file = "./profile/images/1.png";
+            $des = "./profile/images/$profileID.png";
+            if (!copy($file, $des)) {
+                echo "failed to copy $file to $des";
+                return false;
+            }
+            return true;
+        }
         $handle = fopen("php://input", "rb"); // prebere POST podatke
         $destination = fopen("$../profile/images/$profileID.png", "wb"); // lokacija kjer se shrani file
         $size = 0;
@@ -135,5 +144,6 @@ class account
         }
         fclose($handle);
         fclose($destination);
+        return true;
     }
 }

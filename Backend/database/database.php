@@ -2,8 +2,6 @@
 /* 
 Vsebuje vse funkcije, za delo s podatkovno bazo. 
 */
-
-echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 require_once "../auth/jwt.php";
 require_once "connect.php";
 require_once "admin.php";
@@ -33,7 +31,7 @@ if (isset($_GET["signup"])) {
     http_response_code(400); // 400 bad request (manjka geslo, username ali vsebuje nedovoljene znake)
 }
 
-if (isset($_GET["productCatalog"])) {
+if (isset($_GET["getProductCatalog"])) {
   cors('http://localhost'); // dovoli povezavo samo s tega URL, drugace ne stima
   $productCatalog = new catalog;
   if ($productCatalog->getCatalog($conn)) {
@@ -43,23 +41,22 @@ if (isset($_GET["productCatalog"])) {
     http_response_code(404); // vrne not found ce nekaj ne stima
   }
 }
-if (isset($_GET["account"])){
+if (isset($_GET["getAccountData"])) {
   cors('http://localhost');
   $payload = json_decode($request_body);
   $account = new account;
-  if ($account->getData($payload,$conn))
+  if ($account->getData($payload, $conn))
     http_response_code(200); // status OK
   else
     http_response_code(403); // 403 forbidden (token ni veljavem)
 }
-if (isset($_GET["changeProfileImage"])){
+if (isset($_GET["changeProfileImage"])) {
   cors('http://localhost');
   $account = new account;
   $payload = json_decode($request_body);
-  if ($account->setImage($payload,$conn))
-  {
-
+  if ($account->setImage($payload, $conn)) {
+    http_response_code(200);
+  } else {
+    http_response_code(403);
   }
-
 }
-
