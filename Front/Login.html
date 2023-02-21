@@ -18,12 +18,11 @@
 
   // document.getElementById("submit").addEventListener('click', validateForm(), false); // doda event listener na html element "submit" (form button) in preveri, ce nekdo klikne na element.
 
-  function saveToSession(response) //vir : https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage
-  {
-
-    sessionStorage.setItem("Authorisation Bearer : ", token); // shrani token v session
-    window.location.replace = "http://127.0.0.1/matura/Front/home.php"; // redirecta na home potem ko se je shranlo v session
-  }
+ // function saveToSession(response) //vir : https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage
+  //{
+   // sessionStorage.setItem("Authorisation Bearer : ", token); // shrani token v session
+   // window.location.replace = "http://127.0.0.1/matura/Front/home.php"; // redirecta na home potem ko se je shranlo v session
+  //}
 
   function httpPost(theUrl, data) //vir : https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
   {
@@ -35,11 +34,10 @@
       },
       body: JSON.stringify(data),
     })
-      .then((response) => response.json())
+      .then((data) => data.json())
       .then((data) => {
-        console.log('Success:', data);
+        sessionStorage.setItem("token", data.Authorization); // da jwt token v session storage ali lahko tudi cookie (document.cookie=("token=" + data.authoriazation + ";"))
       })
-      .then ((sessionStorage.setItem(response)))
       .catch((error) => {
         console.error('Error:', error);
       });
@@ -60,7 +58,7 @@
       "password" : password,
       "username" : username
     };
-    httpPost("http://127.0.0.1/matura/Backend/database/database.php?login=true;", data) // poslje username, geslo na database.php datoteko, ce je oboje vneseno.
+    httpPost("https://127.0.0.1/matura/Backend/database/database.php?login=true", data) // poslje username, geslo na database.php datoteko, ce je oboje vneseno.
   }
 </script>
 

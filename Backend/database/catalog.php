@@ -3,12 +3,11 @@ class catalog
 {
 
     public function getCatalog($conn)
-    { // WIP(
-
+    { // WIP
         $sql = "SELECT p.ProductName, p.ProductPrice, p.ProductCategory, GROUP_CONCAT(t.tagName SEPARATOR ', ') AS 'tags' FROM products p, tags t,tagToProduct tp WHERE p.id = tp.ProductID AND t.id = tp.TagID GROUP BY productName; ";
         $statement = $conn->prepare($sql);
         $statement->execute();
-        while ($row = $statement->fetch()) {
+        while ($row = $statement->fetch()) { // hardcoded, ker drugace nena vredi dela
             $tags = explode(",", $row["tags"]);
             $product =  array(
               "Name" => $row["ProductName"],
@@ -16,7 +15,7 @@ class catalog
               "Category" => $row["ProductCategory"],
               "Tags" => $tags 
             );
-            echo  json_encode($product);
+            echo json_encode($product);
         }
         return true;
     }

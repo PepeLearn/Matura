@@ -4,6 +4,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+</head>
+<script>
+    const FormData = new FormData();
+    upload.addEventListener('click', () => {
+        console.log('clicked the upload button!');
+        const fileReader = new FileReader();
+        fileReader.readAsArrayBuffer(file.files[0]);
+        fileReader.onload = (event) => {
+            console.log('Complete File read successfully!')
+            sendImage();
+        }
+    })
+
+    function getData() {
+        bruh = sessionStorage.getItem("token");
+        let token = {
+            "token": bruh
+        }
+        fetch("https:127.0.0.1/matura/backend/database/database.php?account=true", {
+            method: 'POST', body: JSON.stringify(token),
+        })
+            .then((data) => data.json())
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+    function sendImage() {
+
+        FormData.append('file', event.target.files);
+        fetch("https:127.0.0.1/matura/backend/database/database.php?changeProfileImage=true", {
+            method: 'POST', body: FormData,
+        })
+            .then((data) => data.json())
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+
+    }
+    //vir : https://blog.logrocket.com/how-to-build-file-upload-service-vanilla-javascript/
+</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">

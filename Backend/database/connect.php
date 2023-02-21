@@ -18,9 +18,8 @@ try {
 } catch (PDOException $e) {
 	echo $e->getMessage();
 }
-function cors($url)
-{ // fixa cors http error 
-
+function cors($url) // fixa cors http error 
+{ 
   // Allow from any origin
   if (isset($_SERVER['HTTP_ORIGIN'])) {
     // Decide if the origin in $_SERVER['HTTP_ORIGIN'] is one
