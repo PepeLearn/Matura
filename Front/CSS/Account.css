@@ -6,6 +6,9 @@ nav {
     text-align: right;
     font-size: 1.5vh;
     padding: 0.1vw;
+    background-color: rgb(218, 218, 218);
+    margin-bottom: 1vh;
+    padding: 1vh;
 }
 
 .nav_link {
@@ -19,65 +22,79 @@ nav {
     color: rgb(131, 131, 131);
 }
 
-#header_section {
-    background-color: rgb(245, 245, 245);
+/* ------------------------ header / main ------------------------ */
+
+#container {
+    padding: 5vh;
+    margin: 5vh;
+    display: flex;
+    
+}
+
+#welcome {
+    font-size: 64px;
+}
+
+#date {
+    font-size: 32px;
+}
+
+#space_between {
+    margin: 5px;
+    width: 10%;
+    flex-grow: 2;
+}
+
+#pfp_pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+#title {
+    font-size: 48px;
+    margin-left: 10%;
+}
+
+#products {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.product_serial {
+    height: 400px;
+    width: 400px;
+    background-color: rgb(221, 224, 226);
+    margin: 40px;
+}
+
+.product_serial:hover {
+    filter: brightness(60%);
+    transition: ease-in-out 100ms;
+}
+
+#product_img {
+    height: 300px;
+    width: 300px;
+}
+
+#product_div_img {
     text-align: center;
+    margin-top: 10%;
 }
 
-.header_section_options {
-    display: inline-block;
-    border: none;
-    padding: 2vh;
-    font-size: 2.1vh;
-}
-
-.header_section_options:hover {
-    border-bottom: 0.4vh black solid;
-    padding-bottom: 1.6vh;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.searchbar {
-    background-color: rgb(245, 245, 245);
-    border-radius: 50vh;
-    padding: 0.6vh;
-    width: 15%;
-    border: solid black 0.2vh;
-}
-
-.material-symbols-outlined {
-    background-color: rgb(245, 245, 245);
-    position: relative;
-    top: 0.5vh;
-}
-
-#watermark {
+#products_desc {
+    margin-top: 2%;
     text-align: center;
-    margin: 3vh;
-    font-size: 1.5vh;
-    color: #000000;
-    text-decoration: none;
+    font-size: 24px;
 }
 
-#watermark_link {
-   color: #000000;
-   text-decoration: underline; 
-}
-
-/* ------------------------ Main ------------------------ */
-
-main {
-    height: 100vh;
-    border:  red 1vh solid;
-}
-
-/* ------------------------ Footer ------------------------ */
+/* ------------------------ main / footer ------------------------ */
 
 footer {
-    margin-top: 10vh;
+    margin-top: 5vh;
     background-color: #000000;
     padding-bottom: 10vh;
 }
