@@ -9,7 +9,7 @@ class catalog
         $fetchProducts->execute();
         $sql = "SELECT v.color,v.size,v.stock FROM productvariant v,product p WHERE p.id = :productid AND p.id = v.productID;";
         $fetchProductVariant = $conn->prepare($sql);
-        echo "{ \"Products\":[";
+        echo "[";
         $first = true;
         while ($productRow = $fetchProducts->fetch()) {// hardcoded, ker drugace nena vredi dela
             if ($first)
@@ -17,7 +17,7 @@ class catalog
                 $first = false;
             } 
             else{
-                echo ',';
+                echo ','; // ni ravno najboljsa resitev, dela pa.
             }
             $fetchProductVariant->execute([ // fetcha vse productVariante za posamezen id
                 ":productid" => $productRow["id"],
@@ -44,7 +44,7 @@ class catalog
             );
             echo (json_encode($product)); // vrne json od associativnega polje
         }
-        echo "]}";
+        echo "]";
         return true;
     }
 }
