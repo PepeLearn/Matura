@@ -9,7 +9,7 @@ class account
         }
         $password = $request->password;
         $username = $request->username;
-        $sql = "SELECT * FROM users WHERE password =:pswrd AND username=:usr"; // nesmes uporabit ':usr' ker nebo deloval (https://www.php.net/manual/en/pdo.prepare.php drugi komentar)
+        $sql = "SELECT * FROM user WHERE password =:pswrd AND username=:usr"; // nesmes uporabit ':usr' ker nebo deloval (https://www.php.net/manual/en/pdo.prepare.php drugi komentar)
         $statement = $conn->prepare($sql);
         $statement->execute([
             ":pswrd" => $password,
@@ -37,7 +37,7 @@ class account
         }
         $password = $request->password;
         $username = $request->username;
-        $sql = "SELECT * FROM users WHERE username=:usr"; //preveri ce ze obstaja uporabnik
+        $sql = "SELECT * FROM user WHERE username=:usr"; //preveri ce ze obstaja uporabnik
         $statement = $conn->prepare($sql);
         $statement->execute([
             ":usr" => $username
@@ -48,7 +48,7 @@ class account
         }
         if (preg_match('/[\'^£$%&*()}{#~?<>,|=_+¬-]/', $password) || preg_match('/[\'^£$%&*()}{#~?<>,|=_+¬-]/', $username)) // preveri za nedovoljene znake
             return false;
-        $sql = "INSERT INTO users (username,password) VALUES(:username, :password);";
+        $sql = "INSERT INTO user (username,password) VALUES(:username, :password);";
         $statement = $conn->prepare($sql);
         if ($statement->execute([
             ':password' => $password,
@@ -76,7 +76,7 @@ class account
         $token = json_decode($token, 1);
         $password = $token["password"];
         $username = $token["username"];
-        $sql = "SELECT * FROM users WHERE password =:pswrd AND username=:usr"; // nesmes uporabit <':usr'> ker nebo deloval (https://www.php.net/manual/en/pdo.prepare.php drugi komentar)
+        $sql = "SELECT * FROM user WHERE password =:pswrd AND username=:usr"; // nesmes uporabit <':usr'> ker nebo deloval (https://www.php.net/manual/en/pdo.prepare.php drugi komentar)
         $statement = $conn->prepare($sql);
         $statement->execute([
             ":pswrd" => $password,
@@ -108,7 +108,7 @@ class account
         $token = json_decode($token, 1);
         $password = $token["password"];
         $username = $token["username"];
-        $sql = "SELECT * FROM users WHERE password =:pswrd AND username=:usr"; // nesmes uporabit <':usr'> ker nebo deloval (https://www.php.net/manual/en/pdo.prepare.php drugi komentar)
+        $sql = "SELECT * FROM user WHERE password =:pswrd AND username=:usr"; // nesmes uporabit <':usr'> ker nebo deloval (https://www.php.net/manual/en/pdo.prepare.php drugi komentar)
         $statement = $conn->prepare($sql);
         $statement->execute([
             ":pswrd" => $password,

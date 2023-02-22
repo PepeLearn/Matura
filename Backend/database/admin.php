@@ -6,7 +6,7 @@ class admin
         $ProductName = $payload['productName'];
         $ProductPrice = $payload['productPrice'];
         $ProductCategory = $payload['productCategory'];
-        $sql = "INSERT INTO products (ProductName,ProductPrice,ProductCategory) VALUES ('$ProductName',$ProductPrice,'$ProductCategory')";
+        $sql = "INSERT INTO product (productName,productPrice,productCategory) VALUES ('$ProductName',$ProductPrice,'$ProductCategory')";
         if ($conn->query($sql))
             return true;
     }
@@ -22,14 +22,14 @@ class admin
         if ($result->num_rows > 0) { // ce ze obstaja tag, doda tag na naveden product.
             mysqli_fetch_assoc($result);
             $TagID = $result['id'];
-            $sql = "INSERT INTO  TagToProduct VALUES ($productID, $TagID ')";
+            $sql = "INSERT INTO tagtoproduct VALUES ($productID, $TagID ')";
             $conn->query($sql);
         } else { // ce ne , naredi tag in ga doda na product
-            $sql = "INSERT INTO  tags (TagName) VALUES ('$tagName')"; // inserta novi tag
+            $sql = "INSERT INTO tags (tagName) VALUES ('$tagName')"; // inserta novi tag
             $result = $conn->query($sql);
             mysqli_fetch_assoc($result);
             $TagID = $result['id'];
-            $sql = "INSERT INTO  TagToProduct VALUES ($productID, $TagID ')"; // doda tag na naveden product
+            $sql = "INSERT INTO tagtoproduct VALUES ($productID, $TagID ')"; // doda tag na naveden product
             $conn->query($sql);
         }
         return true;
@@ -42,7 +42,7 @@ class admin
             return false;
         }
         $ProductID = $payload['ProductID'];
-        $sql = "DELETE from products WHERE id=$ProductID";
+        $sql = "DELETE from product WHERE id=$ProductID";
         if ($conn->query($sql)) { // zazene sql
             return true; // ce je slo skozi vrne true
         }
@@ -57,7 +57,7 @@ class admin
         $ProductName = $payload['ProductName'];
         $ProductCategory = $payload['ProductCategory'];
         $ProductPrice = $payload['ProductPrice'];
-        $sql = "UPDATE products SET ProductName = '$ProductName', ProductPrice = '$ProductPrice', ProductCategory = '$ProductCategory' WHERE id = '$ProductID'";
+        $sql = "UPDATE product SET productName = '$ProductName', productPrice = '$ProductPrice', productCategory = '$ProductCategory' WHERE id = '$ProductID'";
         if ($conn->query($sql)) { // zazene sql
             return true; // ce je slo skozi vrne true
         }

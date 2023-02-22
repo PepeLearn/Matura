@@ -7,16 +7,17 @@
     <title>Account</title>
 </head>
 <script>
-    const FormData = new FormData();
-    upload.addEventListener('click', () => {
-        console.log('clicked the upload button!');
-        const fileReader = new FileReader();
-        fileReader.readAsArrayBuffer(file.files[0]);
-        fileReader.onload = (event) => {
-            console.log('Complete File read successfully!')
-            sendImage();
+    setImagePath = e => {
+        let reader = new FileReader()
+        reader.readAsDataURL(e.target.files[0])
+
+
+        reader.onload = () => {
+            this.setState({
+                queryImage: reader.result
+            })
         }
-    })
+    }
 
     function getData() {
         bruh = sessionStorage.getItem("token");
@@ -34,21 +35,16 @@
                 console.error('Error:', error);
             });
     }
-    function sendImage() {
-
-        FormData.append('file', event.target.files);
-        fetch("https:127.0.0.1/matura/backend/database/database.php?changeProfileImage=true", {
-            method: 'POST', body: FormData,
+    postImage = () => {
+        fetch("https:127.0.0.1/matura/backend/database/database.php?account=true", {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(this.state.queryImage)
         })
-            .then((data) => data.json())
-            .then((data) => {
+            .then(res => res.json())
+            .then(data => {
                 console.log(data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-
-
+     });
     }
     //vir : https://blog.logrocket.com/how-to-build-file-upload-service-vanilla-javascript/
 </script>
