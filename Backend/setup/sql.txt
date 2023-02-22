@@ -15,28 +15,28 @@ CREATE TABLE product (
     productCategory VARCHAR(200) NOT NULL,
     productSuperCategory VARCHAR(200) NOT NULL,
     timeCreated datetime NOT NULL DEFAULT NOW(),
-    desc varchar(1000) DEFAULT "Sample description"
+    description varchar(1000) DEFAULT "Sample description"
     );
 CREATE TABLE productVariant(
     id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
     color varchar(30),
-    stock smallint[4],
+    stock smallint(4),
     size varchar(3),  
-    productID NOT NULL,
+    productID int NOT NULL,
     FOREIGN KEY (productID) REFERENCES product(id) 
-)
+);
 CREATE TABLE tags (
     id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    TagName varchar(200) NOT NULL); 
+    tagName varchar(200) NOT NULL); 
 CREATE TABLE tagtoproduct (
     productID int,
     tagID int,
-    FOREIGN KEY (ProductID) REFERENCES products(id),
-    FOREIGN KEY (TagID) REFERENCES  tags(id)
+    FOREIGN KEY (productID) REFERENCES product(id),
+    FOREIGN KEY (tagID) REFERENCES  tags(id)
 );
-CREATE TABLE order (
+CREATE TABLE orders (
     id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    timePurchased NOT NULL DEFAULT NOW(),
+    timePurchased datetime NOT NULL DEFAULT NOW(),
     productID int NOT NULL,
     address varchar(100),
     userID int,
@@ -45,9 +45,19 @@ CREATE TABLE order (
 );
 INSERT user (username, password,admin) VALUES ("admin", "admin", true);
 INSERT user (username,password) VALUES ("nejc","1234");
-INSERT INTO product (productName,productPrice,productCategory) VALUES ("Blue Shirt",19.99,"Shirts");
-INSERT INTO product (productName,productPrice,productCategory) VALUES ("Adidas Pants",15.99,"Pants");
-INSERT INTO product (productName,productPrice,productCategory) VALUES ("Warm Coat",89.99,"Coats");
+INSERT INTO product (productName,productPrice,productCategory,productSuperCategory,description) VALUES ("Shirt",19.99,"Shirts","Men","majca za nosit");
+INSERT INTO product (productName,productPrice,productCategory,productSuperCategory,description) VALUES ("Adidas Pants",15.99,"Pants","Women","hlace za nosit");
+INSERT INTO product (productName,productPrice,productCategory,productSuperCategory,description) VALUES ("Warm Coat",89.99,"Coats","Men","plasc za nosit");
+INSERT INTO productVariant (color,stock,size,productID) VALUES ("yellow",1,"XL",1);
+INSERT INTO productVariant (color,stock,size,productID) VALUES ("gray",2,"L",1);
+INSERT INTO productVariant (color,stock,size,productID) VALUES ("yellow",7,"M",1);
+INSERT INTO productVariant (color,stock,size,productID) VALUES ("yellow",6,"S",1);
+INSERT INTO productVariant (color,stock,size,productID) VALUES ("blue",5,"46",2);
+INSERT INTO productVariant (color,stock,size,productID) VALUES ("blue",0,"48",2);
+INSERT INTO productVariant (color,stock,size,productID) VALUES ("blue",9,"34",2);
+INSERT INTO productVariant (color,stock,size,productID) VALUES ("gray",3,"L",3);
+INSERT INTO productVariant (color,stock,size,productID) VALUES ("gray",3,"M",3);
+INSERT INTO productVariant (color,stock,size,productID) VALUES ("gray",2,"XL",3);
 INSERT INTO tags (tagName) VALUES ("winter");
 INSERT INTO tags (tagName) VALUES ("adidas");
 INSERT INTO tags (tagName) VALUES ("shirt");
