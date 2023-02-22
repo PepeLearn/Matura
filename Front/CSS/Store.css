@@ -242,7 +242,6 @@ main {
     text-decoration: none;
     height: 250px;
     width: 250px;
-    background-color: rgb(221, 224, 226);
     margin: 40px;
     transition: all .2s ease-in-out;
 }
@@ -250,6 +249,7 @@ main {
 .product_serial:hover {
     transform: scale(1.05);
     color: black;
+    background-color: rgb(221, 224, 226);
     text-decoration: none;
     filter: brightness(60%);
     transition: ease-in-out 100ms;

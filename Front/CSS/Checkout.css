@@ -1,38 +1,140 @@
 body {
     margin: 0;
-  }
+}
   
-  /* ------------------------ header ------------------------ */
-  
-  nav {
-    text-align: right;
-    font-size: 1.5vh;
-    padding: 0.1vw;
-    background-color: rgb(218, 218, 218);
-    margin-bottom: 1vh;
-    padding: 1vh;
-  }
-  
-  .nav_link {
-    text-decoration: none;
-    color: black;
-    margin-left: 0.5vw;
-    margin-right: 0.5vw;
-  }
-  
-  .nav_link:hover {
-    color: rgb(131, 131, 131);
-  }
-  
-  /* ------------------------ main ------------------------ */
-  
-  main {
-    height: 100vh;
-  }
-  
-  /* ------------------------ Footer ------------------------ */
-  
-  footer {
+/* ------------------------ header ------------------------ */
+
+nav {
+  text-align: right;
+  font-size: 1.5vh;
+  padding: 0.1vw;
+  background-color: rgb(218, 218, 218);
+  margin-bottom: 1vh;
+  padding: 1vh;
+}
+
+.nav_link {
+  text-decoration: none;
+  color: black;
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
+}
+
+.nav_link:hover {
+  color: rgb(131, 131, 131);
+}
+
+/* ------------------------ main ------------------------ */
+
+#container {
+    margin: 5%;
+    height: 90vh;
+    border: black solid 4px;
+}
+
+#left_side {
+    float: left;
+    width: 70%;
+    height: 100%;
+}
+
+#right_side {
+    height: 100%;
+    float: right;
+    width: 30%;
+    background-color: black;
+}
+
+.summary {
+    border: white solid 2px;
+    height: 100%;
+    margin: 2.5%;
+}
+
+.summary_id {
+    margin-left: 5%;
+    color: white;
+    margin-top: 10%;
+    font-size: 32px;
+    margin-bottom: 5%;
+}
+
+.white_line {
+    height: 1px;
+    width: 90%;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.product_info {
+    justify-content: space-between;
+    margin-left: 5%;
+    color: white;
+    margin-top: 10%;
+    font-size: 24px;
+    margin-right: 5%;
+    display: flex;
+    margin-top: 5%;
+    flex-direction: row;
+}
+
+.product_name {
+    color: white;
+    font-size: 24px;
+}
+
+.price {
+    color: white;
+    font-size: 24px;
+}
+
+.ammount {
+    justify-content: space-between;
+    margin-right: 5%;
+    display: flex;
+    flex-direction: row;
+    margin-left: 5%;
+    color: white;
+    font-size: 24px;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+.ammount_text {
+    color: white;
+    font-size: 24px;
+}
+
+.ammount_number {
+    color: white;
+    font-size: 24px;
+}
+
+.end {
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+#total {   
+    color: white;
+    font-size: 24px;
+    margin-bottom: 5%;
+}
+
+#purchase {
+    margin-left: 10%;
+    width: 275px;
+    height: 70px;
+    text-align: center;
+    background-color: white;
+    border: none;
+    font-size: 42px;
+}
+
+/* ------------------------ Footer ------------------------ */
+
+footer {
     width: 100%;
     margin-top: 5vh;
     background-color: #000000;
