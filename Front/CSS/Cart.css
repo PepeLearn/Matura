@@ -1,7 +1,7 @@
 body {
-  margin: 0;
+    margin: 0;
 }
-
+  
 /* ------------------------ header ------------------------ */
 
 nav {
@@ -27,67 +27,127 @@ nav {
 /* ------------------------ main ------------------------ */
 
 main {
-  height: 100vh;
+  margin-bottom: 10vh;
 }
 
-.checked { /* stars */
-  color: orange;
-}
-
-#container {
-  height: 80vh;
-  margin: 5%;
+#heading {
   display: flex;
+  align-items: center;
+  margin: 5%;
 }
 
-#product_img {
-  padding: 20px;
-  height: 500px;
-  width: 500px;
-  border: #000000 5px solid;
-}
-
-#product_info {
-  margin-left: 5%;
-  width: 60%;
-}
-
-#product_name {
-  padding: 20px;
+#main_header {
+  font-family: serif;
+  flex-grow: 1;
   font-size: 64px;
 }
 
-#product_price {
-  padding: 20px;
+#sub_header {
   font-size: 32px;
+  text-decoration: none;
+  color: black;
+  font-family: serif;
 }
 
-#product_desc {
-  padding: 20px;
-  font-size: 16px;
+#sub_header:hover {
+  color: gray;
 }
 
-#product_ratings {
-  padding: 20px;
+#cart_container {
+  margin: 5%;
+}
+
+.cart_item {
+  color: black;
+  text-decoration: none;
+  height: 20vh;
+  padding: 2.5%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.5%;
+  margin-top: 2.5%;
+}
+
+.cart_item:hover {
+  background-color: rgb(224, 217, 217);
+  color: black;
+  text-decoration: none;
+}
+
+img {
+  height: 150px;
+  width: 150px;
+}
+
+.item_info {
+  padding: 2.5%;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.info3 {
+  text-align: center;
+}
+
+.text_info {
   font-size: 24px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-#buy_button {
-  width: 200px;
+.button_info1 {
+  padding: 2%;
+  height: 30px;
+  width: 30px;
+}
+
+.button_info2 {
+  padding: 2%;
   height: 50px;
-  background-color: white;
+  width: 100px;
+  text-align: center;
 }
 
-#buy_button:hover {
-  background-color: black;
+.button_info2:hover {
+  background-color: rgb(0, 0, 0);
   color: white;
 }
 
-#buy_link {
-  padding: 20px;
-  color: black;
-  text-decoration: none;
+.button_info1:hover {
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
 
+#proceed {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 10%;
+  align-items: baseline;
+}
+
+#total {
+  margin-right: 5%;
+  font-size: 24px;
+}
+
+#proceed_button {
+  height: 60px;
+  width: 200px;
+  font-size: 24px;
+  text-align: center;
+  border: black solid 2px;
+  color: black;
+  padding-top: 0.6%;
+  text-decoration: none;
+}
+
+#proceed_button:hover {
+  background-color: rgb(0, 0, 0);
+  text-decoration: none;
+  color: white;
 }
 
 /* ------------------------ Footer ------------------------ */
