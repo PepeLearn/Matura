@@ -15,23 +15,23 @@
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
   <title>Shop</title>
 </head>
-<script>
+	<script>
   const filter = [];
-  document.getElementById("pants").addEventListener("click", function(){ filter.push("pants");filter();});
-  function filter (){
-  var col_wrapper = document.getElementById("collection").getElementsByTagName("div");
-  var len = col_wrapper.length;
-  alert(len);
-  for (var i = 0; i < len; i++) {
-    if (col_wrapper[i].className.toLowerCase() == "collection") {
-        col_wrapper[i].parentNode.removeChild(col_wrapper[i]);
-    }
-  }
-  //https://developer.mozilla.org/en-US/docs/Web/API/Response/json
-  //https://davidwalsh.name/fetch
-  //https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-    var request = new Request("http://127.0.0.1/matura/Backend/database/database.php?getProductCatalog=true");
-    fetch(request)
+  document.getElementById("pants").addEventListener("click", function(){ addToFilter("pants")});
+  function deleteSelection (){
+  	var col_wrapper = document.getElementById("collection").getElementsByTagName("div");
+  	var len = col_wrapper.length;
+  	alert(len);
+  	for (var i = 0; i < len; i++) {
+    		if (col_wrapper[i].className.toLowerCase() == "collection") {
+  			col_wrapper[i].parentNode.removeChild(col_wrapper[i]);
+    		}
+	  }}
+  function addToFilter(string){ //pushe not v array D
+		 filter.push(string);
+	}
+
+  fetch("http://127.0.0.1/matura/Backend/database/database.php?getProductCatalog=true")
     .then(function(response){
    return response.json();
 })
