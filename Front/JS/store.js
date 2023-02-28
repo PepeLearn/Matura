@@ -31,7 +31,7 @@ fetch("http://127.0.0.1/matura/Backend/database/database.php?getProductCatalog=t
       <img id="product_img" src="../Slike/Items/item1.png" alt="">
     </div>
       <div id="products_desc">${products[i].Name}</div>
-      <div id="products_price">${products[i].Price}</div>
+      <div id="products_price">${products[i].Price}€</div>
   </a>
     `;
       }
