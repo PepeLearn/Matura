@@ -8,11 +8,12 @@ class account
             return false;
         }
         $password = $request->password;
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT); // hasha geslo (one way encryption)
         $username = $request->username;
         $sql = "SELECT * FROM user WHERE password =:pswrd AND username=:usr"; // nesmes uporabit ':usr' ker nebo deloval (https://www.php.net/manual/en/pdo.prepare.php drugi komentar)
         $statement = $conn->prepare($sql);
         $statement->execute([
-            ":pswrd" => $password,
+            ":pswrd" => $passwordHash,
             ":usr" => $username
         ]);
         $result = $statement->fetchAll();
