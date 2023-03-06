@@ -8,23 +8,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="..\Front\CSS\Store.css">
+  <link rel="stylesheet" href="..\CSS\Store.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <script src="../JS/store.js"></script>
   <title>Shop</title>
 </head>
-<script>
-  //https://developer.mozilla.org/en-US/docs/Web/API/Response/json
-  //https://davidwalsh.name/fetch
-  //https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-    var request = new Request("http://127.0.0.1/matura/Backend/database/database.php?getProductCatalog=true");
-    fetch(request)
-      .then(response => response.json())
-      .then((response) => console.log(response)) // vrne podatke v console log 
-     
-</script>
+
 <body>
   <header>
     <nav>
@@ -42,7 +34,7 @@
     <!-- page orientation start -->
     <div class="page_orientation">
       <div class="container">
-        <img id="logo" src="../Front/Slike/Logo/logo.png" alt="logo">
+        <img id="logo" src="../Slike/Logo/logo.png" alt="logo">
         <ul class="menu-main">
           <li><a href="#">New & Featured</a>
             <div class="menu-sub">
@@ -186,7 +178,7 @@
   </header>
   <main>
     <div>
-      <img id="banner" src="../Front/Slike/Ozadje/store_background.jpg" alt="">
+      <img id="banner" src="../Slike/Ozadje/store_background.jpg" alt="">
     </div>
     <div id="catalog">
       <div>
@@ -205,6 +197,7 @@
               <input type="checkbox" id="women" name="Women">
               <label for="women">Women</label>
             </div>
+
           </div>
           <div class="class_filter">Kids</div>
           <div class="item_filter">
@@ -217,11 +210,11 @@
               <label for="g">Girls</label>
             </div>
           </div>
-          <div class="class_filter">Shirts</div>
+          <div class="class_filter">Categories</div>
           <div class="item_filter">
             <div class="filter_item_specific">
-              <input type="checkbox" id="tshirt" name="t-shirt">
-              <label for="tshirt">T-Shirts</label>
+              <input type="checkbox" id="pants" name="t-shirt" onclick="addToFilter('pants')">
+              <label for="tshirt">Pants</label>
             </div>
             <div class="filter_item_specific">
               <input type="checkbox" id="hoodies" name="hoodie">
@@ -255,16 +248,9 @@
             </div>
           </div>
         </div>
-        <div id="collection">
-          <a href="Item.html" class="product_serial">
-            <div id="product_div_img">
-              <img id="product_img" src="../Front/Slike/Items/item1.png" alt="">
-            </div>
-            <div id="products_desc">Product name</div>
-            <div id="products_price">Product price</div>
-          </a>
-          
-      </div>
+        <div id="collection" class="collection">
+
+        </div>
   </main>
   <footer>
     <div id="foooter_up">
@@ -308,10 +294,10 @@
         <div>
           <p id="footer_down_left_follow">Follow Us</p>
           <div id="socials_container">
-            <img class="spcoals" src="../Front/Slike/Logo/socials/1.png" alt="">
-            <img class="spcoals" src="../Front/Slike/Logo/socials/2.png" alt="">
-            <img class="spcoals" src="../Front/Slike/Logo/socials/3.png" alt="">
-            <img class="spcoals" src="../Front/Slike/Logo/socials/4.png" alt="">
+            <img class="spcoals" src="../Slike/Logo/socials/1.png" alt="">
+            <img class="spcoals" src="../Slike/Logo/socials/2.png" alt="">
+            <img class="spcoals" src="../Slike/Logo/socials/3.png" alt="">
+            <img class="spcoals" src="../Slike/Logo/socials/4.png" alt="">
           </div>
         </div>
       </div>
@@ -348,6 +334,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
     integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
     crossorigin="anonymous"></script>
+  <script></script>
 </body>
 
 </html>
