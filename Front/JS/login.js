@@ -10,7 +10,8 @@ function httpPost(theUrl, data) //vir : https://developer.mozilla.org/en-US/docs
   })
     .then((data) => data.json())
     .then((data) => {
-        document.cookie = "authorization=" + data.authorization + "expires"; // da toke v cookie
+        let date = Date.now() + 172800000; //(2 dni) exp time;
+        document.cookie = "authorization=" + data.Authorization + ";expires="+ Date(date); // da toke v cookie
     })
     .catch((error) => {
       console.error('Error:', error);
