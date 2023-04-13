@@ -55,8 +55,7 @@ fetch("http://127.0.0.1/matura/Backend/database/database.php?getProductCatalog=t
     let out = "";
     var i = 0;
     for (let product of products) {
-      console.log((products[i].Category === "Pants"));
-      if (!(products[i].Category === "Pants")) {
+  
         out += `
   <a href="Item.html?productID=${products[i].ProductID}" class="product_serial">
     <div id="product_div_img">
@@ -66,7 +65,7 @@ fetch("http://127.0.0.1/matura/Backend/database/database.php?getProductCatalog=t
       <div id="products_price">${products[i].Price}€</div>
   </a>
     `;
-      }
+      
       i++;
     }
     placeholder.innerHTML = out;
