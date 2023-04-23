@@ -15,5 +15,7 @@ fetch("http://127.0.0.1/matura/Backend/database/database.php?getProductData=true
             to samo ponovi za vsako vrednost v jsonu ki zelis da se prikaze
     
         */
+
+        
     }
     );

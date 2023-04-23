@@ -11,47 +11,6 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <title>Sign up</title>
 </head>
-<script>
-/// vir : https://developer.mozilla.org/en-US/docs/Web/API/Event/type, https://www.w3schools.com/js/js_htmldom_events.asp 
-//document.getElementById("u").addEventListener("keypress", UsernameCheck); // doda event listener na html element "u" (username input) in preveri, ce nekdo vnese keyboard input v polje
-//document.getElementById("g").addEventListener("keypress", PasswordCheck); // doda event listener na html element "g" (username input) in preveri, ce nekdo vnese keyboard input v polje
-function httpPost(theUrl, data) //vir : https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-  {
-
-    fetch(theUrl, { 
-      method: 'POST', // or 'PUT'
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Success:', data);
-      })
-      .then ((sessionStorage.setItem(response)))
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  }
-  
-function validateForm() { // preveri ce so vsa polja izplonjena v form (temporary, treba zamnejati v prihodnosti)
-    let username = document.forms["login"]["username"].value;
-    let password = document.forms["login"]["password"].value;
-    if (username == "") {  // preveri ce je username vnesen
-      alert("Username must be filled in!");
-      return false;
-    } else if (password == "") { // preveri ce je password vnesen
-      alert("Password is required");
-      return false;
-    }
-    var data = {
-      "password" : password,
-      "username" : username
-    };
-    httpPost("http://127.0.0.1/matura/Backend/database/database.php?signup=true;", data) // poslje username, geslo na database.php datoteko, ce je oboje vneseno.
-  }
-</script>
 <body>
     <div class="ozadje">
         <div class="form-ozadje">

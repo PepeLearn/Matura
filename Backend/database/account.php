@@ -8,16 +8,17 @@ class account
             return false;
         }
         $password = $request->password;
-        $passwordHash = password_hash($password, PASSWORD_DEFAULT); // hasha geslo (one way encryption)
         $username = $request->username;
-        $sql = "SELECT * FROM user WHERE password =:pswrd AND username=:usr"; // nesmes uporabit ':usr' ker nebo deloval (https://www.php.net/manual/en/pdo.prepare.php drugi komentar)
+        $sql = "SELECT * FROM user WHERE username=:usr";
         $statement = $conn->prepare($sql);
         $statement->execute([
-            ":pswrd" => $passwordHash,
             ":usr" => $username
         ]);
-        $result = $statement->fetchAll();
-        if ($result) {   //https://stackoverflow.com/questions/48538738/how-to-check-fetched-result-set-is-empty-or-not
+        $result = $statement->fetch();
+        if ($result) {   //preveri ce username obstaja 
+            if (!password_verify($password,$result["password"])) { // preveri ce je geslo valid
+                return false;
+            } 
             $payload = array( // doda username in password k payloadu
                 'password' => $password,
                 'username' => $username,
