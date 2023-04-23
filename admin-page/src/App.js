@@ -1,24 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import { ColorModeContext, useMode } from "./theme";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { Routes, Route } from "react-router-dom";
+import Topbar from "./scenes/global/topbar";
+import Sidebar from "./scenes/global/sidebar";
+import Dashboard from "./scenes/dashboard";
+// import Team from "./scenes/team";
+// import Products from "./scenes/products";
+// import Contacts from "./scenes/contacts";
+// import Form from "./scenes/form";
+// import Line from "./scenes/line";
+// import Pie from "./scenes/pie";
+// import FAQ from "./scenes/faq";
+// import Bar from "./scenes/bar";
+// import Calendar from "./scenes/calendar";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    const [theme, colorMode] = useMode();
+
+    return (
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <div className="app">
+            <Sidebar />
+            <main class="content"> 
+              <Topbar /> 
+              <Routes>
+                {
+                  /*    to so poti za subpage          
+                <Route path ="/" element = {<Dashboard />} />
+                <Route path ="/team" element = {<Team />} />
+                <Route path ="/contacts" element = {<Contacts />} />
+                <Route path ="/products" element = {<Products />} />
+                <Route path ="/form" element = {<Form />} />
+                <Route path ="/bar" element = {<Bar />} />
+                <Route path ="/pie" element = {<Pie />} />
+                <Route path ="/line" element = {<Line />} />
+                <Route path ="/faq" element = {<FAQ />} />
+                <Route path ="/calendar" element = {<Calendar />} />
+                */
+                }
+
+              </Routes>
+            </main>
+            </div>;
+        </ThemeProvider>
+      </ColorModeContext.Provider> 
   );
 }
 
