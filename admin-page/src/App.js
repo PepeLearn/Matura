@@ -22,14 +22,15 @@ function App() {
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <div className="app">
-            <Sidebar />
+          <div class="app">
             <main class="content"> 
-              <Topbar /> 
+              <Topbar/> 
+              <Sidebar />
               <Routes>
                 {
-                  /*    to so poti za subpage          
+                                           /*    to so poti za subpage
                 <Route path ="/" element = {<Dashboard />} />
+ 
                 <Route path ="/team" element = {<Team />} />
                 <Route path ="/contacts" element = {<Contacts />} />
                 <Route path ="/products" element = {<Products />} />
@@ -44,10 +45,10 @@ function App() {
 
               </Routes>
             </main>
-            </div>;
+            </div>
         </ThemeProvider>
       </ColorModeContext.Provider> 
-  );
+  )
 }
 
 export default App;

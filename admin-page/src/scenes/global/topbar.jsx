@@ -18,7 +18,7 @@ const Topbar = () => {
     const ColorMode = useContext(ColorModeContext);
 
     //css lahko pisem direkt v box komponento (box je edina) lahko ga tudi krajsam npr padding - p {value}
-    return (<Box display="flex" justifyContent="space-between" p={2}> 
+    return (<Box display="flex" justifyContent="space-between" p={2} order={2} flexGrow={2}> 
         {/* Search bar*/}
         <Box 
             display="flex" 
@@ -26,11 +26,12 @@ const Topbar = () => {
             borderRadius="3px"
             >
         <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Search" />
-        <IconButton type="button" sy={{p:1}}>
+        <IconButton type="button" sy={{p: 1}}>
             <SearchIcon />
         </IconButton>
         </Box>
 
+        {/* ostalle ikone*/}
         <Box display="flex">
             <IconButton onClick={ColorMode.toggleColorMode}>
                 {theme.palette.mode === 'dark' ? (

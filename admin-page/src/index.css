@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,600&display=swap');
 
-html, body, #root .app, .content {
+html, body, #root .app {
   height: 100%;
   width: 100%;
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-app {
+.content {
+  width: 100%;
   display: flex;
-  position: relative;
+  align-items: flex-start;
 }
 
 /* to je scrollbar na strani */
