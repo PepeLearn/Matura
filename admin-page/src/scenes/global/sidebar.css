@@ -1,3 +1,9 @@
 a:hover {
     background-color: transparent !important;
+    color: rgb(61, 132, 226) !important;
+}
+
+a {
+    text-decoration: none !important;
+    color: white !important;
 }

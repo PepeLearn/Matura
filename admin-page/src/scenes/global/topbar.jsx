@@ -18,7 +18,7 @@ const Topbar = () => {
     const ColorMode = useContext(ColorModeContext);
 
     //css lahko pisem direkt v box komponento (box je edina) lahko ga tudi krajsam npr padding - p {value}
-    return (<Box display="flex" justifyContent="space-between" p={2} order={2} flexGrow={2}> 
+    return (<Box display="flex" justifyContent="space-between" p={2}> 
         {/* Search bar*/}
         <Box 
             display="flex" 
