@@ -3,7 +3,6 @@ import { ProSidebarProvider } from 'react-pro-sidebar';
 import { Menu, MenuItem } from 'react-pro-sidebar';
 import { Box, Hidden, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
-import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
@@ -30,11 +29,9 @@ const Item = ({ title, to, icon, selected, setSelected }) => { //deklrean item
         style={{
           color: colors.grey[100],
         }}
-        onClick={() => setSelected(title)}
         icon={icon}
       >
         <Typography>{title}</Typography>
-        <Link to={to} />
       </MenuItem>
     );
   };
@@ -44,7 +41,6 @@ const Sidebar = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [isCollapsed, setIsCollapsed]=useState(false); //is collapsed = ce je sidebar collapsed al ne
-    const [selected, setSelected] = useState("Dashboard"); // selected = na kerem pagu smo
 
 
     return (
@@ -116,14 +112,12 @@ const Sidebar = () => {
                 </Box>
               )}
               <Box width={!isCollapsed ? undefined : "10px"} padding-left={!isCollapsed ? undefined : "10%"} marginLeft={isCollapsed ? undefined : "15%"}>
-            <Item
-              title="Dashboard"
-              to="/"
-              icon={<HomeOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
+              <a href="/">
+              <Item
+                title="Dashboard"
+                icon={<HomeOutlinedIcon />}
+              />
+            </a>
             <Typography
               variant="h6"
               color={colors.grey[300]}
@@ -131,28 +125,24 @@ const Sidebar = () => {
             >
               Data
             </Typography>
-            <Item
-              title="Manage Team"
-              to="/team"
-              icon={<PeopleOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Contacts Information"
-              to="/contacts"
-              icon={<ContactsOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Invoices Balances"
-              to="/invoices"
-              icon={<ReceiptOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
+            <a href="/team">
+              <Item
+                title="Manage Team"
+                icon={<PeopleOutlinedIcon  />}
+              />
+            </a>
+            <a href="/contacts">
+              <Item
+                title="Contacts information"
+                icon={<ContactsOutlinedIcon  />}
+              />
+            </a>
+            <a href="/invoices">
+              <Item
+                title="Products"
+                icon={<ReceiptOutlinedIcon  />}
+              />
+            </a>
             <Typography
               variant="h6"
               color={colors.grey[300]}
@@ -160,28 +150,24 @@ const Sidebar = () => {
             >
               Pages
             </Typography>
-            <Item
-              title="Profile Form"
-              to="/form"
-              icon={<PersonOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Calendar"
-              to="/calendar"
-              icon={<CalendarTodayOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="FAQ Page"
-              to="/faq"
-              icon={<HelpOutlineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
+            <a href="/form">
+              <Item
+                title="Item form"
+                icon={<PersonOutlinedIcon  />}
+              />
+            </a>
+            <a href="/calendar">
+              <Item
+                title="Canelndar"
+                icon={<CalendarTodayOutlinedIcon  />}
+              />
+            </a>
+            <a href="/faq">
+              <Item
+                title="FAQ Page"
+                icon={<HelpOutlineOutlinedIcon />}
+              />
+            </a>
             <Typography
               variant="h6"
               color={colors.grey[300]}
@@ -189,27 +175,18 @@ const Sidebar = () => {
             >
               Charts
             </Typography>
-            <Item
-              title="Bar Chart"
-              to="/bar"
-              icon={<BarChartOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Pie Chart"
-              to="/pie"
-              icon={<PieChartOutlineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Line Chart"
-              to="/line"
-              icon={<TimelineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+            <a href="/bar">
+              <Item
+                title="Bar Chart"
+                icon={<BarChartOutlinedIcon  />}
+              />
+            </a>
+            <a href="/pie">
+              <Item
+                title="Pie Chart"
+                icon={<PieChartOutlineOutlinedIcon  />}
+              />
+            </a>
           </Box>
               </Menu>
             </ProSidebarProvider>
