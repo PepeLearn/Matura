@@ -168,6 +168,7 @@ const Dashboard = () => {
               <Box
                 backgroundColor={colors.greenAccent[500]}
                 p="5px 10px"
+                color="black"
                 borderRadius="4px"
               >
                 ${transaction.cost}

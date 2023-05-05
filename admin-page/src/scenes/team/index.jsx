@@ -49,10 +49,10 @@ const Team = () => {
             justifyContent="center"
             backgroundColor={
               access === "admin"
-                ? colors.greenAccent[600]
+                ? colors.greenAccent[800]
                 : access === "manager"
-                ? colors.greenAccent[700]
-                : colors.greenAccent[700]
+                ? colors.greenAccent[900]
+                : colors.greenAccent[900]
             }
             borderRadius="4px"
           >
@@ -89,7 +89,7 @@ const Team = () => {
             borderBottom: "none",
           },
           "& .MuiDataGrid-virtualScroller": {
-            backgroundColor: colors.primary[400],
+            backgroundColor: colors.primary[900],
           },
           "& .MuiDataGrid-footerContainer": {
             borderTop: "none",

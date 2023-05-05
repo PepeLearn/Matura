@@ -11,18 +11,18 @@ const Invoices = () => {
     { field: "id", headerName: "ID" },
     {
       field: "name",
-      headerName: "Name",
+      headerName: "Username",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "phone",
-      headerName: "Phone Number",
+      field: "product",
+      headerName: "Product name",
       flex: 1,
     },
     {
-      field: "email",
-      headerName: "Email",
+      field: "product_quantity",
+      headerName: "Product quantity",
       flex: 1,
     },
     {
@@ -63,7 +63,7 @@ const Invoices = () => {
             borderBottom: "none",
           },
           "& .MuiDataGrid-virtualScroller": {
-            backgroundColor: colors.primary[400],
+            backgroundColor: colors.primary[900],
           },
           "& .MuiDataGrid-footerContainer": {
             borderTop: "none",

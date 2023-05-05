@@ -13,7 +13,7 @@ const Form = () => {
 
   return (
     <Box m="20px">
-      <Header title="CREATE USER" subtitle="Create a New User Profile" />
+      <Header title="CREATE ITEM" subtitle="Create a new item" />
 
       <Formik
         onSubmit={handleFormSubmit}
@@ -41,71 +41,97 @@ const Form = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="First Name"
+                label="Item name"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.firstName}
-                name="firstName"
-                error={!!touched.firstName && !!errors.firstName}
-                helperText={touched.firstName && errors.firstName}
+                value={values.Item_name}
+                name="Item_name"
+                error={!!touched.Item_name && !!errors.Item_name}
+                helperText={touched.Item_name && errors.Item_name}
                 sx={{ gridColumn: "span 2" }}
               />
               <TextField
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Last Name"
+                label="Item cost"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.lastName}
-                name="lastName"
-                error={!!touched.lastName && !!errors.lastName}
-                helperText={touched.lastName && errors.lastName}
+                value={values.Item_cost}
+                name="Item_cost"
+                error={!!touched.Item_cost && !!errors.Item_cost}
+                helperText={touched.Item_cost && errors.Item_cost}
                 sx={{ gridColumn: "span 2" }}
               />
               <TextField
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Email"
+                label="Item desctibtion"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.email}
-                name="email"
-                error={!!touched.email && !!errors.email}
-                helperText={touched.email && errors.email}
+                value={values.Item_desc}
+                name="Item_desc"
+                error={!!touched.Item_desc && !!errors.Item_desc}
+                helperText={touched.Item_desc && errors.Item_desc}
                 sx={{ gridColumn: "span 4" }}
               />
               <TextField
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Contact Number"
+                label="Tag 1"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.contact}
-                name="contact"
-                error={!!touched.contact && !!errors.contact}
-                helperText={touched.contact && errors.contact}
-                sx={{ gridColumn: "span 4" }}
+                value={values.Item_tag1}
+                name="Item_tag1"
+                error={!!touched.Item_tag1 && !!errors.Item_tag1}
+                helperText={touched.Item_tag1 && errors.Item_tag1}
+                sx={{ gridColumn: "span 2" }}
               />
               <TextField
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Address 1"
+                label="Tag 2"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.address1}
-                name="address1"
-                error={!!touched.address1 && !!errors.address1}
-                helperText={touched.address1 && errors.address1}
-                sx={{ gridColumn: "span 4" }}
+                value={values.Item_tag2}
+                name="Item_tag2"
+                error={!!touched.Item_tag2 && !!errors.Item_tag2}
+                helperText={touched.Item_tag2 && errors.Item_tag2}
+                sx={{ gridColumn: "span 2" }}
               />
+            <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Tag 3"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.Item_tag3}
+                name="Item_tag3"
+                error={!!touched.Item_tag3 && !!errors.Item_tag3}
+                helperText={touched.Item_tag3 && errors.Item_tag3}
+                sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+              fullWidth
+              variant="filled"
+              type="text"
+              label="Tag 4"
+              onBlur={handleBlur}
+              onChange={handleChange}
+              value={values.Item_tag4}
+              name="Item_tag4"
+              error={!!touched.Item_tag4 && !!errors.Item_tag4}
+              helperText={touched.Item_tag4 && errors.Item_tag4}
+              sx={{ gridColumn: "span 2" }}
+            />            
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
               <Button type="submit" color="secondary" variant="contained">
-                Create New User
+                Create New Item
               </Button>
             </Box>
           </form>
@@ -115,25 +141,25 @@ const Form = () => {
   );
 };
 
-const phoneRegExp =
-  /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
-
 const checkoutSchema = yup.object().shape({
-  firstName: yup.string().required("required"),
-  lastName: yup.string().required("required"),
-  email: yup.string().email("invalid email").required("required"),
-  contact: yup
-    .string()
-    .matches(phoneRegExp, "Phone number is not valid")
-    .required("required"),
-  address1: yup.string().required("required"),
+  Item_name: yup.string().required("required"),
+  Item_cost: yup.string().required("required"),
+  Item_desc: yup.string().required("required"),
+  Item_tag1: yup.string().required("required"),
+  Item_tag2: yup.string().required("required"),
+  Item_tag3: yup.string().required("required"),
+  Item_tag4: yup.string().required("required"),
 });
 const initialValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  contact: "",
-  address1: "",
+  Item_name: "",
+  Item_cost: "",
+  Item_desc: "",
+  Item_tag1: "",
+  Item_tag2: "",
+  Item_tag3: "",
+  Item_tag4: "",
 };
+
+
 
 export default Form;

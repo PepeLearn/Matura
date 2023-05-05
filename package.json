@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "react-pro-sidebar": "^0.7.1",
-    "react-router-dom": "^6.10.0"
+    "@material-ui/core": "^4.12.4",
+    "react-pro-sidebar": "^1.0.0"
   }
 }

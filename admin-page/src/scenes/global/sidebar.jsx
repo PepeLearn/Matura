@@ -4,7 +4,6 @@ import { Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { Box, Hidden, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
-import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
@@ -142,7 +141,7 @@ const Sidebar = () => {
             <MenuItem
               icon={<ReceiptOutlinedIcon   />}
               >
-              <a href="/invoices">Invoices Balances</a>
+              <a href="/invoices">Sales</a>
             </MenuItem>
             <Typography
               variant="h6"
@@ -154,7 +153,7 @@ const Sidebar = () => {
             <MenuItem
               icon={<PersonOutlinedIcon />}
               >
-              <a href="/form">Profile Form</a>
+              <a href="/form">Item form</a>
             </MenuItem>
             <MenuItem
               icon={<CalendarTodayOutlinedIcon  />}

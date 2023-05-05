@@ -14,7 +14,6 @@ import FAQ from "./scenes/faq";
 import Bar from "./scenes/bar";
 
 
-
 function App() {
     const [theme, colorMode] = useMode();
 
