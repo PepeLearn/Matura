@@ -1,12 +1,13 @@
+
 .navbar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-top: 15px;
+    background-color: grey;
 }
 
 nav {
-    background-color: white;
     color: black;
     font-size: 24px;
     flex-grow: 1;
