@@ -1,7 +1,11 @@
-import Image from 'next/image'
+
+import Products from "./components/Products"
+import "./pages/catalog"
 
 export default function Home() {
+  console.log("main page");
   return (
-    <div>Hey</div>
+    <div><Products></Products></div>
+    
   )
 }
