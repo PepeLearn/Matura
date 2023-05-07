@@ -20,7 +20,7 @@ const Footer = () => {
                     <div className="flex, flex-col">
                         <a className="text-white m-2 text-justify" href="">Login</a>
                         <a className="text-white m-2 text-justify" href="">Register</a>
-                        <a className="text-white m-2 text-justify" href="">Shop</a>
+                        <a className="text-white m-2 text-justify" href="/catalog">Shop</a>
                         <a className="text-white m-2 text-justify" href="">Customer support</a>
                         <a className="text-white m-2 text-justify" href="">Home</a>
                     </div>
