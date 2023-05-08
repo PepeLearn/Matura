@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import Product from '../components/product'
+import Header from '../components/header'
+import Footer from '../components/footer'
+
 function Catalog() {
     const [products, setProducts] = useState([])
     useEffect(() => {
@@ -9,12 +12,21 @@ function Catalog() {
         .then(data => setProducts(data))
       },[])
   return (
-    <div className='bg-red-500 font-bold'>
-        {
-            products.map((item) => (
-                <Product product={item}/>
-            ))
-        }
+    <div>
+        <Header/>
+            <div className="text-center text-black no-underline">
+                <div className=' mt-5'>Join us and get 30 day free shipping and returns.
+                  <a className="text-black underline" href="/register"> Join us!</a>
+                </div>
+            </div>
+            <div className="text-center text-black no-underline mb-5">
+                Up to 50% Off - end of the season
+            </div>
+            <div>
+                <h1 className='text-center text-black font-serif text-5xl pt-20'>Filter</h1>
+
+            </div>
+        <Footer/>
     </div>
   );
 }
