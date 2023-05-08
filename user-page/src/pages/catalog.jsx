@@ -26,6 +26,13 @@ function Catalog() {
                 <h1 className='text-center text-black font-serif text-5xl pt-20'>Filter</h1>
 
             </div>
+            <div className='bg-red-500 font-bold m-20 h-auto'>
+            {
+                products.map((item) => (
+                    <Product product={item}/>
+                ))
+            }
+            </div>
         <Footer/>
     </div>
   );
