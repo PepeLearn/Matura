@@ -1,4 +1,5 @@
 import Information from '../pages/information'
+import Item from '../pages/item'
 
 const Header = () => {
   return (
@@ -11,6 +12,7 @@ const Header = () => {
             <a className="m-5 text-lg" href="/catalog">Store</a>
             <a className="m-5 text-lg" href="/account">Account</a>
             <a className="m-5 text-lg" href="/information">Information</a>
+            <a className="m-5 text-lg" href="/item">Item</a>
         </nav>
         <div>
             <a className="m-5 text-lg" href="/login">Login</a>

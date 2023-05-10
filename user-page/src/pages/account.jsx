@@ -1,14 +1,41 @@
 import Header from '../components/header'
 import Footer from '../components/footer'
+import { useState, useEffect } from "react"
 
 const Account = () => {
+
+    const [AccountData, setAccoutData] = useState({
+        username: 'pepe',
+        email: 'pepe@gmail.com'
+    });
+
+useEffect(() => {
+    fetch("http://127.0.0.1/matura-backend/database/database.php?getCategories=true&getAccountData=true", { 
+        method: 'POST', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(),
+      })
+        .then((data) => data.json())
+        .then((data) => {
+            setAccoutData(data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        }); 
+  },[]) //vsakic ko se filter changa fetchne producte in jih spremeni 
+
     return (
       <div>
         <Header/>
         <div className='h-screen'>
             <div>
                 <h1 className='text-center text-black font-serif text-5xl pt-20'>Profile</h1>
-                <h2 className='text-center text-black font-serif text-2xl pt-10'>Welcome back Name!</h2>
+                <h2 className='text-center text-black font-serif text-2xl pt-10'>
+                        <div>{AccountData.username}</div>
+                        <div>{AccountData.email}</div>
+                </h2>
             </div>
             <div className='h-screen flex flex-col'>
                 <div className='h-1/6'>
