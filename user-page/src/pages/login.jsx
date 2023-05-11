@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import Cookies from 'js-cookies';
+import  Cookies  from 'js-cookie';
+
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const handelRememberMe = () => {
+  const handleRememberMe = () => {
     if (rememberMe) { 
       setRememberMe(false); 
     }
@@ -32,8 +33,6 @@ const Login = () => {
         } else{
           Cookies.set("rememberUser", data.authorization) // da token v cookie
         }
-        
-        
         
       })
       .catch((error) => {
@@ -80,7 +79,7 @@ const Login = () => {
               <div class="flex items-center justify-between">
                 <div class="flex items-start">
                   <div class="flex items-center h-5">
-                    <input id="remember" aria-describedby="remember" type="checkbox" onChange={handelRememberMe()} class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required="" />
+                    <input id="remember" aria-describedby="remember" type="checkbox" onChange={handleRememberMe} class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required="" />
                   </div>
                   <div class="ml-3 text-sm">
                     <label for="remember" class="text-gray-500 dark:text-gray-300">

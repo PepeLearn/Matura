@@ -7,7 +7,7 @@ import Cart from './pages/catalog'
 import Account from './pages/account'
 import Main from './pages/main';
 import Item from './pages/item';
-import PrivateRouter from'./components/PrivateRoutes'
+import PrivateRoutes from'./components/PrivateRoutes'
 
 
 function App() {

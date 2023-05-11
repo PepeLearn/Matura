@@ -23,7 +23,7 @@ useEffect(() => {
         .catch((error) => {
           console.error('Error:', error);
         }); 
-  },[]) //vsakic ko se filter changa fetchne producte in jih spremeni 
+  },[]) //vsakic ko se filter changa fetchne producte in jih spremeni  
 
     return (
       <div>
