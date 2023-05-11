@@ -6,6 +6,8 @@ import Catalog from './pages/catalog'
 import Cart from './pages/catalog'
 import Account from './pages/account'
 import Main from './pages/main';
+import Item from './pages/item';
+
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/account" element={<Account />} />
+            <Route path="/item" element={<Item />} />
           </Routes>
       </BrowserRouter>
     </div>

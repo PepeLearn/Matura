@@ -5,7 +5,7 @@ const Product = ({product}) => {
 const ProductID = product.ProductID
 
   return (
-    <Link to={{pathName:'/item', state:{ProductID}}} className='border-2 m-10 opacity-1 transition duration-300 ease-in-out hover:opacity-70 hover:scale-110'>
+    <Link to='/item' state={{ProductID:ProductID}} className='border-2 m-10 opacity-1 transition duration-300 ease-in-out hover:opacity-70 hover:scale-110'>
       <div>
         <img className="h-96 w-96" src={"http://127.0.0.1/matura-backend/products/images/"+product.ProductID+".jpg"} alt="Slika produkta"/>
       </div>
