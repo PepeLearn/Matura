@@ -7,6 +7,7 @@ import Cart from './pages/catalog'
 import Account from './pages/account'
 import Main from './pages/main';
 import Item from './pages/item';
+import PrivateRouter from'./components/PrivateRoutes'
 
 
 function App() {
@@ -14,12 +15,14 @@ function App() {
     <div>
       <BrowserRouter>
           <Routes>
+            <Route element={<PrivateRoutes/>}>
+                 <Route path="/account" element={<Account />} />
+            </Route>
             <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/register" element={<Register />} />
             <Route path="/catalog" element={<Catalog />} />
-            <Route path="/account" element={<Account />} />
             <Route path="/item" element={<Item />} />
           </Routes>
       </BrowserRouter>

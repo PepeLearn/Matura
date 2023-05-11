@@ -2,8 +2,7 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 import { useState, useEffect } from "react"
 
-const Account = () => {
-
+const Account = () => { 
     const [AccountData, setAccoutData] = useState({
         username: 'pepe',
         email: 'pepe@gmail.com'
