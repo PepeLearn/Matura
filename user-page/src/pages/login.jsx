@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import  Cookies  from 'js-cookie';
 
 const Login = () => {
-  console.log(Cookies.get("authorization"));
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -39,7 +38,7 @@ const Login = () => {
 
         }
         alert("succesful login");
-        window.open("/catalog");
+        window.location.replace("/catalog");
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -62,7 +61,8 @@ const Login = () => {
     };
     httpPost("http://127.0.0.1/matura-backend/database/database.php?login=true", data) // poslje username, geslo na database.php datoteko, ce je oboje vneseno.
   }
-  return (
+  if (!Cookies.get("authorization"))
+ { return (
     <div class="bg-blue-900">
       <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -93,7 +93,7 @@ const Login = () => {
                 </div>
                 <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
               </div>
-              <button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" onClick={() => validateForm()}>Sign in</button>
+              <button type="button" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" onClick={() => validateForm()}>Sign in</button>
               <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                 Don’t have an account yet?
                 <a href="./register" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
@@ -103,7 +103,10 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
+  )}
+  else {
+    window.location.replace("/");
+  }
 }
 
 export default Login;
