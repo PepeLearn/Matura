@@ -6,8 +6,13 @@ module.exports = {
   },
   variants: {
     extend: {
-      display: ['group-focus']
+      height: {
+        128: "28rem",
+      },
+      width: {
+        128: "28rem",
+      },
     },
   },
   plugins: [],
-}
+};

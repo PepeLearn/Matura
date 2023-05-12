@@ -70,15 +70,14 @@ function Catalog() {
                 <div className='w-1/6 pt-20'>
                     <Filter/>
                 </div>
-                <div className='w-5/6'>
-                    <div className='font-bold mt-10 h-auto border-gray-600border-2 flex justify-center justify-items-center items-center pb-20'>
+                <div className='m-10'>
+                    <div className='grid grid-cols-3 gap-4 content-start'>
                     {
                         products.map((item) => (
                             <Product product={item}/>
                         ))
                     }
                     </div>
-                    
                 </div>
             </div>
         <Footer/>
