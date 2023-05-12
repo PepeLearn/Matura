@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import  Cookies  from 'js-cookie';
 
 const Login = () => {
+  console.log(Cookies.get("authorization"));
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -29,27 +30,29 @@ const Login = () => {
         if (rememberMe)
         {
           let date = Date.now() + 172800000; //(2 dni) exp time;
-          Cookies.set("authorization", data.authorization, { expires: date });
+          Cookies.set("authorization", data.Authorization, { expires: date });
+          console.log(data.Authorization);
+          console.log("with remember me");
         } else{
-          Cookies.set("rememberUser", data.authorization) // da token v cookie
+          Cookies.set("authorization", data.Authorization); // da token v cookie
+          console.log("without remember me");
+
         }
-        
+        alert("succesful login");
+        window.open("/catalog");
       })
       .catch((error) => {
         console.error('Error:', error);
+        alert("username or password is incorrect");
       });
   }
 
 
   const validateForm = () => { // preveri ce so vsa polja izplonjena v form (temporary, treba zamnejati v prihodnosti)
-
-    // if (rememberMe) {
-    // rememberMe = true;
-    // }
-    if (username == "") {  // preveri ce je username vnesen
+    if (username === "") {  // preveri ce je username vnesen
       alert("Username must be filled in!");
       return false;
-    } else if (password == "") { // preveri ce je password vnesen
+    } else if (password === "") { // preveri ce je password vnesen
       alert("Password is required");
       return false;
     }

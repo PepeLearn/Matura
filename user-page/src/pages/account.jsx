@@ -1,20 +1,24 @@
 import Header from '../components/header'
 import Footer from '../components/footer'
 import { useState, useEffect } from "react"
+import Cookies from 'js-cookie';
 
-const Account = () => { 
+const Account = () => {
     const [AccountData, setAccoutData] = useState({
         username: 'pepe',
         email: 'pepe@gmail.com'
     });
+    const auth = {
+      token : Cookies.get("authorization")
+    }
 
 useEffect(() => {
-    fetch("http://127.0.0.1/matura-backend/database/database.php?getCategories=true&getAccountData=true", { 
+    fetch("http://127.0.0.1/matura-backend/database/database.php?getAccountData=true", { 
         method: 'POST', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(),
+        body: JSON.stringify(auth),
       })
         .then((data) => data.json())
         .then((data) => {
@@ -22,6 +26,7 @@ useEffect(() => {
         })
         .catch((error) => {
           console.error('Error:', error);
+          
         }); 
   },[]) //vsakic ko se filter changa fetchne producte in jih spremeni  
 

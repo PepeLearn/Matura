@@ -1,7 +1,8 @@
 import Information from '../pages/information'
 import Item from '../pages/item'
+import Cookies from 'js-cookie'
 
-const Header = () => {
+const Header = () => {  // misel more fixnit
   return (
     <div className="flex justify-between p-5 shadow-2xl">
         <div>
@@ -13,8 +14,9 @@ const Header = () => {
             <a className="m-5 text-lg" href="/account">Account</a>
             <a className="m-5 text-lg" href="/information">Information</a>
         </nav>
+        <a className="m-5 text-lg" href="/login">Login</a>
         <div>
-            <a className="m-5 text-lg" href="/login">Login</a>
+            {Cookies.get("authorization") ? <a className="m-5 text-lg" href="/account">My profile</a> : <a className="m-5 text-lg" href="/login">Login</a>}
             <a href="./cart" className="bg-amber-500 p-3 rounded-lg">Cart</a> 
         </div>
     </div>
