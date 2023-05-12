@@ -11,10 +11,8 @@ const Header = () => {  // misel more fixnit
         <nav>
             <a className="m-5 text-lg" href="/">Home</a>
             <a className="m-5 text-lg" href="/catalog">Store</a>
-            <a className="m-5 text-lg" href="/account">Account</a>
             <a className="m-5 text-lg" href="/information">Information</a>
         </nav>
-        <a className="m-5 text-lg" href="/login">Login</a>
         <div>
             {Cookies.get("authorization") ? <a className="m-5 text-lg" href="/account">My profile</a> : <a className="m-5 text-lg" href="/login">Login</a>}
             <a href="./cart" className="bg-amber-500 p-3 rounded-lg">Cart</a> 
