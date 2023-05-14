@@ -36,13 +36,14 @@ const Item = () => {
       id: product,
       size: selectedSize,
       color: selectedColor,
-      quantity: 1,  
+      quantity: 1,
+      price: item.Price,
+      name: item.Name,
     };
     if (cookie) {
       cookie = JSON.parse(cookie);
       AddedProduct = [...cookie, AddedProduct]; //json pars vse podatke da kot object v array in se obstojeci objoect
-    } else
-    {
+    } else {
       AddedProduct = [AddedProduct];
     }
     let date = Date.now() + 172800000; //2 dni
