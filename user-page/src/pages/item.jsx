@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { Routes, Route, useParams, useLocation, Link } from "react-router-dom";
 import Product from "../components/product";
 import Cookies from "js-cookie";
-import Ratings from "../components/ratings"
+import Ratings from "../components/ratings";
+
 const Item = () => {
   const location = useLocation();
   const [item, setItem] = useState({});
@@ -13,7 +14,7 @@ const Item = () => {
   const [availableColors, setAvailableColors] = useState([]);
   const [availableSizes, setAvailableSizes] = useState([]);
   const [selectedColor, setSelectedColor] = useState("");
-  const [rating, setRating]= useState(0); 
+  const [rating, setRating] = useState(0);
 
   useEffect(() => {
     let data = {
@@ -84,9 +85,7 @@ const Item = () => {
 
   const handleRating = (rating) => {
     setRating(rating);
-
-  }
-
+  };
 
   if (item.Variants) {
     return (
@@ -139,7 +138,7 @@ const Item = () => {
             <button onClick={HandleCart}>Add to cart</button>
           </div>
         </div>
-        <Ratings handleRating={handleRating} productID={product}/>
+        <Ratings handleRating={handleRating} productID={product} />
         <Footer />
       </div>
     );
