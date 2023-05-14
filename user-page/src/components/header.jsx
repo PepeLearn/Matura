@@ -3,6 +3,18 @@ import Item from '../pages/item'
 import Cookies from 'js-cookie'
 
 const Header = () => {  // misel more fixnit
+  
+  
+  if (!Cookies.get("cart"))
+  {
+    var items = 0;
+  }
+  else{
+    var items = JSON.parse(Cookies.get("cart"));
+  }
+  console.log(items);
+  const num_of_items =  items.length
+  
   return (
     <div className="flex justify-between p-5 shadow-2xl">
         <div>
@@ -15,7 +27,7 @@ const Header = () => {  // misel more fixnit
         </nav>
         <div>
             {Cookies.get("authorization") ? <a className="m-5 text-lg" href="/account">My profile</a> : <a className="m-5 text-lg" href="/login">Login</a>}
-            <a href="./cart" className="bg-amber-500 p-3 rounded-lg">Cart</a> 
+            <a href="./cart" className="bg-amber-500 p-3 rounded-lg">Cart {items ? (num_of_items) : null}</a> 
         </div>
     </div>
   )
