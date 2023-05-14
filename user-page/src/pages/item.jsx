@@ -63,7 +63,13 @@ const Item = () => {
   };
 
   const HandleCart = () => {
-    let cookie = Cookies.get("cart");
+    let lol = true;
+    let prevProducts = Cookies.get("cart");
+    if (!selectedSize || !selectedColor)
+    {
+      console.log("lol");
+      return;
+    }
     let AddedProduct = {
       id: product,
       size: selectedSize,
@@ -72,15 +78,30 @@ const Item = () => {
       price: item.Price,
       name: item.Name,
     };
-    if (cookie) {
-      cookie = JSON.parse(cookie);
-      AddedProduct = [...cookie, AddedProduct]; //json pars vse podatke da kot object v array in se obstojeci objoect
+    if (prevProducts) {
+      prevProducts = JSON.parse(prevProducts);
+      prevProducts.forEach(element => {
+        if (element.size === AddedProduct.size && element.color === AddedProduct.color)
+        {
+          element.quantity++;
+          let date = Date.now() + 172800000; //2 dni
+          Cookies.set("cart", JSON.stringify(prevProducts), { expires: date });
+          console.log(prevProducts);
+          console.log("je good");
+          lol = false;
+        }
+      });
+      AddedProduct = [...prevProducts, AddedProduct]; //json pars vse podatke da kot object v array in se obstojeci objoect
     } else {
       AddedProduct = [AddedProduct];
     }
-    let date = Date.now() + 172800000; //2 dni
-    Cookies.set("cart", JSON.stringify(AddedProduct), { expires: date });
-    console.log(AddedProduct);
+    if (lol)
+    {
+      let date = Date.now() + 172800000; //2 dni
+      Cookies.set("cart", JSON.stringify(AddedProduct), { expires: date });
+      console.log(AddedProduct);
+      console.log("bruh-ni vredi");
+    }
   };
 
   const handleRating = (rating) => {
