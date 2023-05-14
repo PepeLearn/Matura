@@ -48,7 +48,13 @@ const Ratings = ({ productID, handleRating }) => {
         return (
           <div className="flex my-4">
             <div className="w-1/6">
-              <img src={item.image} alt="User Avatar" className="w-full" />
+              <div className="ml-10">
+                <img
+                  className="rounded-full h-16 w-16 object-cover object-center border-2 mt-4 ml-20"
+                  src={`http://127.0.0.1/matura-backend/profile/images/${item.userid}.png`}
+                  alt="User avatar"
+                />
+              </div>
             </div>
             <div className="w-5/6 ml-4">
               <div className="flex justify-between items-center">

@@ -89,9 +89,9 @@ const Item = () => {
 
   if (item.Variants) {
     return (
-      <div>
+      <div className="flex flex-col min-h-screen">
         <Header />
-        <div className="h-auto flex flex-row">
+        <div className="flex-grow">
           <div className="flex border-solid justify-between p-20">
             <div className="ml-20 border-solid w-2/3 flex justify-center items-center">
               <div className="aspect-w-1 aspect-h-1">
@@ -134,8 +134,13 @@ const Item = () => {
                   ))}
                 </select>
               </div>
+              <button
+                className="bg-orange-300 p-5 rounded-xl mt-10"
+                onClick={HandleCart}
+              >
+                Add to cart
+              </button>
             </div>
-            <button onClick={HandleCart}>Add to cart</button>
           </div>
         </div>
         <Ratings handleRating={handleRating} productID={product} />
