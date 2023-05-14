@@ -3,12 +3,8 @@ import { AiOutlineCaretDown } from "react-icons/ai";
 import { AiOutlineCaretUp } from "react-icons/ai";
 
 const Filter = () => {
-  const [categories, setCategories] = useState(["pepe", "oof"]);
-  const [superCategories, setSuperCategories] = useState([
-    "women",
-    "men",
-    "kids",
-  ]);
+  const [categories, setCategories] = useState([]);
+  const [superCategories, setSuperCategories] = useState([]);
   const [openSuperCategory, setOpenSuperCategory] = useState(null);
 
   useEffect(() => {
@@ -33,7 +29,9 @@ const Filter = () => {
   }, []);
 
   const toggleOpen = (superCategory) => {
-    setOpenSuperCategory((prev) => (prev === superCategory ? null : superCategory));
+    setOpenSuperCategory((prev) =>
+      prev === superCategory ? null : superCategory
+    );
   };
 
   return (
@@ -45,7 +43,12 @@ const Filter = () => {
             {superCategories.map((superCategory) => (
               <div key={superCategory} className="h-8 mb-20">
                 <div onClick={() => toggleOpen(superCategory)}>
-                  {superCategory} {openSuperCategory === superCategory ? <AiOutlineCaretUp /> : <AiOutlineCaretDown />}
+                  {superCategory}{" "}
+                  {openSuperCategory === superCategory ? (
+                    <AiOutlineCaretUp />
+                  ) : (
+                    <AiOutlineCaretDown />
+                  )}
                 </div>
                 {openSuperCategory === superCategory && (
                   <div className="absolute ml-20 mb-20">
