@@ -50,7 +50,6 @@ const Account = () => {
     fetch('http://127.0.0.1/matura-backend/database/database.php?changeProfileImage=true', {
       method: 'POST',
       headers: {
-        'Content-Type':"multipart/form-data",
         Authorization: auth
       },
       body: formData,
@@ -130,6 +129,7 @@ const Account = () => {
                       <input type="file" onChange={handleFileChange} />
                       <button onClick={handleUpload}>Upload PFP</button>
                     </div>
+                    <img src={"http://127.0.0.1/matura-backend/profile/images/"+AccountData.id+".png"} alt="profile_picture" />
                   </div>
                   <div>
                     <div className="text-3xl	m-5">Username:</div>
