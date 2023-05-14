@@ -1,12 +1,6 @@
-import { useEffect, useState } from 'react';
-
+import { useEffect, useState } from "react";
 
 const Ratings = () => {
-  return (
-    <div>
-        oof
-    </div>
-
-    )
-}
+  return <div>oof</div>;
+};
 export default Ratings;
