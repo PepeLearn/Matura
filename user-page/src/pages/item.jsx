@@ -4,16 +4,47 @@ import { useEffect, useState } from "react";
 import { Routes, Route, useParams, useLocation, Link } from "react-router-dom";
 import Product from "../components/product";
 import Cookies from "js-cookie";
-
+import Ratings from "../components/ratings"
 const Item = () => {
   const location = useLocation();
   const [item, setItem] = useState({});
   const [product, setProduct] = useState(location.state.ProductID);
-  const [categories, setCategories] = useState(["pepe", "oof"]);
-  const [selectedSize, setSelectedSize] = useState();
+  const [selectedSize, setSelectedSize] = useState("");
   const [availableColors, setAvailableColors] = useState([]);
   const [availableSizes, setAvailableSizes] = useState([]);
-  const [selectedColor, setSelectedColor] = useState();
+  const [selectedColor, setSelectedColor] = useState("");
+  const [rating, setRating]= useState(0); 
+
+  useEffect(() => {
+    let data = {
+      productID: product,
+    };
+    fetch(
+      "http://127.0.0.1/matura-backend/database/database.php?getProductVariants=true",
+      {
+        method: "POST", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
+      .then((data) => data.json())
+      .then((data) => {
+        let sizes = [];
+        setItem(data);
+        data.Variants.forEach((element) => {
+          if (!sizes.includes(element.Size)) {
+            //pogleda ce ze obstaja
+            sizes.push(element.Size);
+          }
+        });
+        setAvailableSizes(sizes);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, []);
 
   const handleSelectedColor = (e) => {
     setSelectedColor(e.target.value);
@@ -51,36 +82,11 @@ const Item = () => {
     console.log(AddedProduct);
   };
 
-  useEffect(() => {
-    let data = {
-      productID: product,
-    };
-    fetch(
-      "http://127.0.0.1/matura-backend/database/database.php?getProductVariants=true",
-      {
-        method: "POST", // or 'PUT'
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }
-    )
-      .then((data) => data.json())
-      .then((data) => {
-        let sizes = [];
-        setItem(data);
-        data.Variants.forEach((element) => {
-          if (!sizes.includes(element.Size)) {
-            //pogleda ce ze obstaja
-            sizes.push(element.Size);
-          }
-        });
-        setAvailableSizes(sizes);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }, []);
+  const handleRating = (rating) => {
+    setRating(rating);
+
+  }
+
 
   if (item.Variants) {
     return (
@@ -133,6 +139,7 @@ const Item = () => {
             <button onClick={HandleCart}>Add to cart</button>
           </div>
         </div>
+        <Ratings handleRating={handleRating} productID={product}/>
         <Footer />
       </div>
     );
