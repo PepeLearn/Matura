@@ -4,7 +4,7 @@ import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 
-const Form = () => {
+const ItemForm = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
   const handleFormSubmit = (values) => {
@@ -115,7 +115,7 @@ const Form = () => {
                 helperText={touched.Tag2 && errors.Tag2}
                 sx={{ gridColumn: "span 2" }}
               />
-                            <TextField
+              <TextField
                 fullWidth
                 variant="filled"
                 type="text"
@@ -147,10 +147,10 @@ const checkoutSchema = yup.object().shape({
   ItemDesc: yup.string().required("required"),
   ItemQuantity: yup.string().required("required"),
   contact: yup.string().required("required"),
-    Tag1: yup.string().required("required"),
-    Tag2: yup.string().required("required"),
-    Tag3: yup.string().required("required"),
-    Tag4: yup.string().required("required"),
+  Tag1: yup.string().required("required"),
+  Tag2: yup.string().required("required"),
+  Tag3: yup.string().required("required"),
+  Tag4: yup.string().required("required"),
 });
 const initialValues = {
   ItemName: "",
@@ -162,4 +162,4 @@ const initialValues = {
   Tag3: "",
 };
 
-export default Form;
+export default ItemForm;
