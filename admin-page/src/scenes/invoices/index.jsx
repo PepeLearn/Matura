@@ -1,16 +1,17 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
-import { GridApi } from "@mui/x-data-grid";
+import { useGridApiRef } from "@mui/x-data-grid-pro";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Cookies from "js-cookie";
-import { useGridApiRef } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
+
 const Invoices = () => {
   const [products, setProducts] = useState([]);
   const theme = useTheme();
-  const apiRef = useRef(null);
+  const apiRef = useGridApiRef();
   const colors = tokens(theme.palette.mode);
+  const [editedProducts, setEditedProducts] = useState([]);
   const columns = [
     { field: "id", headerName: "ID" },
     {
@@ -49,6 +50,7 @@ const Invoices = () => {
       flex: 1,
     },
   ];
+
   useEffect(() => {
     fetch(
       "http://127.0.0.1/matura-backend/database/database.php?getProductCatalog=true"
@@ -64,26 +66,55 @@ const Invoices = () => {
       });
   }, []);
 
-  const handleSubmit = () => {
-    const temp = [];
-    const gridData = apiRef.current.getState().rows;
-    const updatedProducts = [...products];
+  useEffect(() => {
+    console.log("Edited Products:", editedProducts);
+  }, [editedProducts]);
 
-    gridData.forEach((element) => {
-      const productIndex = element.data.id - 1;
-      const updatedProduct = {
-        ...updatedProducts[productIndex],
-        ...element.data,
-      };
-      delete updatedProduct._action;
-      temp.push(updatedProduct);
+  const handleCellEditCommit = (params) => {
+    const updatedProducts = products.map((product) => {
+      if (product.id === params.id) {
+        return {
+          ...product,
+          [params.field]: params.value,
+        };
+      }
+      return product;
     });
 
-    // Use the temp array as needed
-    console.log(temp);
+    const editedProduct = updatedProducts.find(
+      (product) => product.id === params.id
+    );
 
-    // Send the temp array to the server or perform any other operations
-    post(temp);
+    if (editedProduct) {
+      setEditedProducts((prevEditedProducts) => {
+        const index = prevEditedProducts.findIndex(
+          (product) => product.id === params.id
+        );
+        if (index !== -1) {
+          const updatedEditedProducts = [...prevEditedProducts];
+          updatedEditedProducts[index] = editedProduct;
+          return updatedEditedProducts;
+        }
+        return [...prevEditedProducts, editedProduct];
+      });
+    } else {
+      setEditedProducts((prevEditedProducts) =>
+        prevEditedProducts.filter((product) => product.id !== params.id)
+      );
+    }
+
+    setProducts(updatedProducts);
+  };
+
+  useEffect(() => {
+    if (editedProducts.length > 0) {
+      console.log("Edited Products:", editedProducts);
+    }
+  }, [editedProducts]);
+
+  const handleSubmit = () => {
+    console.log("Submitting changes...");
+    post(editedProducts);
   };
 
   const post = (data) => {
@@ -100,7 +131,10 @@ const Invoices = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log("updated successfully");
+        console.log("Updated successfully:", data);
+      })
+      .catch((error) => {
+        console.log("Update failed:", error);
       });
   };
 
@@ -141,6 +175,7 @@ const Invoices = () => {
           rows={products}
           columns={columns}
           apiRef={apiRef}
+          onCellEditCommit={handleCellEditCommit}
         />
       </Box>
       <button onClick={handleSubmit}>Submit changes</button>

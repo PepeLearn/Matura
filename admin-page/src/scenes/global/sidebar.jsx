@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { ProSidebarProvider } from 'react-pro-sidebar';
-import { Menu, MenuItem } from 'react-pro-sidebar';
+import { ProSidebarProvider } from "react-pro-sidebar";
+import { Menu, MenuItem } from "react-pro-sidebar";
 import { Box, Hidden, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import { tokens } from "../../theme";
@@ -19,9 +19,9 @@ import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import "../global/sidebar.css";
 import Cookies from "js-cookie";
 
-const Item = ({ title, to, icon, selected, setSelected }) => { //deklrean item
+const Item = ({ title, to, icon, selected, setSelected }) => {
+  //deklrean item
 
-  
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -41,11 +41,17 @@ const Item = ({ title, to, icon, selected, setSelected }) => { //deklrean item
 //komponenta
 const Sidebar = () => {
   function parseJwt(token) {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
+    var base64Url = token.split(".")[1];
+    var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    var jsonPayload = decodeURIComponent(
+      window
+        .atob(base64)
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
 
     return JSON.parse(jsonPayload);
   }
@@ -56,7 +62,6 @@ const Sidebar = () => {
   const payload = parseJwt(Cookies.get("authorization"));
   const username = payload.username;
 
-
   return (
     <Box
       width={isCollapsed ? "80px" : !isCollapsed ? "300px" : undefined}
@@ -65,11 +70,8 @@ const Sidebar = () => {
       backgroundColor={colors.primary[400]}
       justifyContent="center"
     >
-      <ProSidebarProvider
-        collapsed={isCollapsed}>
-        <Menu iconShape="square"
-          width="10px"
-        >
+      <ProSidebarProvider collapsed={isCollapsed}>
+        <Menu iconShape="square" width="10px">
           {/* Logo + menu ikona*/}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)} //pove ko sidebar je collapsed
@@ -97,7 +99,12 @@ const Sidebar = () => {
           </MenuItem>
           {!isCollapsed && (
             <Box mb="25px">
-              <Box display="flex" justifyContent="center" alignItems="center" width="300px">
+              <Box
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                width="300px"
+              >
                 <img
                   alt="profile-user"
                   width="100px"
@@ -119,18 +126,25 @@ const Sidebar = () => {
                 >
                   {username}
                 </Typography>
-                <Typography variant="h5" color={colors.greenAccent[500]} width="300px" display="flex" justifyContent="center">
+                <Typography
+                  variant="h5"
+                  color={colors.greenAccent[500]}
+                  width="300px"
+                  display="flex"
+                  justifyContent="center"
+                >
                   VP admin
                 </Typography>
               </Box>
             </Box>
           )}
-          <Box width={!isCollapsed ? undefined : "10px"} padding-left={!isCollapsed ? undefined : "10%"} marginLeft={isCollapsed ? undefined : "15%"}>
+          <Box
+            width={!isCollapsed ? undefined : "10px"}
+            padding-left={!isCollapsed ? undefined : "10%"}
+            marginLeft={isCollapsed ? undefined : "15%"}
+          >
             <a href="/">
-              <Item
-                title="Dashboard"
-                icon={<HomeOutlinedIcon />}
-              />
+              <Item title="Dashboard" icon={<HomeOutlinedIcon />} />
             </a>
             <Typography
               variant="h6"
@@ -140,16 +154,10 @@ const Sidebar = () => {
               Data
             </Typography>
             <a href="/team">
-              <Item
-                title="Manage users"
-                icon={<PeopleOutlinedIcon />}
-              />
+              <Item title="Manage users" icon={<PeopleOutlinedIcon />} />
             </a>
             <a href="/invoices">
-              <Item
-                title="Products"
-                icon={<ReceiptOutlinedIcon />}
-              />
+              <Item title="Products" icon={<ReceiptOutlinedIcon />} />
             </a>
             <Typography
               variant="h6"
@@ -158,18 +166,13 @@ const Sidebar = () => {
             >
               Pages
             </Typography>
-            <a href="/form">
-              <Item
-                title="Item form"
-                icon={<PersonOutlinedIcon />}
-              />
+            <a href="/itemForm">
+              <Item title="Item form" icon={<PersonOutlinedIcon />} />
             </a>
-            <a href="/form">
-              <Item
-                title="User form"
-                icon={<PersonOutlinedIcon />}
-              />
+            <a href="/userForm">
+              <Item title="User form" icon={<PersonOutlinedIcon />} />
             </a>
+
             <Typography
               variant="h6"
               color={colors.grey[300]}
@@ -178,16 +181,10 @@ const Sidebar = () => {
               Charts
             </Typography>
             <a href="/bar">
-              <Item
-                title="Bar Chart"
-                icon={<BarChartOutlinedIcon />}
-              />
+              <Item title="Bar Chart" icon={<BarChartOutlinedIcon />} />
             </a>
             <a href="/pie">
-              <Item
-                title="Pie Chart"
-                icon={<PieChartOutlineOutlinedIcon />}
-              />
+              <Item title="Pie Chart" icon={<PieChartOutlineOutlinedIcon />} />
             </a>
           </Box>
         </Menu>

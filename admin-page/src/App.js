@@ -8,7 +8,7 @@ import Team from "./scenes/team";
 import Invoices from "./scenes/invoices";
 import Contacts from "./scenes/contacts";
 import UserForm from "./scenes/userForm";
-import ItemForm from "./scenes/userForm";
+import ItemForm from "./scenes/itemForm";
 import Pie from "./scenes/pie";
 import FAQ from "./scenes/faq";
 import Bar from "./scenes/bar";
@@ -34,8 +34,8 @@ function App() {
                   <Route path="/" element={<Dashboard />} />
                   <Route path="/team" element={<Team />} />
                   <Route path="/invoices" element={<Invoices />} />
-                  <Route path="/userForm" element={<UserForm />} />ž
                   <Route path="/itemForm" element={<ItemForm />} />
+                  <Route path="/userForm" element={<UserForm />} />
                   <Route path="/bar" element={<Bar />} />
                   <Route path="/pie" element={<Pie />} />
                   <Route path="/faq" element={<FAQ />} />
