@@ -9,29 +9,31 @@ import Header from "../../components/Header";
 import { useEffect, useState } from "react";
 
 const Team = () => {
-
   useEffect(() => {
-    fetch("http://127.0.0.1/matura-backend/database/database.php?getUsers=true", { 
-      method: 'POST', // or 'PUT'
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
+    fetch(
+      "http://127.0.0.1/matura-backend/database/database.php?getUsers=true",
+      {
+        method: "POST", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
       .then((data) => data.json())
       .then((data) => {
-          let date = Date.now() + 172800000; //(2 dni) exp time;
-          document.cookie = "authorization=" + data.Authorization + ";expires="+ Date(date); // da toke v cookie
+        let date = Date.now() + 172800000; //(2 dni) exp time;
+        document.cookie =
+          "authorization=" + data.Authorization + ";expires=" + Date(date); // da toke v cookie
       })
       .catch((error) => {
-        console.error('Error:', error);
+        console.error("Error:", error);
       });
-  },[])
+  }, []);
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const [columns, setColumns ] = useState([]);
-
+  const [columns, setColumns] = useState([]);
 
   return (
     <Box m="20px">
