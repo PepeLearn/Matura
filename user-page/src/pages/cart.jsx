@@ -44,7 +44,7 @@ const Cart = () => {
   return (
     <div>
       <Header />
-      <div className="bg-white flex justify-between border-red-400">
+      <div className="flex justify-between">
         <h1 className="text-left m-20 text-6xl">
           {items.length > 0
             ? "Items in your cart"
@@ -111,7 +111,7 @@ const Cart = () => {
       )}
       {items.length > 0 && (
         <div className="m-20 text-right">
-          <a className="p-5 bg-orange-300 rounded-lg" href="">
+          <a className="p-5 bg-orange-300 rounded-lg" href="./checkout">
             Proceed to checkout
           </a>
         </div>

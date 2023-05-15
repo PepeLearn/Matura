@@ -111,6 +111,7 @@ const Account = () => {
     // to dela
     Cookies.remove("authorization");
     console.log("logout pressed");
+    Cookies.remove("cart");
     window.location.replace("/");
   };
   if (AccountData.email) {
