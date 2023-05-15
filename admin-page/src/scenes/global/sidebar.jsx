@@ -17,102 +17,116 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import "../global/sidebar.css";
-import { red } from "@mui/material/colors";
+import Cookies from "js-cookie";
 
 const Item = ({ title, to, icon, selected, setSelected }) => { //deklrean item
-    const theme = useTheme();
-    const colors = tokens(theme.palette.mode);
-    
-    return (
-      <MenuItem
-        active={selected === title}
-        style={{
-          color: colors.grey[100],
-        }}
-        icon={icon}
-      >
-        <Typography>{title}</Typography>
-      </MenuItem>
-    );
-  };
+
+  
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+
+  return (
+    <MenuItem
+      active={selected === title}
+      style={{
+        color: colors.grey[100],
+      }}
+      icon={icon}
+    >
+      <Typography>{title}</Typography>
+    </MenuItem>
+  );
+};
 
 //komponenta
 const Sidebar = () => {
-    const theme = useTheme();
-    const colors = tokens(theme.palette.mode);
-    const [isCollapsed, setIsCollapsed]=useState(false); //is collapsed = ce je sidebar collapsed al ne
+  function parseJwt(token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+  }
+
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const [isCollapsed, setIsCollapsed] = useState(false); //is collapsed = ce je sidebar collapsed al ne
+  const payload = parseJwt(Cookies.get("authorization"));
+  const username = payload.username;
 
 
-    return (
-        <Box
-          width={isCollapsed ? "80px" : !isCollapsed ? "300px": undefined}
-          height="100vh"
-          display="flex"
-          backgroundColor={colors.primary[400]}
-          justifyContent="center"
+  return (
+    <Box
+      width={isCollapsed ? "80px" : !isCollapsed ? "300px" : undefined}
+      height="100vh"
+      display="flex"
+      backgroundColor={colors.primary[400]}
+      justifyContent="center"
+    >
+      <ProSidebarProvider
+        collapsed={isCollapsed}>
+        <Menu iconShape="square"
+          width="10px"
+        >
+          {/* Logo + menu ikona*/}
+          <MenuItem
+            onClick={() => setIsCollapsed(!isCollapsed)} //pove ko sidebar je collapsed
+            icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
+            style={{
+              margin: "10px 0px 10px 0px",
+              backgroundcolor: colors.grey[100],
+            }}
           >
-            <ProSidebarProvider 
-            collapsed={isCollapsed}>
-              <Menu iconShape="square"
-                    width="10px"
-              > 
-                {/* Logo + menu ikona*/}
-                <MenuItem
-                onClick={() => setIsCollapsed(!isCollapsed)} //pove ko sidebar je collapsed
-                icon={isCollapsed ? <MenuOutlinedIcon/> : undefined}
-                style={{
-                  margin: "10px 0px 10px 0px",
-                  backgroundcolor: colors.grey[100],
-                }}
-                >
-                {!isCollapsed && ( //ce ni collapsed se kaze to
-                <Box
+            {!isCollapsed && ( //ce ni collapsed se kaze to
+              <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                width="100%"
+              >
+                <Typography variant="h3" color={colors.grey[100]}>
+                  ADMIN
+                </Typography>
+                <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+                  <MenuOutlinedIcon />
+                </IconButton>
+              </Box>
+            )}
+          </MenuItem>
+          {!isCollapsed && (
+            <Box mb="25px">
+              <Box display="flex" justifyContent="center" alignItems="center" width="300px">
+                <img
+                  alt="profile-user"
+                  width="100px"
+                  height="100px"
+                  justifyContent="center"
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1024px-Default_pfp.svg.png"
+                  style={{ cursor: "pointer", borderRadius: "50%" }}
+                />
+              </Box>
+              <Box textAlign="center">
+                <Typography
+                  variant="h2"
                   display="flex"
-                  justifyContent="space-between"
-                  alignItems="center"
-                  width="100%"
+                  width="300px"
+                  justifyContent="center"
+                  color={colors.grey[100]}
+                  fontWeight="bold"
+                  sx={{ m: "10px 0 0 0" }}
                 >
-                  <Typography variant="h3" color={colors.grey[100]}>
-                    ADMIN
-                  </Typography>
-                  <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
-                    <MenuOutlinedIcon/>
-                  </IconButton>
-                </Box>
-                )}
-                </MenuItem>
-                {!isCollapsed && (
-                <Box mb="25px">
-                  <Box display="flex" justifyContent="center" alignItems="center" width="300px">
-                    <img
-                      alt="profile-user"
-                      width="100px"
-                      height="100px"
-                      justifyContent="center"
-                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1024px-Default_pfp.svg.png"
-                      style={{ cursor: "pointer", borderRadius: "50%" }}
-                    />
-                  </Box>
-                  <Box textAlign="center">
-                    <Typography
-                      variant="h2"
-                      display="flex"
-                      width="300px"
-                      justifyContent="center"
-                      color={colors.grey[100]}
-                      fontWeight="bold"
-                      sx={{ m: "10px 0 0 0" }}
-                    >
-                      Vaukman Mišel
-                    </Typography>
-                    <Typography variant="h5" color={colors.greenAccent[500]} width="300px" display="flex" justifyContent="center">
-                      VP admin
-                    </Typography>
-                  </Box>
-                </Box>
-              )}
-              <Box width={!isCollapsed ? undefined : "10px"} padding-left={!isCollapsed ? undefined : "10%"} marginLeft={isCollapsed ? undefined : "15%"}>
-              <a href="/">
+                  {username}
+                </Typography>
+                <Typography variant="h5" color={colors.greenAccent[500]} width="300px" display="flex" justifyContent="center">
+                  VP admin
+                </Typography>
+              </Box>
+            </Box>
+          )}
+          <Box width={!isCollapsed ? undefined : "10px"} padding-left={!isCollapsed ? undefined : "10%"} marginLeft={isCollapsed ? undefined : "15%"}>
+            <a href="/">
               <Item
                 title="Dashboard"
                 icon={<HomeOutlinedIcon />}
@@ -127,20 +141,14 @@ const Sidebar = () => {
             </Typography>
             <a href="/team">
               <Item
-                title="Manage Team"
-                icon={<PeopleOutlinedIcon  />}
-              />
-            </a>
-            <a href="/contacts">
-              <Item
-                title="Contacts information"
-                icon={<ContactsOutlinedIcon  />}
+                title="Manage users"
+                icon={<PeopleOutlinedIcon />}
               />
             </a>
             <a href="/invoices">
               <Item
                 title="Products"
-                icon={<ReceiptOutlinedIcon  />}
+                icon={<ReceiptOutlinedIcon />}
               />
             </a>
             <Typography
@@ -153,19 +161,13 @@ const Sidebar = () => {
             <a href="/form">
               <Item
                 title="Item form"
-                icon={<PersonOutlinedIcon  />}
+                icon={<PersonOutlinedIcon />}
               />
             </a>
-            <a href="/calendar">
+            <a href="/form">
               <Item
-                title="Canelndar"
-                icon={<CalendarTodayOutlinedIcon  />}
-              />
-            </a>
-            <a href="/faq">
-              <Item
-                title="FAQ Page"
-                icon={<HelpOutlineOutlinedIcon />}
+                title="User form"
+                icon={<PersonOutlinedIcon />}
               />
             </a>
             <Typography
@@ -178,20 +180,20 @@ const Sidebar = () => {
             <a href="/bar">
               <Item
                 title="Bar Chart"
-                icon={<BarChartOutlinedIcon  />}
+                icon={<BarChartOutlinedIcon />}
               />
             </a>
             <a href="/pie">
               <Item
                 title="Pie Chart"
-                icon={<PieChartOutlineOutlinedIcon  />}
+                icon={<PieChartOutlineOutlinedIcon />}
               />
             </a>
           </Box>
-              </Menu>
-            </ProSidebarProvider>
-        </Box>
-      );
-    };
-    
-    export default Sidebar;
+        </Menu>
+      </ProSidebarProvider>
+    </Box>
+  );
+};
+
+export default Sidebar;

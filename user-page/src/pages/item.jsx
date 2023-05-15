@@ -154,6 +154,7 @@ const Item = () => {
                     <option className="m-5 border-2">{color}</option>
                   ))}
                 </select>
+                {rating}
               </div>
               <button
                 className="bg-orange-300 p-5 rounded-xl mt-10"

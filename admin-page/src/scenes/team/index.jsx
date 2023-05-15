@@ -7,8 +7,42 @@ import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../components/Header";
 import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 const Team = () => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const [columns, setColumns] = useState([
+    { field: "id", headerName: "ID" },
+    {
+      field: "username",
+      headerName: "Username",
+      flex: 1,
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "email",
+      headerName: "Email",
+      flex: 1,
+    },
+    {
+      field: "password",
+      headerName: "Password",
+      flex: 1,
+    },
+    {
+      field: "timeCreated",
+      headerName: "Date",
+      flex: 1,
+    },
+    {
+      field: "admin",
+      headerName: "isAdmin",
+      flex: 1,
+    },
+  ]);
+  const [users, setUsers] = useState([]);
+  const data = "bruh"; // placeholder
   useEffect(() => {
     fetch(
       "http://127.0.0.1/matura-backend/database/database.php?getUsers=true",
@@ -16,24 +50,18 @@ const Team = () => {
         method: "POST", // or 'PUT'
         headers: {
           "Content-Type": "application/json",
+          Authorization: Cookies.get("authorization"),
         },
-        body: JSON.stringify(data),
       }
     )
       .then((data) => data.json())
       .then((data) => {
-        let date = Date.now() + 172800000; //(2 dni) exp time;
-        document.cookie =
-          "authorization=" + data.Authorization + ";expires=" + Date(date); // da toke v cookie
+        setUsers(data);
       })
       .catch((error) => {
         console.error("Error:", error);
       });
   }, []);
-
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-  const [columns, setColumns] = useState([]);
 
   return (
     <Box m="20px">
@@ -67,7 +95,7 @@ const Team = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={mockDataTeam} columns={columns} />
+        <DataGrid checkboxSelection rows={users} columns={columns} />
       </Box>
     </Box>
   );
