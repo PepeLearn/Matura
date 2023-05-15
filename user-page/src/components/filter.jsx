@@ -5,7 +5,6 @@ import RangeSlider from "../components/RangeSlider";
 
 const Filter = ({ handleFilter }) => {
   const [filter, setFilter] = useState({ tags: [] });
-  const [categories, setCategories] = useState(["pepe", "oof"]);
   const [openCategories, setOpenCategories] = useState([]);
   const [data, setData] = useState([]);
   const [superCategories, setSuperCategories] = useState([
@@ -14,10 +13,11 @@ const Filter = ({ handleFilter }) => {
     "kids",
   ]);
   const [openSuperCategory, setOpenSuperCategory] = useState(null);
+  const [selectedColors, setSelectedColors ] = useState([])
 
   useEffect(() => {
     fetch(
-      "http://127.0.0.1/matura-backend/database/database.php?getCategories=true",
+      "http://127.0.0.1/matura-backend/database/database.php?getFilterData=true",
       {
         method: "POST",
         headers: {
@@ -31,7 +31,7 @@ const Filter = ({ handleFilter }) => {
         setData(response);
         let temp = [];
         let temp2 = [];
-        response.forEach((element) => {
+        response.categories.forEach((element) => {
           if (!temp.includes(element.superCategory)) {
             //pogleda ce ze obstaja
             temp.push(element.superCategory);
@@ -41,7 +41,6 @@ const Filter = ({ handleFilter }) => {
             temp2.push(element.category);
           }
         });
-        setCategories(temp2);
         setSuperCategories(temp);
       })
       .catch((error) => {
@@ -52,10 +51,10 @@ const Filter = ({ handleFilter }) => {
   const toggleOpen = (superCategory) => {
     let temp2 = [];
     console.log(superCategory);
-    data.forEach((element) => {
+    data.categories.forEach((element) => {
       if (
         !temp2.includes(element.category) &&
-        element.superCategory == superCategory
+        element.superCategory === superCategory
       ) {
         //pogleda ce ze obstaja
         console.log(element);
@@ -68,7 +67,7 @@ const Filter = ({ handleFilter }) => {
       prev === superCategory ? null : superCategory
     );
   };
-
+  if (data.colors){
   return (
     <div>
       <div className="flex justify-between ml-10">
@@ -114,129 +113,23 @@ const Filter = ({ handleFilter }) => {
         <form action="POST">
           <div className="flex flex-row justify-between p-5 border-2">
             <div className="flex flex-col">
-              <div>
-                <input
-                  className="bg-blue-500 text-white focus:ring-0"
-                  type="checkbox"
-                  id="vehicle1"
-                  name="vehicle1"
-                  value="Bike"
-                />
-                <label className="p-2" for="vehicle1">
-                  Blue
-                </label>
-              </div>
-              <div>
-                <input
-                  className="bg-purple-500 text-white focus:ring-0"
-                  type="checkbox"
-                  id="vehicle1"
-                  name="vehicle1"
-                  value="Bike"
-                />
-                <label className="p-2" for="vehicle1">
-                  Purple
-                </label>
-              </div>
-              <div>
-                <input
-                  className="bg-red-500 text-white focus:ring-0"
-                  type="checkbox"
-                  id="vehicle1"
-                  name="vehicle1"
-                  value="Bike"
-                />
-                <label className="p-2" for="vehicle1">
-                  Red
-                </label>
-              </div>
-              <div>
-                <input
-                  className="bg-orange-400 text-white focus:ring-0"
-                  type="checkbox"
-                  id="vehicle1"
-                  name="vehicle1"
-                  value="Bike"
-                />
-                <label className="p-2" for="vehicle1">
-                  Orange
-                </label>
-              </div>
-              <div>
-                <input
-                  className="bg-yellow-300 text-white focus:ring-0"
-                  type="checkbox"
-                  id="vehicle1"
-                  name="vehicle1"
-                  value="Bike"
-                />
-                <label className="p-2" for="vehicle1">
-                  Yellow
-                </label>
-              </div>
-            </div>
-            <div>
-              <div className="flex flex-col">
-                <div>
-                  <input
-                    className="bg-pink-300 text-white focus:ring-0"
-                    type="checkbox"
-                    id="vehicle1"
-                    name="vehicle1"
-                    value="Bike"
-                  />
-                  <label className="p-2" for="vehicle1">
-                    Pink
-                  </label>
-                </div>
-                <div>
-                  <input
-                    className="bg-orange-900 text-white focus:ring-0"
-                    type="checkbox"
-                    id="vehicle1"
-                    name="vehicle1"
-                    value="Bike"
-                  />
-                  <label className="p-2" for="vehicle1">
-                    Brown
-                  </label>
-                </div>
-                <div>
-                  <input
-                    className="bg-black text-white focus:ring-0"
-                    type="checkbox"
-                    id="vehicle1"
-                    name="vehicle1"
-                    value="Bike"
-                  />
-                  <label className="p-2" for="vehicle1">
-                    Black
-                  </label>
-                </div>
-                <div>
-                  <input
-                    className="bg-white text-black focus:ring-0"
-                    type="checkbox"
-                    id="vehicle1"
-                    name="vehicle1"
-                    value="Bike"
-                  />
-                  <label className="p-2" for="vehicle1">
-                    White
-                  </label>
-                </div>
-                <div>
-                  <input
-                    className="bg-gray-500 text-white focus:ring-0"
-                    type="checkbox"
-                    id="vehicle1"
-                    name="vehicle1"
-                    value="Bike"
-                  />
-                  <label className="p-2" for="vehicle1">
-                    Gray
-                  </label>
-                </div>
+              <div> 
+              {data.colors.map((color) => (
+                     <div>
+                     <input
+                     style={{backgroundColor: color}}
+                       className={"bg-" + color+ "-500 text-white focus:ring-0"}
+                       type="checkbox"
+                       id="vehicle1"
+                       name="vehicle1"
+                       value="Bike"
+                     />
+                     <label className="p-2" for="vehicle1">
+                       {color}
+                     </label>
+                   </div>
+                    
+                    ))}
               </div>
             </div>
           </div>
@@ -262,6 +155,7 @@ const Filter = ({ handleFilter }) => {
       <RangeSlider />
     </div>
   );
+};
 };
 
 export default Filter;

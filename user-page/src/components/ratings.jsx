@@ -65,7 +65,7 @@ const Ratings = ({ productID, handleRating }) => {
               <div className="my-4">{item.description}</div>
               <div className="flex items-center">
                 <div className="mr-2">Stars:</div>
-                {[...Array(Math.floor(item.rate / 10))].map(
+                {[...Array(Math.floor(item.rate))].map(
                   (
                     e,
                     i //vrne tolko zvezdic kolko je rating popvprecje ne dela na decimalkah
