@@ -1,9 +1,15 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { AiOutlineCaretDown } from "react-icons/ai";
 import { AiOutlineCaretUp } from "react-icons/ai";
-import RangeSlider from "../components/RangeSlider";
+import MultiRangeSlider from "../components/RangeSlider";
+import { RiCheckLine } from "react-icons/ri";
 
 const Filter = ({ handleFilter }) => {
+  const [slider, setSlider] = useState({
+    minPrice: 0,
+    maxPrice: 10000,
+  });
+
   const [filter, setFilter] = useState({ tags: [] });
   const [openCategories, setOpenCategories] = useState([]);
   const [data, setData] = useState([]);
@@ -47,9 +53,11 @@ const Filter = ({ handleFilter }) => {
         console.error("Error:", error);
       });
   }, []);
+
   const handleSelectedCategory = (category) => {
-    handleFilter({superCategory: openSuperCategory, category : category})
+    handleFilter({ superCategory: openSuperCategory, category: category });
   };
+
   const handleTag = (tag) => {
     var temp = filter;
 
@@ -61,8 +69,9 @@ const Filter = ({ handleFilter }) => {
       temp.tags.push(tag);
     }
     setFilter({ ...filter, tags: temp.tags });
-    handleFilter({tags: temp.tags});
+    handleFilter({ tags: temp.tags });
   };
+
   const toggleOpen = (superCategory) => {
     let temp2 = [];
     console.log(superCategory);
@@ -82,12 +91,23 @@ const Filter = ({ handleFilter }) => {
       prev === superCategory ? null : superCategory
     );
   };
+
   if (data.colors) {
     return (
       <div>
-        <div className="flex justify-between ml-10">
+        <div className="flex justify-between ml-10 ">
           <h1 className="font-serif text-5xl">Filter</h1>
-          <button className="font-serif text-5xl">+</button>
+          <div>
+            <button className="font-serif text-5xl">+</button>
+          </div>
+        </div>
+        <div className="mt-10  ml-10 flex flex-col">
+          <button className="pt-2 pb-2 pl-1 pr-1 mb-5 rounded-lg text-lg bg-white border border-black">
+            Submit filter
+          </button>
+          <button className="pt-2 pb-2 pl-1 pr-1 mt-5 rounded-lg text-lg bg-black text-white">
+            Clear filter
+          </button>
         </div>
         <div className="ml-10 mt-10 -mb-5 text-lg">Gender</div>
         <div className="w-68 ml-10 mt-5">
@@ -134,21 +154,25 @@ const Filter = ({ handleFilter }) => {
             <div className="flex flex-row justify-between p-5 border-2">
               <div className="flex flex-col">
                 <div>
-                  {data.colors.map((color, bruh) => (
+                  {data.colors.map((color, index) => (
                     <div>
-                      <button
-                        style={{ backgroundColor: color }}
-                        className={
-                          "bg-" + color + "-500 text-white focus:ring-0"
-                        }
-                        type="checkbox"
-                        id={bruh}
-                        name={color}
-                        value={color}
-                        onClick={(e) => handleTag(e.target.value)}
-                      />
-                      <label className="p-2" for="vehicle1">
-                        {color}
+                      <label className="flex items-center">
+                        <input
+                          className="hidden"
+                          type="checkbox"
+                          name={color}
+                          value={color}
+                          checked={filter.tags.includes(color)}
+                          onChange={(e) => handleTag(e.target.value)}
+                        />
+                        <div className={`checkbox-icon ${color}-checkbox-icon`}>
+                          {filter.tags.includes(color) && (
+                            <RiCheckLine
+                              className={`checkmark ${color}-checkmark`}
+                            />
+                          )}
+                        </div>
+                        <span className="ml-2">{color}</span>
                       </label>
                     </div>
                   ))}
@@ -157,8 +181,11 @@ const Filter = ({ handleFilter }) => {
             </div>
           </div>
         </div>
-
-        <RangeSlider />
+        <MultiRangeSlider
+          min={0}
+          max={1000}
+          onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)} //on change
+        />
       </div>
     );
   }

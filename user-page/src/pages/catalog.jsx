@@ -12,7 +12,6 @@ function Catalog() {
   const [products, setProducts] = useState([]);
   const [searchFilter, setSearchFilter] = useState({ tags: [], search: "" });
 
-
   useEffect(() => {
     fetch(
       "http://127.0.0.1/matura-backend/database/database.php?getProductCatalog=true"
@@ -43,8 +42,8 @@ function Catalog() {
   };
   const handleFilter = (filter) => {
     console.log({ ...searchFilter, ...filter });
-    setSearchFilter({ ...searchFilter, ...filter })
-  }
+    setSearchFilter({ ...searchFilter, ...filter });
+  };
   return (
     <div className="h-auto">
       <Header />
@@ -59,12 +58,9 @@ function Catalog() {
       <div className="text-center no-underline mb-5">
         Up to 50% Off - End of the season
       </div>
-      <div className="flex flex-col md:flex-row justify-between m-20">
-        <div>        
-          <button className="ml-5 m-10 pl-5 pr-5 pb-2 pt-2 rounded-full text-lg bg-orange-400" onClick={handleSubmit}>Submit filter</button>
-        </div>
+      <div className="flex flex-col md:flex-row justify-center m-5 md:m-20">
         <div className="flex flex-1 justify-center">
-          <div className="flex items-center w-1/2">
+          <div className="flex items-center w-full md:w-1/2">
             <label
               htmlFor="default-search"
               className="mr-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -94,38 +90,33 @@ function Catalog() {
                 id="default-search"
                 className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:gray-blue-500 focus:border-blue-500 bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-gray-500 dark:focus:border-blue-500"
                 placeholder="Search..."
-                onChange={e => { setSearchFilter({ ...searchFilter, search: e.target.value }); console.log({ ...searchFilter, search: e.target.value }) }}
+                onChange={(e) => {
+                  setSearchFilter({ ...searchFilter, search: e.target.value });
+                  console.log({ ...searchFilter, search: e.target.value });
+                }}
                 required
               />
             </div>
           </div>
         </div>
-        <Dropdown handleFilter={handleFilter} className="flex border-2 justify-center justify-items-center align-baseline" />
       </div>
+      <div className="border-2 ml-20 mr-20 border-black"></div>
+      <div className="text-right mr-20">
+        <Dropdown handleFilter={handleFilter} />
+      </div>
+
       <div className="flex flex-col md:flex-row justify-center md:justify-start">
         <div className="w-full md:w-1/4 pt-8 px-4 md:px-8 lg:px-12 xl:px-16">
           <Filter handleFilter={handleFilter} />
         </div>
-        <div className="flex-grow mx-4 md:mx-8 lg:mx-12 xl:mx-16 mt-8 md:mt-0">
-          <div className="flex flex-wrap">
-            {products.map((item) => (
-              <div
-                className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 p-4"
-                key={item.id}
-              >
-                <div className="bg-white rounded-lg shadow-md overflow-hidden">
-                  <Product product={item} />
-                  <div className="aspect-w-1 aspect-h-1">
-                    <img
-                      src={item.imageUrl}
-                      alt={item.title}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                </div>
+        <div className="m-5 md:m-20 w-full flex flex-wrap">
+          {products.map((item, index) => (
+            <div key={item.id} className="w-full sm:w-1/2 md:w-1/3 p-2 sm:p-4">
+              <div className="bg-white rounded-lg h-full shadow-md overflow-hidden">
+                <Product product={item} />
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
       <Footer />

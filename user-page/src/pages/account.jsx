@@ -119,87 +119,146 @@ const Account = () => {
       <div className="h-auto">
         <Header />
         <div className="h-screen mb-20">
-          <div className="h-60 ml-10 mr-10 mt-10 -mb-20 bg-yellow-500"></div>
+          <div className="h-60 ml-10 mr-10 mt-10 -mb-20 bg-gray-950"></div>
           <div className="flex justify-center mt-20">
-            <div className="w-[90rem] h-[46.5rem] -m-20  bg-white shadow-2xl">
-              <div className="m-10 text-2xl	border-b-2 pb-5 border-gray-300">
+            <div className="w-[90rem] h-[46.5rem] -m-20 bg-white shadow-2xl">
+              <div className="m-10 text-2xl border-b-2 pb-5 border-gray-300">
                 Account Settings
               </div>
-              <div className="flex justify-center mt-10">
+              <div className="flex justify-center">
                 <div className="h-[35rem] w-[80rem]">
                   <div>
-                    <div className="float-right">
+                    <div className="float-right ml-20">
                       <div className="bg-gray-100">
                         <input type="file" onChange={handleFileChange} />
-                        <button onClick={handleUpload}>Upload PFP</button>
+                        <button
+                          className="bg-black text-white p-2"
+                          onClick={handleUpload}
+                        >
+                          Upload PFP
+                        </button>
                       </div>
                       <img
-                        src={
-                          "http://127.0.0.1/matura-backend/profile/images/" +
-                          AccountData.id +
-                          ".png"
-                        }
+                        src={`http://127.0.0.1/matura-backend/profile/images/${AccountData.id}.png`}
                         alt="profile_picture"
                         className="rounded-full h-96 w-96 border-2 mt-10"
                       />
                     </div>
-                    <div>
-                      <div className="text-3xl	m-5">Username:</div>
-                      <div className="text-2xl	m-5 border-2 border-gray-300 w-1/4">
-                        {editMode ? (
-                          <input
-                            type="text"
-                            onChange={(e) => setUsername(e.target.value)}
-                            placeholder={AccountData.username}
-                          ></input>
-                        ) : (
-                          AccountData.username
-                        )}
+                    <div className="space-y-8 ml-5">
+                      <div className="flex">
+                        <div className="w-1/3 h-[3rem] text-3xl">Username:</div>
+                        <div className="w-2/3 h-[3rem] text-4xl  border-2 border-gray-300">
+                          {editMode ? (
+                            <input
+                              type="text"
+                              onChange={(e) => setUsername(e.target.value)}
+                              placeholder={AccountData.username}
+                              className="w-full h-12"
+                            />
+                          ) : (
+                            AccountData.username
+                          )}
+                        </div>
                       </div>
-                      <div className="text-3xl	m-5">E-mail:</div>
-                      <div className="text-2xl	m-5 border-2 border-gray-300 w-1/4">
-                        {editMode ? (
-                          <input
-                            type="text"
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder={AccountData.email}
-                          ></input>
-                        ) : (
-                          AccountData.email
-                        )}
+                      <div className="flex">
+                        <div className="w-1/3 h-[3rem] text-3xl">E-mail:</div>
+                        <div className="w-2/3 h-[3rem] text-4xl border-2 border-gray-300">
+                          {editMode ? (
+                            <input
+                              type="text"
+                              onChange={(e) => setEmail(e.target.value)}
+                              placeholder={AccountData.email}
+                              className="w-full h-12"
+                            />
+                          ) : (
+                            AccountData.email
+                          )}
+                        </div>
                       </div>
-                      <div className="text-3xl	m-5">Phone number:</div>
-                      <div className="text-2xl	m-5 border-2 border-gray-300 w-1/4">
-                        {editMode ? (
-                          <input
-                            type="number"
-                            onChange={(e) => setPhoneNumber(e.target.value)}
-                            placeholder={
-                              AccountData.phoneNumber
-                                ? AccountData.phoneNumber
-                                : null
-                            }
-                          ></input>
-                        ) : AccountData.phoneNumber ? (
-                          AccountData.phoneNumber
-                        ) : (
-                          <div> No phone number</div>
-                        )}
+                      <div className="flex">
+                        <div className="w-1/3 h-[3rem] text-3xl">
+                          Phone number:
+                        </div>
+                        <div className="w-2/3 h-[3rem] text-4xl border-2 border-gray-300">
+                          {editMode ? (
+                            <input
+                              type="number"
+                              onChange={(e) => setPhoneNumber(e.target.value)}
+                              placeholder={
+                                AccountData.phoneNumber
+                                  ? AccountData.phoneNumber
+                                  : null
+                              }
+                              className="w-full h-12"
+                            />
+                          ) : AccountData.phoneNumber ? (
+                            AccountData.phoneNumber
+                          ) : (
+                            <div>No phone number</div>
+                          )}
+                        </div>
+                      </div>
+                      <div className="flex">
+                        <div className="w-1/3 h-[3rem] text-3xl">
+                          First name:
+                        </div>
+                        <div className="w-2/3 h-[3rem] text-4xl border-2 border-gray-300">
+                          {editMode ? (
+                            <input
+                              type="text"
+                              onChange={(e) => setUsername(e.target.value)}
+                              placeholder={AccountData.firstName}
+                              className="w-full h-12"
+                            />
+                          ) : (
+                            AccountData.firstName
+                          )}
+                        </div>
+                      </div>
+                      <div className="flex">
+                        <div className="w-1/3 h-[3rem] text-3xl">
+                          Last name:
+                        </div>
+                        <div className="w-2/3 h-[3rem] text-4xl border-2 border-gray-300">
+                          {editMode ? (
+                            <input
+                              type="text"
+                              onChange={(e) => setUsername(e.target.value)}
+                              placeholder={AccountData.lastName}
+                              className="w-full h-12"
+                            />
+                          ) : (
+                            AccountData.lastName
+                          )}
+                        </div>
                       </div>
                     </div>
                     <div>
                       {editMode ? (
                         <div>
-                          <button onClick={handleSubmit}>
-                            Sumbit changes{" "}
+                          <button
+                            onClick={handleSubmit}
+                            className="bg-orange-400 text-white font-bold py-2 px-4 rounded mt-4"
+                          >
+                            Submit changes
                           </button>
                         </div>
                       ) : null}
                       <div>
-                        <button onClick={handleEdit}>Edit</button>
+                        <button
+                          onClick={handleEdit}
+                          className="bg-orange-400 text-white font-bold py-2 px-4 rounded mt-4"
+                        >
+                          {editMode ? "Cancel" : "Edit"}
+                        </button>
                       </div>
-                      <div className="text-3xl	m-5 pt-20 mt-20 ">
-                        <button onClick={handleLogout}>Log out</button>
+                      <div className="text-3xl ">
+                        <button
+                          onClick={handleLogout}
+                          className="text-white font-bold rounded bg-orange-400 p-4 mt-4"
+                        >
+                          Log out
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -213,5 +272,4 @@ const Account = () => {
     );
   }
 };
-
 export default Account;

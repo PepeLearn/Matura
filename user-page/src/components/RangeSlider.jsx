@@ -1,12 +1,96 @@
-function RangeSlider() {
+import React, { useCallback, useEffect, useState, useRef } from "react";
+import classnames from "classnames";
+import PropTypes from "prop-types";
+import "./RangeSlider.css";
+
+const MultiRangeSlider = ({ min, max, onChange }) => {
+  const [minVal, setMinVal] = useState(min);
+  const [maxVal, setMaxVal] = useState(max);
+  const minValRef = useRef(null);
+  const maxValRef = useRef(null);
+  const range = useRef(null);
+
+  // spremeni v procente
+  const getPercent = useCallback(
+    (value) => Math.round(((value - min) / (max - min)) * 100),
+    [min, max]
+  );
+
+  // sirina od ranga od leve strani
+  useEffect(() => {
+    if (maxValRef.current) {
+      const minPercent = getPercent(minVal);
+      const maxPercent = getPercent(+maxValRef.current.value); // Preceding with '+' converts the value from type string to type number
+
+      if (range.current) {
+        range.current.style.left = `${minPercent}%`;
+        range.current.style.width = `${maxPercent - minPercent}%`;
+      }
+    }
+  }, [minVal, getPercent]);
+
+  // sirina ranga od desne strani
+  useEffect(() => {
+    if (minValRef.current) {
+      const minPercent = getPercent(+minValRef.current.value);
+      const maxPercent = getPercent(maxVal);
+
+      if (range.current) {
+        range.current.style.width = `${maxPercent - minPercent}%`;
+      }
+    }
+  }, [maxVal, getPercent]);
+
+  // dobis min pa max vrednost ko se state changa
+  useEffect(() => {
+    onChange({ min: minVal, max: maxVal });
+  }, [minVal, maxVal, onChange]);
+
   return (
-    <div>
-      <div className="ml-10 mt-10 -mb-5 text-lg">Price</div>
-      <div className="flex flex-row justify-between mb-5 ml-10 mr-5 mt-10">
-        <div>Min</div>
-        <div>Max</div>
+    <div className="container">
+      <input
+        type="range"
+        min={min}
+        max={max}
+        value={minVal}
+        ref={minValRef}
+        onChange={(event) => {
+          const value = Math.min(+event.target.value, maxVal - 1);
+          setMinVal(value);
+          event.target.value = value.toString();
+        }}
+        className={classnames("thumb thumb--zindex-3", {
+          "thumb--zindex-5": minVal > max - 100,
+        })}
+      />
+      <input
+        type="range"
+        min={min}
+        max={max}
+        value={maxVal}
+        ref={maxValRef}
+        onChange={(event) => {
+          const value = Math.max(+event.target.value, minVal + 1);
+          setMaxVal(value);
+          event.target.value = value.toString();
+        }}
+        className="thumb thumb--zindex-4"
+      />
+
+      <div className="slider">
+        <div className="slider__track" />
+        <div ref={range} className="slider__range" />
+        <div className="slider__left-value">{minVal}</div>
+        <div className="slider__right-value">{maxVal}</div>
       </div>
     </div>
   );
-}
-export default RangeSlider;
+};
+
+MultiRangeSlider.propTypes = {
+  min: PropTypes.number.isRequired,
+  max: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
+export default MultiRangeSlider;
