@@ -110,7 +110,7 @@ const Item = () => {
   };
 
   if (item.Variants) {
-    const filledStars = Math.floor(rating / 10);
+    const filledStars = Math.floor(rating);
     const emptyStars = 5 - filledStars;
     return (
       <div className="flex flex-col min-h-screen">
@@ -133,7 +133,8 @@ const Item = () => {
             <div className="w-3/4 mr-20 grow justify-items-center flex-col m-20">
               <div className="m-5 text-3xl">Product name: {item.Name}</div>
               <div className="m-5 text-lg">
-                Price: <span className="text-red-500">{item.Price}€</span>
+                Price:{" "}
+                <span className="text-red-500">{item.Price.toFixed(2)}€</span>
               </div>
               <div className="m-5 text-m text-justify">
                 Description: {item.Desc}

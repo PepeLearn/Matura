@@ -32,7 +32,7 @@ const Ratings = ({ productID, handleRating }) => {
       <svg
         aria-hidden="true"
         className={`w-5 h-5 text-yellow-400 inline ${
-          filled ? "fill-current" : ""
+          filled ? "fill-current text-yellow-400" : "stroke-current"
         }`}
         fill="none"
         stroke="currentColor"
@@ -49,7 +49,7 @@ const Ratings = ({ productID, handleRating }) => {
   return (
     <div className="w-3/4 mx-auto mb-20">
       {reviews.map((item) => {
-        const roundedRating = Math.round(item.rate / 10);
+        const roundedRating = Math.round(item.rating);
         return (
           <div className="flex my-4 mr-20" key={item.reviewId}>
             <div className="w-1/6">

@@ -38,7 +38,6 @@ function Catalog() {
         console.error("Error:", error);
       });
   };
-
   return (
     <div className="h-auto">
       <Header />
@@ -53,7 +52,7 @@ function Catalog() {
       <div className="text-center no-underline mb-5">
         Up to 50% Off - End of the season
       </div>
-      <div className="flex flex-col md:flex-row justify-between flex-wrap md:flex-nowrap px-4 md:px-8 lg:px-12 xl:px-16">
+      <div className="flex flex-col md:flex-row justify-center md:justify-start">
         <form className="w-full md:w-80 mt-4 md:mt-0">
           <label
             htmlFor="default-search"
@@ -101,10 +100,22 @@ function Catalog() {
           <Filter handleFilter={handleFilter} />
         </div>
         <div className="flex-grow mx-4 md:mx-8 lg:mx-12 xl:mx-16 mt-8 md:mt-0">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 content-start">
+          <div className="flex flex-wrap">
             {products.map((item) => (
-              <div className="flex justify-center" key={item.id}>
-                <Product product={item} />
+              <div
+                className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 p-4"
+                key={item.id}
+              >
+                <div className="bg-white rounded-lg shadow-md overflow-hidden">
+                  <Product product={item} />
+                  <div className="aspect-w-1 aspect-h-1">
+                    <img
+                      src={item.imageUrl}
+                      alt={item.title}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                </div>
               </div>
             ))}
           </div>
