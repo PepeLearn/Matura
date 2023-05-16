@@ -10,6 +10,8 @@ import Dropdown from "../components/Dropdown";
 function Catalog() {
   const [isOpen, setIsOpen] = useState(false);
   const [products, setProducts] = useState([]);
+  const [searchFilter, setSearchFilter] = useState({ tags: [], search: "" });
+
 
   useEffect(() => {
     fetch(
@@ -19,7 +21,8 @@ function Catalog() {
       .then((data) => setProducts(data));
   }, []);
 
-  const handleFilter = (filter) => {
+  const handleSubmit = () => {
+    console.log(searchFilter);
     fetch(
       "http://127.0.0.1/matura-backend/database/database.php?searchProductFilter=true",
       {
@@ -27,7 +30,7 @@ function Catalog() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(filter),
+        body: JSON.stringify(searchFilter),
       }
     )
       .then((data) => data.json())
@@ -38,6 +41,10 @@ function Catalog() {
         console.error("Error:", error);
       });
   };
+  const handleFilter = (filter) => {
+    console.log({ ...searchFilter, ...filter });
+    setSearchFilter({ ...searchFilter, ...filter })
+  }
   return (
     <div className="h-auto">
       <Header />
@@ -53,16 +60,11 @@ function Catalog() {
         Up to 50% Off - End of the season
       </div>
       <div className="flex flex-col md:flex-row justify-between m-20">
-        <button
-          className="ml-5 m-10 pl-5 pr-5 pb-2 pt-2 rounded-full text-lg bg-orange-400"
-          onClick={() => {
-            handleFilter(Filter);
-          }}
-        >
-          Submit filter
-        </button>
+        <div>        
+          <button className="ml-5 m-10 pl-5 pr-5 pb-2 pt-2 rounded-full text-lg bg-orange-400" onClick={handleSubmit}>Submit filter</button>
+        </div>
         <div className="flex flex-1 justify-center">
-          <form className="flex items-center w-1/2">
+          <div className="flex items-center w-1/2">
             <label
               htmlFor="default-search"
               className="mr-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -92,18 +94,13 @@ function Catalog() {
                 id="default-search"
                 className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:gray-blue-500 focus:border-blue-500 bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-gray-500 dark:focus:border-blue-500"
                 placeholder="Search..."
+                onChange={e => { setSearchFilter({ ...searchFilter, search: e.target.value }); console.log({ ...searchFilter, search: e.target.value }) }}
                 required
               />
-              <button
-                type="submit"
-                className="text-black absolute right-2.5 bottom-2.5 bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
-              >
-                Search
-              </button>
             </div>
-          </form>
+          </div>
         </div>
-        <Dropdown className="flex border-2 justify-center justify-items-center align-baseline" />
+        <Dropdown handleFilter={handleFilter} className="flex border-2 justify-center justify-items-center align-baseline" />
       </div>
       <div className="flex flex-col md:flex-row justify-center md:justify-start">
         <div className="w-full md:w-1/4 pt-8 px-4 md:px-8 lg:px-12 xl:px-16">

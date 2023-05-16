@@ -48,10 +48,7 @@ const Filter = ({ handleFilter }) => {
       });
   }, []);
   const handleSelectedCategory = (category) => {
-    const temp = filter;
-    temp.category = category;
-    console.log(temp);
-    setFilter({ ...temp, superCategory: openSuperCategory });
+    handleFilter({superCategory: openSuperCategory, category : category})
   };
   const handleTag = (tag) => {
     var temp = filter;
@@ -63,8 +60,8 @@ const Filter = ({ handleFilter }) => {
     } else {
       temp.tags.push(tag);
     }
-    console.log(temp);
     setFilter({ ...filter, tags: temp.tags });
+    handleFilter({tags: temp.tags});
   };
   const toggleOpen = (superCategory) => {
     let temp2 = [];

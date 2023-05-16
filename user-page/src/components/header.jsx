@@ -7,7 +7,6 @@ const Header = () => {
   } else {
     var items = JSON.parse(Cookies.get("cart"));
   }
-  console.log(items);
   const num_of_items = items.length;
 
   return (

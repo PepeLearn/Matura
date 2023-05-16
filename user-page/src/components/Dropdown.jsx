@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Dropdown = () => {
+const Dropdown = ({handleFilter}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [sortOrder, setSortOrder] = useState("Price");
 
@@ -9,10 +9,12 @@ const Dropdown = () => {
   };
 
   const handleSort = (sort) => {
+    handleFilter({sort : sort})
     setSortOrder(sort);
     setIsOpen(false);
     // Do something with the selected sort order
   };
+  
 
   return (
     <div className="relative inline-block text-left">
@@ -54,7 +56,7 @@ const Dropdown = () => {
               href="#"
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               role="menuitem"
-              onClick={() => handleSort("Price")}
+              onClick={() => handleSort("Price Lowest")}
             >
               Price Lowest
             </a>
@@ -62,7 +64,7 @@ const Dropdown = () => {
               href="#"
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               role="menuitem"
-              onClick={() => handleSort("Price")}
+              onClick={() => handleSort("Price Highest")}
             >
               Price Highest
             </a>
