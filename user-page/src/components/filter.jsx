@@ -13,7 +13,7 @@ const Filter = ({ handleFilter }) => {
     "kids",
   ]);
   const [openSuperCategory, setOpenSuperCategory] = useState(null);
-  const [selectedColors, setSelectedColors] = useState([])
+  const [selectedColors, setSelectedColors] = useState([]);
 
   useEffect(() => {
     fetch(
@@ -48,25 +48,24 @@ const Filter = ({ handleFilter }) => {
       });
   }, []);
   const handleSelectedCategory = (category) => {
-
     const temp = filter;
     temp.category = category;
     console.log(temp);
-    setFilter({...temp , superCategory:openSuperCategory});
-  }
+    setFilter({ ...temp, superCategory: openSuperCategory });
+  };
   const handleTag = (tag) => {
     var temp = filter;
 
     const index = temp.tags.indexOf(tag);
-    if (index > -1) { // only splice array when item is found
+    if (index > -1) {
+      // only splice array when item is found
       temp.tags.splice(index, 1); // 2nd parameter means remove one item only
-    }
-    else {
+    } else {
       temp.tags.push(tag);
     }
     console.log(temp);
-    setFilter({ ...filter, tags: temp.tags,});
-  }
+    setFilter({ ...filter, tags: temp.tags });
+  };
   const toggleOpen = (superCategory) => {
     let temp2 = [];
     console.log(superCategory);
@@ -90,7 +89,7 @@ const Filter = ({ handleFilter }) => {
     return (
       <div>
         <div className="flex justify-between ml-10">
-          <h1 className="font-serif text-5xl">Filter</h1> 
+          <h1 className="font-serif text-5xl">Filter</h1>
           <button className="font-serif text-5xl">+</button>
         </div>
         <div className="ml-10 mt-10 -mb-5 text-lg">Gender</div>
@@ -113,7 +112,17 @@ const Filter = ({ handleFilter }) => {
                   {openSuperCategory === superCategory && (
                     <div className="text-left mt-2 ml-10 text-lg">
                       {openCategories.map((category) => (
-                        <div><button key={category} value={category} onClick={e => { handleSelectedCategory(e.target.value) }}>{category}</button></div>
+                        <div>
+                          <button
+                            key={category}
+                            value={category}
+                            onClick={(e) => {
+                              handleSelectedCategory(e.target.value);
+                            }}
+                          >
+                            {category}
+                          </button>
+                        </div>
                       ))}
                     </div>
                   )}
@@ -121,11 +130,6 @@ const Filter = ({ handleFilter }) => {
               ))}
             </div>
           </button>
-          <button
-            onClick={() => {
-              handleFilter(filter);
-            }}
-          >submit search</button>
         </div>
         <div className="ml-10 mt-10 -mb-5 text-lg">Colors</div>
         <div className="w-68 ml-10 mt-5">
@@ -137,28 +141,30 @@ const Filter = ({ handleFilter }) => {
                     <div>
                       <button
                         style={{ backgroundColor: color }}
-                        className={"bg-" + color + "-500 text-white focus:ring-0"}
+                        className={
+                          "bg-" + color + "-500 text-white focus:ring-0"
+                        }
                         type="checkbox"
                         id={bruh}
                         name={color}
                         value={color}
-                        onClick={e => handleTag(e.target.value)}
+                        onClick={(e) => handleTag(e.target.value)}
                       />
                       <label className="p-2" for="vehicle1">
                         {color}
                       </label>
                     </div>
-
                   ))}
                 </div>
               </div>
             </div>
           </div>
         </div>
+
         <RangeSlider />
       </div>
     );
-  };
+  }
 };
 
 export default Filter;

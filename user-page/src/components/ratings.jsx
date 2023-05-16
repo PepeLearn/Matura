@@ -49,7 +49,7 @@ const Ratings = ({ productID, handleRating }) => {
   return (
     <div className="w-3/4 mx-auto mb-20">
       {reviews.map((item) => {
-        const roundedRating = Math.round(item.rating);
+        const roundedRating = Math.round(item.rate);
 
         return (
           <div className="flex my-4 mr-20" key={item.reviewId}>
