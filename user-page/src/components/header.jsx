@@ -1,10 +1,7 @@
-import Information from "../pages/information";
-import Item from "../pages/item";
 import Cookies from "js-cookie";
+import { useRef } from "react";
 
 const Header = () => {
-  // misel more fixnit
-
   if (!Cookies.get("cart")) {
     var items = 0;
   } else {
@@ -30,8 +27,8 @@ const Header = () => {
         <a className="m-5 text-lg" href="/catalog">
           Store
         </a>
-        <a className="m-5 text-lg" href="/information">
-          Information
+        <a className="m-5 text-lg" href="/#contact-form">
+          contact us
         </a>
       </nav>
       <div>

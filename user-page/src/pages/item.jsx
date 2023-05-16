@@ -5,6 +5,7 @@ import { Routes, Route, useParams, useLocation, Link } from "react-router-dom";
 import Product from "../components/product";
 import Cookies from "js-cookie";
 import Ratings from "../components/ratings";
+import Star from "../components/star";
 
 const Item = () => {
   const location = useLocation();
@@ -65,8 +66,7 @@ const Item = () => {
   const HandleCart = () => {
     let lol = true;
     let prevProducts = Cookies.get("cart");
-    if (!selectedSize || !selectedColor)
-    {
+    if (!selectedSize || !selectedColor) {
       console.log("lol");
       return;
     }
@@ -80,9 +80,11 @@ const Item = () => {
     };
     if (prevProducts) {
       prevProducts = JSON.parse(prevProducts);
-      prevProducts.forEach(element => {
-        if (element.size === AddedProduct.size && element.color === AddedProduct.color)
-        {
+      prevProducts.forEach((element) => {
+        if (
+          element.size === AddedProduct.size &&
+          element.color === AddedProduct.color
+        ) {
           element.quantity++;
           let date = Date.now() + 172800000; //2 dni
           Cookies.set("cart", JSON.stringify(prevProducts), { expires: date });
@@ -95,8 +97,7 @@ const Item = () => {
     } else {
       AddedProduct = [AddedProduct];
     }
-    if (lol)
-    {
+    if (lol) {
       let date = Date.now() + 172800000; //2 dni
       Cookies.set("cart", JSON.stringify(AddedProduct), { expires: date });
       console.log(AddedProduct);
@@ -109,12 +110,14 @@ const Item = () => {
   };
 
   if (item.Variants) {
+    const filledStars = Math.floor(rating / 10);
+    const emptyStars = 5 - filledStars;
     return (
       <div className="flex flex-col min-h-screen">
         <Header />
         <div className="flex-grow">
           <div className="flex border-solid justify-between p-20">
-            <div className="ml-20 border-solid w-2/3 flex justify-center items-center">
+            <div className="ml-20 border-solid w-2/3 flex justify-center items-center border-2">
               <div className="aspect-w-1 aspect-h-1">
                 <img
                   className="object-contain h-full w-5/6 mx-auto"
@@ -128,14 +131,27 @@ const Item = () => {
               </div>
             </div>
             <div className="w-3/4 mr-20 grow justify-items-center flex-col m-20">
-              <div className="m-5 text-4xl">Product name: {item.Name}</div>
-              <div className="m-5 text-2xl">Price: {item.Price}€</div>
-              <div className="m-5 text-2xl">Description: {item.Desc}</div>
-              <div className="m-5 text-2xl w-96 flex justify-between">
+              <div className="m-5 text-3xl">Product name: {item.Name}</div>
+              <div className="m-5 text-lg">
+                Price: <span className="text-red-500">{item.Price}€</span>
+              </div>
+              <div className="m-5 text-m text-justify">
+                Description: {item.Desc}
+              </div>
+              <div className="m-5">
+                Rating:
+                {[...Array(filledStars)].map((_, index) => (
+                  <Star key={index} filled={true} />
+                ))}
+                {[...Array(emptyStars)].map((_, index) => (
+                  <Star key={index} filled={false} />
+                ))}
+              </div>
+              <div className=" text-lg w-96 flex justify-between">
                 <select
                   onChange={handleSizeChange}
                   id="size"
-                  className="m-5 bg-gray-200"
+                  className="m-5 bg-orange-200 border-none rounded-xl"
                 >
                   <option selected>Select a size</option>
                   {availableSizes.map((Size) => (
@@ -147,17 +163,16 @@ const Item = () => {
                 <select
                   id="color"
                   onChange={handleSelectedColor}
-                  className="m-5 bg-gray-200"
+                  className="m-5 bg-orange-200 border-none rounded-xl"
                 >
                   <option selected>Select a color</option>
                   {availableColors.map((color) => (
                     <option className="m-5 border-2">{color}</option>
                   ))}
                 </select>
-                {rating}
               </div>
               <button
-                className="bg-orange-300 p-5 rounded-xl mt-10"
+                className="bg-black text-orange-400 h-[7vh] w-[20vw] rounded-xl ml-5 mt-20 hover:opacity-59"
                 onClick={HandleCart}
               >
                 Add to cart
