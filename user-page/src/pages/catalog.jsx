@@ -16,14 +16,14 @@ function Catalog() {
       "http://127.0.0.1/matura-backend/database/database.php?getProductCatalog=true"
     )
       .then((response) => response.json())
-      // 4. Setting *dogImage* to the image url that we received from the response above
       .then((data) => setProducts(data));
   }, []);
+
   const handleFilter = (filter) => {
     fetch(
       "http://127.0.0.1/matura-backend/database/database.php?searchProductFilter=true",
       {
-        method: "POST", // or 'PUT'
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -43,21 +43,20 @@ function Catalog() {
     <div className="h-auto">
       <Header />
       <div className="text-center text-black no-underline">
-        <div className=" mt-5">
-          Join us and get 30 day free shipping and returns.
+        <div className="mt-5">
+          Join us and get 30-day free shipping and returns.
           <a className="text-black underline" href="/register">
-            {" "}
             Join us!
           </a>
         </div>
       </div>
       <div className="text-center no-underline mb-5">
-        Up to 50% Off - end of the season
+        Up to 50% Off - End of the season
       </div>
-      <div className="flex justify-between mr-20">
-        <form className="w-80 ml-10 mt-20">
+      <div className="flex flex-col md:flex-row justify-between flex-wrap md:flex-nowrap px-4 md:px-8 lg:px-12 xl:px-16">
+        <form className="w-full md:w-80 mt-4 md:mt-0">
           <label
-            for="default-search"
+            htmlFor="default-search"
             className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
           >
             Search
@@ -73,9 +72,9 @@ function Catalog() {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                 ></path>
               </svg>
@@ -95,17 +94,18 @@ function Catalog() {
             </button>
           </div>
         </form>
-        <Dropdown className="flex " />
+        <Dropdown className="flex mt-4 md:mt-0" />
       </div>
-
-      <div className="flex flex-row">
-        <div className="w-1/6 pt-20">
+      <div className="flex flex-col md:flex-row justify-center md:justify-start">
+        <div className="w-full md:w-1/4 pt-8 px-4 md:px-8 lg:px-12 xl:px-16">
           <Filter handleFilter={handleFilter} />
         </div>
-        <div className="m-10">
-          <div className="grid grid-cols-3 gap-4 content-start">
+        <div className="flex-grow mx-4 md:mx-8 lg:mx-12 xl:mx-16 mt-8 md:mt-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 content-start">
             {products.map((item) => (
-              <Product product={item} />
+              <div className="flex justify-center" key={item.id}>
+                <Product product={item} />
+              </div>
             ))}
           </div>
         </div>
