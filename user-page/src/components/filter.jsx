@@ -90,7 +90,7 @@ const Filter = ({ handleFilter }) => {
     return (
       <div>
         <div className="flex justify-between ml-10">
-          <h1 className="font-serif text-5xl">Filter</h1>
+          <h1 className="font-serif text-5xl">Filter</h1> 
           <button className="font-serif text-5xl">+</button>
         </div>
         <div className="ml-10 mt-10 -mb-5 text-lg">Gender</div>
