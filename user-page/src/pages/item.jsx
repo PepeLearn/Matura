@@ -173,7 +173,7 @@ const Item = () => {
                 </select>
               </div>
               <button
-                className="bg-black text-orange-400 h-[7vh] w-[20vw] rounded-xl ml-5 mt-20 hover:opacity-59"
+                className="bg-orange-400 text-black h-[7vh] w-[20vw] rounded-xl ml-5 mt-20 hover:opacity-59"
                 onClick={HandleCart}
               >
                 Add to cart
