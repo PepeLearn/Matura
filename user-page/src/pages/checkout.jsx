@@ -4,7 +4,31 @@ import { useState, useEffect } from "react";
 import { json } from "react-router";
 import Cookies from "js-cookie";
 
-function Checkout() {
+const Checkout = () => {
+  const [data , setData] = useState({})
+  const handleCheckout =  () =>
+  {
+     let data = Cookies.get("cart");
+     data = JSON.parse(data);
+     let auth = Cookies.get("Authorization");
+    fetch(
+      "http://127.0.0.1/matura-backend/database/database.php?checkout=true",
+      {
+        method: "POST",
+        headers: {
+          Authorization: auth,
+        },
+        body: data,
+      }
+    )
+      .then((response) => {
+        alert("success");
+      })
+      .catch((error) => {
+        alert("failed to upload picture");
+      });
+  };
+
   return (
     <div>
       <Header />
@@ -26,6 +50,7 @@ function Checkout() {
                     className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
                     placeholder="Primary Address"
                     type="text"
+                    onChange={e => {setData({...data,pAdress:e.target.data})}}
                   />
                 </div>
               </div>
@@ -38,6 +63,7 @@ function Checkout() {
                     className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
                     placeholder="Secondary Address"
                     type="text"
+                    onChange={e => {setData({...data,sAdress:e.target.data})}}
                   />
                 </div>
               </div>
@@ -50,6 +76,7 @@ function Checkout() {
                     className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
                     placeholder="First Name"
                     type="text"
+                    onChange={e => {setData({...data,firstName:e.target.data})}}
                   />
                 </div>
               </div>
@@ -60,6 +87,7 @@ function Checkout() {
                     className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
                     placeholder="Last Name"
                     type="text"
+                    onChange={e => {setData({...data,lastName:e.target.data})}}
                   />
                 </div>
               </div>
@@ -70,6 +98,7 @@ function Checkout() {
                     className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
                     placeholder="Email"
                     type="email"
+                    onChange={e => {setData({...data,email:e.target.data})}}
                   />
                 </div>
               </div>
@@ -81,6 +110,7 @@ function Checkout() {
                     className="w-full px-3 py-2 mb-1 border-2 border-gray-200 roundedmd focus:outline-none focus:border-indigo-500 transition-colors"
                     placeholder="Country"
                     type="text"
+                    onChange={e => {setData({...data,country:e.target.data})}}
                   />
                 </div>
               </div>
@@ -91,6 +121,7 @@ function Checkout() {
                     className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
                     placeholder="City"
                     type="text"
+                    onChange={e => {setData({...data,city:e.target.data})}}
                   />
                 </div>
               </div>
@@ -103,6 +134,7 @@ function Checkout() {
                     className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
                     placeholder="Postal Code"
                     type="text"
+                    onChange={e => {setData({...data,postalCode:e.target.data})}}
                   />
                 </div>
               </div>
@@ -161,6 +193,7 @@ function Checkout() {
                     className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
                     placeholder="John Smith"
                     type="text"
+                    onChange={e => {setData({...data,nameOnCard:e.target.data})}}
                   />
                 </div>
               </div>
@@ -173,6 +206,7 @@ function Checkout() {
                     className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
                     placeholder="0000 0000 0000 0000"
                     type="text"
+                    onChange={e => {setData({...data,cardNumber:e.target.data})}}
                   />
                 </div>
               </div>
@@ -182,7 +216,7 @@ function Checkout() {
                     Expiration date
                   </label>
                   <div>
-                    <select className="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
+                    <select className="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer" onChange={e => {setData({...data,cardExpirationMonth:e.target.data})}}>
                       <option value="01">01 - January</option>
                       <option value="02">02 - February</option>
                       <option value="03">03 - March</option>
@@ -199,7 +233,7 @@ function Checkout() {
                   </div>
                 </div>
                 <div className="px-2 w-1/2">
-                  <select className="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
+                  <select className="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer" onChange={e => {setData({...data,cardExpirationYear:e.target.data})}}>
                     <option value="2020">2020</option>
                     <option value="2021">2021</option>
                     <option value="2022">2022</option>
@@ -222,11 +256,12 @@ function Checkout() {
                     className="w-32 px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
                     placeholder="000"
                     type="text"
+                    onChange={e => {setData({...data,securityCode:e.target.data})}}
                   />
                 </div>
               </div>
               <div className="mb-10">
-                <button className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
+                <button className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold" onClick={handleCheckout}>
                   <i className="mdi mdi-lock-outline mr-1"></i> PAY NOW
                 </button>
               </div>
