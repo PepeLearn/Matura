@@ -65,7 +65,7 @@ const Sidebar = () => {
   return (
     <Box
       width={isCollapsed ? "80px" : !isCollapsed ? "300px" : undefined}
-      height="100vh"
+      height="105vh"
       display="flex"
       backgroundColor={colors.primary[400]}
       justifyContent="center"
