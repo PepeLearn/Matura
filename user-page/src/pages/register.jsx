@@ -81,9 +81,9 @@ const Register = () => {
       password: password,
       username: username,
       email: email,
-      phone: Phone,
-      fname: FirstName,
-      lname: LastName,
+      phoneNumber: Phone,
+      firstName: FirstName,
+      lastName: LastName,
     };
     httpPost(
       "http://127.0.0.1/matura-backend/database/database.php?signup=true",

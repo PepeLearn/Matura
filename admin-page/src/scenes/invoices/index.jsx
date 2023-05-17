@@ -1,13 +1,13 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import { useGridApiRef } from "@mui/x-data-grid-pro";
+import React from "react";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import { useEffect, useState, useRef } from "react";
 import Cookies from "js-cookie";
-import { DataGrid } from "@mui/x-data-grid";
-
+import { DataGrid, useGridApiContext, useGridApiRef } from "@mui/x-data-grid";
 const Invoices = () => {
   const [products, setProducts] = useState([]);
+  const [selectedProducts,setSelectedProducts] = useState([])
   const theme = useTheme();
   const apiRef = useGridApiRef();
   const colors = tokens(theme.palette.mode);
@@ -22,9 +22,23 @@ const Invoices = () => {
       editable: true,
     },
     {
+      field: "Category",
+      headerName: "Category",
+      flex: 1,
+      cellClassName: "name-column--cell",
+      editable: true,
+    },
+    {
+      field: "SuperCategory",
+      headerName: "Super category",
+      flex: 1,
+      cellClassName: "name-column--cell",
+      editable: true,
+    },
+    {
       field: "Desc",
       headerName: "Item Description",
-      flex: 1,
+      flex: 1,  
       editable: true,
     },
     {
@@ -38,6 +52,7 @@ const Invoices = () => {
       headerName: "Item Price",
       flex: 1,
       editable: true,
+      type:'number',
       renderCell: (params) => (
         <Typography color={colors.greenAccent[500]}>
           €{params.row.Price}
@@ -61,65 +76,85 @@ const Invoices = () => {
           element["id"] = element["ProductID"];
           delete element["ProductID"];
           element["editable"] = true;
+          element.Tags = String(element.Tags);
         });
         setProducts(data);
       });
   }, []);
 
-  useEffect(() => {
-    console.log("Edited Products:", editedProducts);
-  }, [editedProducts]);
-
-  const handleCellEditCommit = (params) => {
-    const updatedProducts = products.map((product) => {
-      if (product.id === params.id) {
-        return {
-          ...product,
-          [params.field]: params.value,
-        };
+  const processRowUpdate = (newRow,oldRow) => {
+    const updatedRow = { ...newRow, isNew: false };
+    console.log(updatedRow);
+    let temp = editedProducts;
+    let same = false;
+    const updatedProducts = temp.map((c, i) => {
+      if (c.id == updatedRow.id) {
+        // Increment the clicked counter
+        console.log(oldRow,c);
+        console.log(c.id,updatedRow.id)
+        console.log("returned updated row");
+        same = true;
+        return {...updatedRow,tags:updatedRow.tags};
+      } else {
+        // The rest haven't changed
+        console.log(oldRow,c);
+        return c;
       }
-      return product;
     });
-
-    const editedProduct = updatedProducts.find(
-      (product) => product.id === params.id
-    );
-
-    if (editedProduct) {
-      setEditedProducts((prevEditedProducts) => {
-        const index = prevEditedProducts.findIndex(
-          (product) => product.id === params.id
-        );
-        if (index !== -1) {
-          const updatedEditedProducts = [...prevEditedProducts];
-          updatedEditedProducts[index] = editedProduct;
-          return updatedEditedProducts;
-        }
-        return [...prevEditedProducts, editedProduct];
-      });
-    } else {
-      setEditedProducts((prevEditedProducts) =>
-        prevEditedProducts.filter((product) => product.id !== params.id)
-      );
+    if (!same)
+    {
+      
+      console.log("ni isti produkt");
+      console.log([...editedProducts,updatedRow]);
+      setEditedProducts([...editedProducts,updatedRow]);
     }
-
-    setProducts(updatedProducts);
+    else {
+      console.log("je isti produkt");
+      console.log(updatedProducts);
+      setEditedProducts(updatedProducts => [...updatedProducts]);
+    }
+    
+   
+    //handle send data to api
+    return updatedRow;
   };
-
-  useEffect(() => {
-    if (editedProducts.length > 0) {
-      console.log("Edited Products:", editedProducts);
-    }
-  }, [editedProducts]);
-
-  const handleSubmit = () => {
+  const onRowsSelectionHandler = (ids) => {
+    console.log(ids);
+    setSelectedProducts(ids);
+  };
+  const handleSubmitUpdate = () => {
     console.log("Submitting changes...");
-    post(editedProducts);
+    postUpdate(editedProducts);
+  };
+  const handleSubmitDelete = () => {
+    console.log("Submitting changes...");
+    postDelete(selectedProducts);
   };
 
-  const post = (data) => {
+  const postUpdate = (data) => {
     fetch(
-      "http://127.0.0.1/matura-backend/database/database.php?updateProductsBatch=true",
+      "http://127.0.0.1/matura-backend/database/database.php?updateProductBatch=true",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: Cookies.get("authorization"),
+        },
+        body: JSON.stringify(data),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Updated successfully:", data);
+      })
+      .catch((error) => {
+        console.log("Update failed:", error);
+      });
+  };
+  const postDelete = (data) => {
+    data = {id : data};
+    fetch(
+      "http://127.0.0.1/matura-backend/database/database.php?deleteProduct=true",
       {
         method: "POST",
         headers: {
@@ -175,10 +210,12 @@ const Invoices = () => {
           rows={products}
           columns={columns}
           apiRef={apiRef}
-          onCellEditCommit={handleCellEditCommit}
+          processRowUpdate={processRowUpdate}
+          onRowSelectionModelChange={(ids) => onRowsSelectionHandler(ids)}
         />
       </Box>
-      <button onClick={handleSubmit}>Submit changes</button>
+      <button onClick={handleSubmitUpdate}>Update changed products</button>
+      <button onClick={handleSubmitDelete}>Delete selected products</button>
     </Box>
   );
 };
