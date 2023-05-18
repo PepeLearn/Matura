@@ -3,19 +3,23 @@ import { tokens } from "../../theme";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import Header from "../../components/Header";
 import StatBox from "../../components/StatBox";
-import { useState,useEffect} from "react";
+import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
+import PaidIcon from "@mui/icons-material/Paid";
+import InventoryIcon from "@mui/icons-material/Inventory";
+import PreviewIcon from "@mui/icons-material/Preview";
+import { ClassNames } from "@emotion/react";
 
 const Dashboard = () => {
-  const [products,setProducts] = useState(2);
-  const [reviews,setReviews] = useState(2);
-  const [users,setUsers] = useState(2);
-  const [transactions,setTransactions] = useState(0);
+  const [products, setProducts] = useState(2);
+  const [reviews, setReviews] = useState(2);
+  const [users, setUsers] = useState(2);
+  const [transactions, setTransactions] = useState(0);
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
- useEffect(() => {
+  useEffect(() => {
     fetch(
       "http://127.0.0.1/matura-backend/database/database.php?getDashboard=true",
       {
@@ -62,8 +66,11 @@ const Dashboard = () => {
           <StatBox
             title={products}
             subtitle="Total products"
-            progress="0.75"
-            increase="+14%"
+            icon={
+              <InventoryIcon
+                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+              />
+            }
           />
         </Box>
         <Box
@@ -73,11 +80,14 @@ const Dashboard = () => {
           alignItems="center"
           justifyContent="center"
         >
-          {reviews}
           <StatBox
-            
-            subtitle="Total reviews"
-
+            title={reviews}
+            subtitle="Reviews"
+            icon={
+              <PreviewIcon
+                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+              />
+            }
           />
         </Box>
         <Box
@@ -107,8 +117,13 @@ const Dashboard = () => {
           <StatBox
             title={transactions}
             subtitle="Transakcije"
+            icon={
+              <PaidIcon
+                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+              />
+            }
           />
-        </Box>  
+        </Box>
       </Box>
     </Box>
   );
