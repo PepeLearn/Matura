@@ -19,7 +19,9 @@ function Catalog() {
       .then((response) => response.json())
       .then((data) => setProducts(data));
   }, []);
-
+  const clearFilter = () => {
+    setSearchFilter({ tags: []})
+  }
   const handleSubmit = () => {
     console.log(searchFilter);
     fetch(
@@ -43,7 +45,7 @@ function Catalog() {
   const handleFilter = (filter) => {
     console.log({ ...searchFilter, ...filter });
     setSearchFilter({ ...searchFilter, ...filter });
-  };
+  };  
   return (
     <div className="h-auto">
       <Header />
@@ -107,7 +109,7 @@ function Catalog() {
 
       <div className="flex flex-col md:flex-row justify-center md:justify-start">
         <div className="w-full md:w-1/4 pt-8 px-4 md:px-8 lg:px-12 xl:px-16">
-          <Filter handleFilter={handleFilter} />
+          <Filter handleFilter={handleFilter} handleSubmit={handleSubmit} clearFilter={clearFilter}/>
         </div>
         <div className="m-5 md:m-20 w-full flex flex-wrap">
           {products.map((item, index) => (

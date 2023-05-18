@@ -4,7 +4,7 @@ import { AiOutlineCaretUp } from "react-icons/ai";
 import MultiRangeSlider from "../components/RangeSlider";
 import { RiCheckLine } from "react-icons/ri";
 
-const Filter = ({ handleFilter }) => {
+const Filter = ({ handleFilter,handleSubmit,clearFilter }) => {
   const [slider, setSlider] = useState({
     minPrice: 1,
     maxPrice: 100,
@@ -95,7 +95,10 @@ const Filter = ({ handleFilter }) => {
       prev === superCategory ? null : superCategory
     );
   };
-
+  const handleClearFilter = () => {
+    clearFilter();
+    setFilter({ tags: []});
+  }
   if (data.colors) {
     return (
       <div>
@@ -106,10 +109,10 @@ const Filter = ({ handleFilter }) => {
           </div>
         </div>
         <div className="mt-10  ml-10 flex flex-col">
-          <button className="pt-2 pb-2 pl-1 pr-1 mb-5 rounded-lg text-lg bg-white border border-black">
+          <button className="pt-2 pb-2 pl-1 pr-1 mb-5 rounded-lg text-lg bg-white border border-black" onClick={handleSubmit}>
             Submit filter
           </button>
-          <button className="pt-2 pb-2 pl-1 pr-1 mt-5 rounded-lg text-lg bg-black text-white">
+          <button className="pt-2 pb-2 pl-1 pr-1 mt-5 rounded-lg text-lg bg-black text-white" onClick={handleClearFilter}>
             Clear filter
           </button>
         </div>
