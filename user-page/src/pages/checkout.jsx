@@ -8,9 +8,9 @@ const Checkout = () => {
   const [data , setData] = useState({})
   const handleCheckout =  () =>
   {
-     let data = Cookies.get("cart");
+     const data = Cookies.get("cart");
      data = JSON.parse(data);
-     let auth = Cookies.get("Authorization");
+     const auth = Cookies.get("Authorization");
     fetch(
       "http://127.0.0.1/matura-backend/database/database.php?checkout=true",
       {

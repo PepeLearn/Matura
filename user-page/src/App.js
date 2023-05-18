@@ -17,6 +17,7 @@ function App() {
         <Routes>
           <Route element={<PrivateRoutes />}>
             <Route path="/account" element={<Account />} />
+            <Route path="/checkout" element={<Checkout />} />
           </Route>
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
@@ -24,7 +25,6 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/item" element={<Item />} />
-          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </BrowserRouter>
     </div>

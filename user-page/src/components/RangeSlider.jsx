@@ -9,7 +9,7 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
   const minValRef = useRef(null);
   const maxValRef = useRef(null);
   const range = useRef(null);
-
+  
   // spremeni v procente
   const getPercent = useCallback(
     (value) => Math.round(((value - min) / (max - min)) * 100),

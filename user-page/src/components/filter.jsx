@@ -6,8 +6,8 @@ import { RiCheckLine } from "react-icons/ri";
 
 const Filter = ({ handleFilter }) => {
   const [slider, setSlider] = useState({
-    minPrice: 0,
-    maxPrice: 10000,
+    minPrice: 1,
+    maxPrice: 100,
   });
 
   const [filter, setFilter] = useState({ tags: [] });
@@ -20,7 +20,6 @@ const Filter = ({ handleFilter }) => {
   ]);
   const [openSuperCategory, setOpenSuperCategory] = useState(null);
   const [selectedColors, setSelectedColors] = useState([]);
-
   useEffect(() => {
     fetch(
       "http://127.0.0.1/matura-backend/database/database.php?getFilterData=true",
@@ -48,6 +47,11 @@ const Filter = ({ handleFilter }) => {
           }
         });
         setSuperCategories(temp);
+        setSlider({
+          maxPrice: response.maxPrice,
+          minPrice: response.minPrice,
+        })
+        console.log(response.maxPrice,response.minPrice);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -182,9 +186,9 @@ const Filter = ({ handleFilter }) => {
           </div>
         </div>
         <MultiRangeSlider
-          min={0}
-          max={1000}
-          onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)} //on change
+          min={Math.round(slider.minPrice)}
+          max={Math.round(slider.maxPrice)}
+          onChange={handleFilter} //on change
         />
       </div>
     );

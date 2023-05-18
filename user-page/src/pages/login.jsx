@@ -36,7 +36,7 @@ const Login = () => {
           console.log("without remember me");
         }
         alert("succesful login");
-        window.location.replace("/catalog");
+        //window.location.replace("/catalog");
       })
       .catch((error) => {
         console.error("Error:", error);
