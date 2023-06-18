@@ -1,15 +1,132 @@
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
+import { tokens } from "../../theme";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import Header from "../../components/Header";
+import StatBox from "../../components/StatBox";
+import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
+import PaidIcon from "@mui/icons-material/Paid";
+import InventoryIcon from "@mui/icons-material/Inventory";
+import PreviewIcon from "@mui/icons-material/Preview";
+import { ClassNames } from "@emotion/react";
 
-//komponenta - dashboard - celi board
 const Dashboard = () => {
-    return (
-        <Box m="20px" order={3}>
-            <Box  alignItems="center"> 
-                <Header title="DASHBOARD" subtitle="Welcome to your dashboard"/>
-            </Box>
-        </Box>
+  const [products, setProducts] = useState(2);
+  const [reviews, setReviews] = useState(2);
+  const [users, setUsers] = useState(2);
+  const [transactions, setTransactions] = useState(0);
+
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+
+  useEffect(() => {
+    fetch(
+      "http://127.0.0.1/matura-backend/database/database.php?getDashboard=true",
+      {
+        method: "POST", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: Cookies.get("authorization"),
+        },
+      }
     )
-}
+      .then((data) => data.json())
+      .then((data) => {
+        setProducts(data.total_products);
+        setReviews(data.total_reviews);
+        setUsers(data.total_users);
+        setTransactions(data.total.transactions);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, []);
+  return (
+    <Box m="20px">
+      {/* HEADER */}
+      <Box display="flex" justifyContent="space-between" alignItems="center">
+        <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
+      </Box>
+
+      {/* GRID & CHARTS */}
+      <Box
+        display="grid"
+        gridTemplateColumns="repeat(12, 1fr)"
+        gridAutoRows="140px"
+        gap="20px"
+      >
+        {/* ROW 1 */}
+        <Box
+          gridColumn="span 3"
+          backgroundColor={colors.primary[400]}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <StatBox
+            title={products}
+            subtitle="Total products"
+            icon={
+              <InventoryIcon
+                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+              />
+            }
+          />
+        </Box>
+        <Box
+          gridColumn="span 3"
+          backgroundColor={colors.primary[400]}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <StatBox
+            title={reviews}
+            subtitle="Reviews"
+            icon={
+              <PreviewIcon
+                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+              />
+            }
+          />
+        </Box>
+        <Box
+          gridColumn="span 3"
+          backgroundColor={colors.primary[400]}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <StatBox
+            title={users}
+            subtitle="Total users"
+            icon={
+              <PersonAddIcon
+                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+              />
+            }
+          />
+        </Box>
+        <Box
+          gridColumn="span 3"
+          backgroundColor={colors.primary[400]}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <StatBox
+            title={transactions}
+            subtitle="Transakcije"
+            icon={
+              <PaidIcon
+                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+              />
+            }
+          />
+        </Box>
+      </Box>
+    </Box>
+  );
+};
 
 export default Dashboard;
