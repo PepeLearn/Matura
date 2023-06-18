@@ -4,7 +4,7 @@ import { AiOutlineCaretUp } from "react-icons/ai";
 import MultiRangeSlider from "../components/RangeSlider";
 import { RiCheckLine } from "react-icons/ri";
 
-const Filter = ({ handleFilter,handleSubmit,clearFilter }) => {
+const Filter = ({ handleFilter, handleSubmit, clearFilter }) => {
   const [slider, setSlider] = useState({
     minPrice: 1,
     maxPrice: 100,
@@ -50,8 +50,8 @@ const Filter = ({ handleFilter,handleSubmit,clearFilter }) => {
         setSlider({
           maxPrice: response.maxPrice,
           minPrice: response.minPrice,
-        })
-        console.log(response.maxPrice,response.minPrice);
+        });
+        console.log(response.maxPrice, response.minPrice);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -97,8 +97,8 @@ const Filter = ({ handleFilter,handleSubmit,clearFilter }) => {
   };
   const handleClearFilter = () => {
     clearFilter();
-    setFilter({ tags: []});
-  }
+    setFilter({ tags: [] });
+  };
   if (data.colors) {
     return (
       <div>
@@ -109,10 +109,16 @@ const Filter = ({ handleFilter,handleSubmit,clearFilter }) => {
           </div>
         </div>
         <div className="mt-10  ml-10 flex flex-col">
-          <button className="pt-2 pb-2 pl-1 pr-1 mb-5 rounded-lg text-lg bg-white border border-black" onClick={handleSubmit}>
+          <button
+            className="pt-2 pb-2 pl-1 pr-1 mb-5 rounded-lg text-lg bg-white border border-black"
+            onClick={handleSubmit}
+          >
             Submit filter
           </button>
-          <button className="pt-2 pb-2 pl-1 pr-1 mt-5 rounded-lg text-lg bg-black text-white" onClick={handleClearFilter}>
+          <button
+            className="pt-2 pb-2 pl-1 pr-1 mt-5 rounded-lg text-lg bg-black text-white"
+            onClick={handleClearFilter}
+          >
             Clear filter
           </button>
         </div>
@@ -188,11 +194,6 @@ const Filter = ({ handleFilter,handleSubmit,clearFilter }) => {
             </div>
           </div>
         </div>
-        <MultiRangeSlider
-          min={Math.round(slider.minPrice)}
-          max={Math.round(slider.maxPrice)}
-          onChange={handleFilter} //on change
-        />
       </div>
     );
   }
